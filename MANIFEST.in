@@ -1,0 +1,2 @@
+recursive-include tutor_edunext_distro/patches *
+recursive-include tutor_edunext_distro/templates *
