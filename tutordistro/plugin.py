@@ -41,7 +41,7 @@ config = {
                 "production": {}
             }
         },
-        "EOX_THEMING_DISTRO_PKG": {
+        "EOX_THEMING_DPKG": {
             "index": "git",
             "name": "eox-theming",
             "repository": "https://github.com/eduNEXT/eox-theming.git",
