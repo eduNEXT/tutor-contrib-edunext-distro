@@ -10,6 +10,7 @@ templates = os.path.join(HERE, "templates")
 config = {
     "defaults": {
         "VERSION": __version__,
+        "ENVIRONMENT_BASIC": False,
         "EOX_CORE": True,
         "EOX_TENANT": True,
         "EOX_THEMING": True,

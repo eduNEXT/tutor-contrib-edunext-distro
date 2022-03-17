@@ -1,14 +1,14 @@
 {% for pkg in iter_values_named(suffix="_DPKG") %}
 {% set install_pkg = true -%}
-{%- if pkg["name"]=="eox-core" and not (DISTRO_EOX_CORE or DISTRO_EOX_TENANT or DISTRO_EOX_THEMING) -%}
+{%- if pkg["name"]=="eox-core" and not (DISTRO_EOX_CORE or DISTRO_EOX_TENANT or DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC) -%}
 {% set install_pkg = false %}
 {%- endif -%}
 
-{%- if pkg["name"]=="eox-tenant" and not (DISTRO_EOX_TENANT or DISTRO_EOX_THEMING) -%}
+{%- if pkg["name"]=="eox-tenant" and not (DISTRO_EOX_TENANT or DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC) -%}
 {% set install_pkg = false %}
 {%- endif -%}
 
-{%- if pkg["name"]=="eox-theming" and not DISTRO_EOX_THEMING -%}
+{%- if pkg["name"]=="eox-theming" and not (DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC) -%}
 {% set install_pkg = false %}
 {%- endif -%}
 
