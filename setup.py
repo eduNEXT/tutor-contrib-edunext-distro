@@ -13,7 +13,7 @@ def load_readme():
 def load_about():
     about = {}
     with io.open(
-        os.path.join(HERE, "tutor_edunext_distro", "__about__.py"),
+        os.path.join(HERE, "tutordistro", "__about__.py"),
         "rt",
         encoding="utf-8",
     ) as f:
@@ -39,10 +39,10 @@ setup(
     packages=find_packages(exclude=["tests*"]),
     include_package_data=True,
     python_requires=">=3.6",
-    install_requires=["tutor"],
+    install_requires=["tutor==13.1.5"],
     entry_points={
         "tutor.plugin.v0": [
-            "edunext-distro = tutor_edunext_distro.plugin"
+            "distro = tutordistro.plugin"
         ]
     },
     classifiers=[
