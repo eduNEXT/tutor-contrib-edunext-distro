@@ -55,6 +55,16 @@ config = {
                 "production": {}
             }
         },
+        "THEMES_ROOT": "/openedx/edunext-themes",
+        "THEMES_DIRS": [
+            "/openedx/edunext-themes/ednx-saas-themes/edx-platform"
+            "/openedx/edunext-themes/ednx-saas-themes/edx-platform/bragi-children"
+            "/openedx/edunext-themes/ednx-saas-themes/edx-platform/bragi-generator"
+            "/openedx/edunext-themes/ednx-test-themes/edx-platform"
+        ],
+        "THEMES": [
+            "bragi",
+        ],
     }
 }
 

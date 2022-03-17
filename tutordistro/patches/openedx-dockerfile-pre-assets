@@ -1,0 +1,14 @@
+{% if DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC %}
+ENV NO_PYTHON_UNINSTALL 1
+ENV NO_PREREQ_INSTALL 1
+RUN openedx-assets xmodule \
+    && openedx-assets npm \
+    && openedx-assets webpack --env=prod \
+    && openedx-assets common
+COPY --chown=app:app ./edunext-themes/ {{ DISTRO_THEMES_ROOT }}
+RUN openedx-assets themes \
+    --theme-dirs {{ DISTRO_THEME_DIRS | join(' ') }} \
+    --themes {{ DISTRO_THEMES | join(' ') }} \
+    && openedx-assets collect --settings=tutor.assets \
+    && rdfind -makesymlinks true -followsymlinks true /openedx/staticfiles/
+{% endif %}

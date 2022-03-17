@@ -20,3 +20,8 @@
 # End {{ pkg["name"] }} settings
 {% endif %}
 {% endfor %}
+
+{% if DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC %}
+COMPREHENSIVE_THEME_DIRS.remove('/openedx/themes')
+COMPREHENSIVE_THEME_DIRS.extend({{ DISTRO_THEME_DIRS }})
+{% endif %}
