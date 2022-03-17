@@ -32,8 +32,9 @@ config = {
         },
         "EOX_TENANT_DPKG": {
             "name": "eox-tenant",
-            "index": "pip",
-            "version": "6.0.0",
+            "index": "git",
+            "version": "v6.0.0",
+            "repository": "https://github.com/eduNEXT/eox-tenant.git",
             "variables": {
                 "development": {
                    "EOX_TENANT_USERS_BACKEND": "eox_tenant.edxapp_wrapper.backends.users_l_v1",
