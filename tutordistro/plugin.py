@@ -12,6 +12,7 @@ config = {
         "VERSION": __version__,
         "EOX_CORE": True,
         "EOX_TENANT": True,
+        "EOX_THEMING": True,
 
         # DISTRO PACKAGES
         "EOX_CORE_DPKG": {
@@ -39,7 +40,19 @@ config = {
                 },
                 "production": {}
             }
-        }
+        },
+        "EOX_THEMING_DISTRO_PKG": {
+            "index": "git",
+            "name": "eox-theming",
+            "repository": "https://github.com/eduNEXT/eox-theming.git",
+            "version": "v3.0.0",
+            "variables": {
+                "development": {
+                   "GET_BRANDING_API": "eox_tenant.edxapp_wrapper.backends.branding_api_l_v1",
+                },
+                "production": {}
+            }
+        },
     }
 }
 
