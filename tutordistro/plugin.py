@@ -57,10 +57,10 @@ config = {
         },
         "THEMES_ROOT": "/openedx/distro-themes",
         "THEME_DIRS": [
-            "/openedx/distro-themes/ednx-saas-themes/edx-platform"
-            "/openedx/distro-themes/ednx-saas-themes/edx-platform/bragi-children"
-            "/openedx/distro-themes/ednx-saas-themes/edx-platform/bragi-generator"
-            "/openedx/distro-themes/ednx-test-themes/edx-platform"
+            "/openedx/distro-themes/ednx-saas-themes/edx-platform",
+            "/openedx/distro-themes/ednx-saas-themes/edx-platform/bragi-children",
+            "/openedx/distro-themes/ednx-saas-themes/edx-platform/bragi-generator",
+            "/openedx/distro-themes/ednx-test-themes/edx-platform",
         ],
         "THEMES": [
             "bragi",
