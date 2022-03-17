@@ -11,6 +11,7 @@ config = {
     "defaults": {
         "VERSION": __version__,
         "EOX_CORE": True,
+        "EOX_TENANT": True,
 
         # DISTRO PACKAGES
         "EOX_CORE_DPKG": {
@@ -23,6 +24,18 @@ config = {
                     "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper.backends.users_m_v1",
                     "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper.backends.enrollment_l_v1",
                     "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper.backends.pre_enrollment_l_v1"
+                },
+                "production": {}
+            }
+        },
+        "EOX_TENANT_DPKG": {
+            "name": "eox-tenant",
+            "index": "pip",
+            "version": "6.0.0",
+            "variables": {
+                "development": {
+                   "EOX_TENANT_USERS_BACKEND": "eox_tenant.edxapp_wrapper.backends.users_l_v1",
+                   "EOX_TENANT_LOAD_PERMISSIONS": False,
                 },
                 "production": {}
             }

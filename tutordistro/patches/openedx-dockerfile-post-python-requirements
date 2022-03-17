@@ -1,10 +1,20 @@
 {% for pkg in iter_values_named(suffix="_DPKG") %}
-# {{ pkg }}
-{% if DISTRO_EOX_CORE %}
-{% if pkg["index"] and pkg["index"] == "pip" %}
+{% set install_pkg = true %}
+
+{%- if pkg["name"]=="eox-core" and not (DISTRO_EOX_CORE or DISTRO_EOX_TENANT) -%}
+{% set install_pkg = false %}
+{%- endif -%}
+
+{%- if pkg["name"]=="eox-tenant" and not DISTRO_EOX_TENANT -%}
+{% set install_pkg = false %}
+{%- endif -%}
+
+{%- if install_pkg -%}
+# Install {{ pkg["name"] }}
+{%- if pkg["index"] and pkg["index"] == "pip" -%}
 RUN pip install {{ pkg["name"] }}=={{ pkg["version"] }}
-{% else %}
+{%- else -%}
 RUN pip install git+{{ pkg["repository"] }}@{{ pkg["version"] }}#{{ pkg["name"] }}=={{ pkg["version"] }}
-{% endif %}
-{% endif %}
+{%- endif -%}
+{%- endif -%}
 {% endfor %}
