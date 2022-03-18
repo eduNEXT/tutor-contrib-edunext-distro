@@ -1,5 +1,8 @@
 from glob import glob
 import os
+import click
+
+from .commands import enable_theme_volumes
 
 from .__about__ import __version__
 
@@ -82,6 +85,12 @@ config = {
                 "path": "eduNEXT",
             },
         ],
+    },
+    "set": {
+        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vM.mango.1.0-plugin",
+        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:vM.mango.1.0-plugin",
+        "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
+        "EDX_PLATFORM_VERSION": "edunext/mango.master",
     }
 }
 
@@ -96,3 +105,8 @@ def patches():
             content = patch_file.read()
             all_patches[name] = content
     return all_patches
+
+
+@click.group(help="Distro plugin", commands=(enable_theme_volumes,))
+def command():
+    pass
