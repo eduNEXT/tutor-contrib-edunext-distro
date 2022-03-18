@@ -6,7 +6,7 @@ from tutor import config as tutor_config
 @click.pass_obj
 def enable_theme_volumes(context) -> None:
     tutor_dir = str(context.root)
-    theme_dir = "env/build/openedx/edunext-themes/ednx-saas-themes"
+    theme_dir = "env/build/openedx/distro-themes/ednx-saas-themes"
     click.echo(f"creating {tutor_dir}/{theme_dir}...")
     subprocess.call(["mkdir", "-p", f"{tutor_dir}/{theme_dir}"])
 
