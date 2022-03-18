@@ -14,19 +14,9 @@
 
 {%- if enable_render -%}
 # Start {{ pkg["name"] }} settings
-{%- for key, value in pkg["variables"]["development"].items() %}
+{%- for key, value in pkg["variables"]["production"].items() %}
 {{ key }} = {% if value is string %}"{{ value }}"{% else %}{{ value }}{% endif %}
 {%- endfor %}
 # End {{ pkg["name"] }} settings
 {% endif %}
 {% endfor %}
-
-{% if DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC %}
-################## EOX_THEMING ##################
-if "EOX_THEMING_DEFAULT_THEME_NAME" in locals() and EOX_THEMING_DEFAULT_THEME_NAME:
-    from lms.envs.common import _make_mako_template_dirs # pylint: disable=import-error
-    ENABLE_COMPREHENSIVE_THEMING = True
-    TEMPLATES[1]["DIRS"] = _make_mako_template_dirs
-    derive_settings("lms.envs.devstack")
-# EOL
-{% endif %}
