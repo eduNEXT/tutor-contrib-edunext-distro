@@ -27,7 +27,11 @@ config = {
                     "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper.backends.enrollment_l_v1",
                     "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper.backends.pre_enrollment_l_v1"
                 },
-                "production": {}
+                "production": {
+                    "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper.backends.users_m_v1",
+                    "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper.backends.enrollment_l_v1",
+                    "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper.backends.pre_enrollment_l_v1"
+                }
             }
         },
         "EOX_TENANT_DPKG": {
@@ -40,7 +44,10 @@ config = {
                    "EOX_TENANT_USERS_BACKEND": "eox_tenant.edxapp_wrapper.backends.users_l_v1",
                    "EOX_TENANT_LOAD_PERMISSIONS": False,
                 },
-                "production": {}
+                "production": {
+                   "EOX_TENANT_USERS_BACKEND": "eox_tenant.edxapp_wrapper.backends.users_l_v1",
+                   "EOX_TENANT_LOAD_PERMISSIONS": False,
+                }
             }
         },
         "EOX_THEMING_DPKG": {
@@ -52,7 +59,9 @@ config = {
                 "development": {
                    "GET_BRANDING_API": "eox_tenant.edxapp_wrapper.backends.branding_api_l_v1",
                 },
-                "production": {}
+                "production": {
+                   "GET_BRANDING_API": "eox_tenant.edxapp_wrapper.backends.branding_api_l_v1",
+                }
             }
         },
         "THEMES_ROOT": "/openedx/distro-themes",
@@ -60,7 +69,6 @@ config = {
             "/openedx/distro-themes/ednx-saas-themes/edx-platform",
             "/openedx/distro-themes/ednx-saas-themes/edx-platform/bragi-children",
             "/openedx/distro-themes/ednx-saas-themes/edx-platform/bragi-generator",
-            "/openedx/distro-themes/ednx-test-themes/edx-platform",
         ],
         "THEMES": [
             "bragi",
