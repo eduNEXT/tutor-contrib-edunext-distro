@@ -80,7 +80,7 @@ config = {
                 "domain": "github.com",
                 "protocol": "https",
                 "path": "eduNEXT",
-            }
+            },
         ],
     }
 }

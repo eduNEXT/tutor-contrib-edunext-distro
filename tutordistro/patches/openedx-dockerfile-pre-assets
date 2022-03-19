@@ -1,13 +1,4 @@
-{% if DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC %}
-{% for theme in DISTRO_THEMES %}
-RUN mkdir -p {{ DISTRO_THEMES_ROOT }}/{{ theme["repo"] }} && \
-{% if theme["protocol"] == "ssh" %}
-    git clone -b {{ "git@{0}:{1}/{2}.git".format(theme["domain"],theme["path"],theme["repo"]) }}  {{ DISTRO_THEMES_ROOT }}/{{ theme["repo"] }}
-{% else %}
-    git clone -b {{ "https://{0}/{1}/{2}.git".format(theme["domain"],theme["path"],theme["repo"]) }}  {{ DISTRO_THEMES_ROOT }}/{{ theme["repo"] }}
-{% endif %}
-{% endfor %}
-
+{%- if DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC -%}
 ENV NO_PYTHON_UNINSTALL 1
 ENV NO_PREREQ_INSTALL 1
 RUN openedx-assets xmodule \
@@ -17,7 +8,7 @@ RUN openedx-assets xmodule \
 COPY --chown=app:app ./distro-themes/ {{ DISTRO_THEMES_ROOT }}
 RUN openedx-assets themes \
     --theme-dirs {{ DISTRO_THEME_DIRS | join(' ') }} \
-    --themes {{ THEMES_NAMES | join(' ') }} \
+    --themes {{ DISTRO_THEMES_NAMES | join(' ') }} \
     && openedx-assets collect --settings=tutor.assets \
     && rdfind -makesymlinks true -followsymlinks true /openedx/staticfiles/
 {% endif %}
