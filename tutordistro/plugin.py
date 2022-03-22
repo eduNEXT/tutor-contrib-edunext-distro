@@ -1,6 +1,7 @@
 from glob import glob
 import os
 import click
+from tutor.commands.context import Context
 
 from .commands import enable_theme_volumes
 
@@ -17,7 +18,6 @@ config = {
         "EOX_CORE": True,
         "EOX_TENANT": True,
         "EOX_THEMING": True,
-
         # DISTRO PACKAGES
         "EOX_CORE_DPKG": {
             "name": "eox-core",
@@ -28,14 +28,14 @@ config = {
                 "development": {
                     "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper.backends.users_m_v1",
                     "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper.backends.enrollment_l_v1",
-                    "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper.backends.pre_enrollment_l_v1"
+                    "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper.backends.pre_enrollment_l_v1",
                 },
                 "production": {
                     "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper.backends.users_m_v1",
                     "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper.backends.enrollment_l_v1",
-                    "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper.backends.pre_enrollment_l_v1"
-                }
-            }
+                    "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper.backends.pre_enrollment_l_v1",
+                },
+            },
         },
         "EOX_TENANT_DPKG": {
             "name": "eox-tenant",
@@ -44,14 +44,14 @@ config = {
             "repository": "https://github.com/eduNEXT/eox-tenant.git",
             "variables": {
                 "development": {
-                   "EOX_TENANT_USERS_BACKEND": "eox_tenant.edxapp_wrapper.backends.users_l_v1",
-                   "EOX_TENANT_LOAD_PERMISSIONS": False,
+                    "EOX_TENANT_USERS_BACKEND": "eox_tenant.edxapp_wrapper.backends.users_l_v1",
+                    "EOX_TENANT_LOAD_PERMISSIONS": False,
                 },
                 "production": {
-                   "EOX_TENANT_USERS_BACKEND": "eox_tenant.edxapp_wrapper.backends.users_l_v1",
-                   "EOX_TENANT_LOAD_PERMISSIONS": False,
-                }
-            }
+                    "EOX_TENANT_USERS_BACKEND": "eox_tenant.edxapp_wrapper.backends.users_l_v1",
+                    "EOX_TENANT_LOAD_PERMISSIONS": False,
+                },
+            },
         },
         "EOX_THEMING_DPKG": {
             "index": "git",
@@ -60,12 +60,12 @@ config = {
             "version": "v3.0.0",
             "variables": {
                 "development": {
-                   "GET_BRANDING_API": "eox_tenant.edxapp_wrapper.backends.branding_api_l_v1",
+                    "GET_BRANDING_API": "eox_tenant.edxapp_wrapper.backends.branding_api_l_v1",
                 },
                 "production": {
-                   "GET_BRANDING_API": "eox_tenant.edxapp_wrapper.backends.branding_api_l_v1",
-                }
-            }
+                    "GET_BRANDING_API": "eox_tenant.edxapp_wrapper.backends.branding_api_l_v1",
+                },
+            },
         },
         "THEMES_ROOT": "/openedx/distro-themes",
         "THEME_DIRS": [
@@ -91,7 +91,7 @@ config = {
         "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:vM.mango.1.0-plugin",
         "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
         "EDX_PLATFORM_VERSION": "edunext/mango.master",
-    }
+    },
 }
 
 hooks = {}
@@ -108,5 +108,7 @@ def patches():
 
 
 @click.group(help="Distro plugin", commands=(enable_theme_volumes,))
-def command():
+def command(
+    context: Context,
+) -> None:  # pylint: disable=unused-argument,missing-function-docstring
     pass
