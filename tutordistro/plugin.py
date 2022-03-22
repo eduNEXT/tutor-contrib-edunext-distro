@@ -70,8 +70,17 @@ config = {
             "/openedx/distro-themes/ednx-saas-themes/edx-platform/bragi-children",
             "/openedx/distro-themes/ednx-saas-themes/edx-platform/bragi-generator",
         ],
-        "THEMES": [
+        "THEMES_NAME": [
             "bragi",
+        ],
+        "THEMES": [
+            {
+                "repo": "ednx-saas-themes",
+                "version": "edunext/mango.master",
+                "domain": "github.com",
+                "protocol": "https",
+                "path": "eduNEXT",
+            },
         ],
     }
 }

@@ -1,4 +1,4 @@
-{% if DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC %}
+{%- if DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC -%}
 ENV NO_PYTHON_UNINSTALL 1
 ENV NO_PREREQ_INSTALL 1
 RUN openedx-assets xmodule \
@@ -8,7 +8,7 @@ RUN openedx-assets xmodule \
 COPY --chown=app:app ./distro-themes/ {{ DISTRO_THEMES_ROOT }}
 RUN openedx-assets themes \
     --theme-dirs {{ DISTRO_THEME_DIRS | join(' ') }} \
-    --themes {{ DISTRO_THEMES | join(' ') }} \
+    --themes {{ DISTRO_THEMES_NAME | join(' ') }} \
     && openedx-assets collect --settings=tutor.assets \
     && rdfind -makesymlinks true -followsymlinks true /openedx/staticfiles/
 {% endif %}
