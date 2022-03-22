@@ -3,7 +3,7 @@ import os
 import click
 from tutor.commands.context import Context
 
-from .commands import enable_theme_volumes
+from .commands import enable_themes
 
 from .__about__ import __version__
 
@@ -107,7 +107,8 @@ def patches():
     return all_patches
 
 
-@click.group(help="Distro plugin", commands=(enable_theme_volumes,))
+@click.group(help="Distro plugin", commands=(enable_themes,))
+@click.pass_obj
 def command(
     context: Context,
 ) -> None:  # pylint: disable=unused-argument,missing-function-docstring

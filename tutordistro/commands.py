@@ -24,4 +24,4 @@ def enable_themes(context: Context) -> None:
             ["git", "clone", "-b", theme_branch, theme_repo, f"{tutor_dir}/{theme_dir}"]
         )
     click.echo("finishing...")
-    click.echo("Theme volumes are enable now.")
+    click.echo("Themes are enable now.")
