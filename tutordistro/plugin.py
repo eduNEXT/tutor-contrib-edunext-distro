@@ -81,7 +81,7 @@ config = {
                 "repo": "ednx-saas-themes",
                 "version": "edunext/mango.master",
                 "domain": "github.com",
-                "protocol": "https",
+                "protocol": "ssh",
                 "path": "eduNEXT",
             },
         ],

@@ -14,14 +14,17 @@ def enable_themes(context: Context) -> None:
         theme_dir = f"env/build{config['DISTRO_THEMES_ROOT']}"
         if "https" == theme["protocol"]:
             theme_repo = f"https://{theme['domain']}/{theme['path']}/{theme['repo']}"
+        elif "ssh" == theme["protocol"]:
+            theme_repo = f"git@{theme['domain']}:{theme['path']}/{theme['repo']}"
         theme_branch = theme["version"]
 
         click.echo(f"creating {tutor_dir}/{theme_dir}...")
         subprocess.call(["mkdir", "-p", f"{tutor_dir}/{theme_dir}"])
 
         click.echo(f"clonning...")
-        subprocess.call(
+        result = subprocess.call(
             ["git", "clone", "-b", theme_branch, theme_repo, f"{tutor_dir}/{theme_dir}"]
         )
-    click.echo("finishing...")
-    click.echo("Themes are enable now.")
+    if result == 0:
+        click.echo("finishing...")
+        click.echo("Themes are enable now.")
