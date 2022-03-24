@@ -1,4 +1,5 @@
 import os
+import shutil
 import subprocess
 
 import click
@@ -20,12 +21,22 @@ def enable_themes(context: Context) -> None:
             theme_repo = f"git@{theme['domain']}:{theme['path']}/{theme['repo']}"
         theme_branch = theme["version"]
 
+        if os.path.isdir(f"{tutor_dir}/{theme_dir}"):
+            subprocess.call(["sudo", "rm", "-rf", f"{tutor_dir}/{theme_dir}"])
+
         click.echo(f"creating {tutor_dir}/{theme_dir}...")
         subprocess.call(["mkdir", "-p", f"{tutor_dir}/{theme_dir}"])
 
         click.echo(f"clonning...")
         result = subprocess.call(
-            ["git", "clone", "-b", theme_branch, theme_repo, f"{tutor_dir}/{theme_dir}/{theme['repo']}"]
+            [
+                "git",
+                "clone",
+                "-b",
+                theme_branch,
+                theme_repo,
+                f"{tutor_dir}/{theme_dir}/{theme['repo']}",
+            ]
         )
     if result == 0:
         click.echo("finishing...")
