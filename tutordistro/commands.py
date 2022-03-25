@@ -6,26 +6,28 @@ import click
 from tutor import config as tutor_config
 from tutor.commands.context import Context
 
+from .domain.theme_settings import ThemeSettings
+from .domain.git_clone_exception import GitCloneException
+
 
 @click.command(help="Enable distro themes")
 @click.pass_obj
 def enable_themes(context: Context) -> None:
-    tutor_dir = str(context.root)
     config = tutor_config.load(context.root)
 
     for theme in config["DISTRO_THEMES"]:
-        theme_dir = f"env/build{config['DISTRO_THEMES_ROOT']}"
-        if "https" == theme["protocol"]:
-            theme_repo = f"https://{theme['domain']}/{theme['path']}/{theme['repo']}"
-        elif "ssh" == theme["protocol"]:
-            theme_repo = f"git@{theme['domain']}:{theme['path']}/{theme['repo']}"
-        theme_branch = theme["version"]
+        theme_settings = ThemeSettings(
+            theme_settings=theme, tutor_root=context.root, tutor_config=config
+        )
 
-        if os.path.isdir(f"{tutor_dir}/{theme_dir}"):
-            subprocess.call(["sudo", "rm", "-rf", f"{tutor_dir}/{theme_dir}"])
+        if os.path.isdir(f"{theme_settings.get_full_directory}"):
+            click.echo("Cleaning cache...")
+            subprocess.call(
+                ["sudo", "rm", "-rf", f"{theme_settings.get_full_directory}"]
+            )
 
-        click.echo(f"creating {tutor_dir}/{theme_dir}...")
-        subprocess.call(["mkdir", "-p", f"{tutor_dir}/{theme_dir}"])
+        click.echo(f"creating {theme_settings.get_full_directory}...")
+        subprocess.call(["mkdir", "-p", f"{theme_settings.get_full_directory}"])
 
         click.echo(f"clonning...")
         result = subprocess.call(
@@ -33,14 +35,18 @@ def enable_themes(context: Context) -> None:
                 "git",
                 "clone",
                 "-b",
-                theme_branch,
-                theme_repo,
-                f"{tutor_dir}/{theme_dir}/{theme['repo']}",
+                theme_settings.branch,
+                theme_settings.repo,
+                f"{theme_settings.get_full_directory}/{theme_settings.repo}",
             ]
         )
     if result == 0:
         click.echo("finishing...")
         click.echo("Themes are enable now.")
     else:
-        click.echo(f"Finish not success. Error {result}")
-        click.echo("There are a trouble to enable themes.")
+        raise GitCloneException(
+            f"""
+            Finish not success. Error `subprocess api` {result}
+            There are a trouble to enable themes.
+            """
+        )
