@@ -7,7 +7,7 @@ class ThemeSettings:
         self.tutor_path = str(tutor_root)
         self.branch = theme_settings["version"]
         self.protocol = theme_settings["protocol"]
-        self.repo_name = theme_settings["repo_name"]
+        self.repo_name = theme_settings["repo"]
 
         if "https" == self.protocol:
             self.repo = f"https://{theme_settings['domain']}/{theme_settings['path']}/{theme_settings['repo']}"
