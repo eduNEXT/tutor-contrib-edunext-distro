@@ -3,7 +3,7 @@ import os
 import click
 from tutor.commands.context import Context
 
-from .commands import enable_themes
+from tutordistro.commands.enable_themes import enable_themes
 
 from .__about__ import __version__
 

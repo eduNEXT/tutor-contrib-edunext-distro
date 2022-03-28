@@ -40,6 +40,9 @@ setup(
     include_package_data=True,
     python_requires=">=3.6",
     install_requires=["tutor==13.1.5"],
+    extras_require={
+            "test": ["behave", "pytest", "pylint"]
+        },
     entry_points={
         "tutor.plugin.v0": [
             "distro = tutordistro.plugin"
