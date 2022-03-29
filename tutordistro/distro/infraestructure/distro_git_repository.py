@@ -10,15 +10,20 @@ class DistroGitRepository(DistroRepository):
     def __init__(self, theme_settings: ThemeSettings):
         self.theme_settings = theme_settings
 
+        if "https" == theme_settings["protocol"]:
+            repo = f"https://{theme_settings.settings['domain']}/{theme_settings.settings['path']}/{theme_settings.settings['repo']}"
+        elif "ssh" == theme_settings["protocol"]:
+            repo = f"git@{theme_settings.settings['domain']}:{theme_settings.settings['path']}/{theme_settings.settings['repo']}"
+
     def clone(self) -> None:
         result = subprocess.call(
             [
                 "git",
                 "clone",
                 "-b",
-                self.theme_settings.branch,
-                self.theme_settings.repo,
-                f"{self.theme_settings.get_full_directory}/{self.theme_settings.repo_name}",
+                self.theme_settings.settings["branch"],
+                self.theme_settings.settings["repo"],
+                f"{self.theme_settings.get_full_directory}",
             ]
         )
 

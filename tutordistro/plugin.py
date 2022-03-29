@@ -67,17 +67,18 @@ config = {
                 },
             },
         },
-        "THEMES_ROOT": "/openedx/distro-themes",
+        "THEMES_ROOT": "/openedx/themes",
         "THEME_DIRS": [
-            "/openedx/distro-themes/ednx-saas-themes/edx-platform",
-            "/openedx/distro-themes/ednx-saas-themes/edx-platform/bragi-children",
-            "/openedx/distro-themes/ednx-saas-themes/edx-platform/bragi-generator",
+            "/openedx/themes/ednx-saas-themes/edx-platform",
+            "/openedx/themes/ednx-saas-themes/edx-platform/bragi-children",
+            "/openedx/themes/ednx-saas-themes/edx-platform/bragi-generator",
         ],
         "THEMES_NAME": [
             "bragi",
         ],
         "THEMES": [
             {
+                "name": "ednx-saas-themes",
                 "repo": "ednx-saas-themes",
                 "version": "edunext/mango.master",
                 "domain": "github.com",

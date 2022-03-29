@@ -21,7 +21,7 @@ class DistroInMemoryRepository(DistroRepository):
                 """
             )
         else:
-            full_theme_path = f"Cloned from {self.theme_settings.repo} to {self.theme_settings.get_full_directory}"
+            full_theme_path = f"Cloned from {self.theme_settings.name} to {self.theme_settings.get_full_directory}"
             self.DIRS.append(full_theme_path)
 
     def check_directory(self) -> None:
