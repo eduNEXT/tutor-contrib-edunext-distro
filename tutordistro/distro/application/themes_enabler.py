@@ -10,4 +10,5 @@ class ThemesEnabler:
 
     def __call__(self, settings: Dict):
         theme_settings = ThemeSettings(settings)
+        self.repository.check_directory()
         return self.repository.clone(theme_settings)

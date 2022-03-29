@@ -1,18 +1,17 @@
+import os
+import subprocess
+
 from tutordistro.distro.domain.distro_repository import DistroRepository
 from tutordistro.distro.domain.git_clone_exception import GitCloneException
+from tutordistro.distro.domain.theme_settings import ThemeSettings
 
 
 class DistroGitRepository(DistroRepository):
-    def __init__(self, theme_settings, subprocess, click):
-        super.__init__(theme_settings, subprocess, click)
-        self.subprocess = subprocess
-        self.click = click
+    def __init__(self, theme_settings: ThemeSettings):
         self.theme_settings = theme_settings
 
     def clone(self) -> None:
-        super().clone()
-        self.click.echo(f"Clonning...")
-        result = self.subprocess.call(
+        result = subprocess.call(
             [
                 "git",
                 "clone",
@@ -23,10 +22,7 @@ class DistroGitRepository(DistroRepository):
             ]
         )
 
-        if result == 0:
-            self.click.echo("Finishing...")
-            self.click.echo("Themes are enable now.")
-        else:
+        if result != 0:
             raise GitCloneException(
                 f"""
                 Finish not success. Error `subprocess api` {result}
@@ -34,17 +30,11 @@ class DistroGitRepository(DistroRepository):
                 """
             )
 
-    def check_directory(self, os) -> None:
-        super().check_directory(os)
+    def check_directory(self) -> None:
         if os.path.isdir(f"{self.theme_settings.get_full_directory}"):
-            self.click.echo("Cleaning old themes...")
             self.subprocess.call(
                 ["sudo", "rm", "-rf", f"{self.theme_settings.get_full_directory}"]
             )
 
     def create_directory(self) -> None:
-        super().create_directory()
-        self.click.echo(f"Creating {self.theme_settings.get_full_directory}...")
-        self.subprocess.call(
-            ["mkdir", "-p", f"{self.theme_settings.get_full_directory}"]
-        )
+        subprocess.call(["mkdir", "-p", f"{self.theme_settings.get_full_directory}"])

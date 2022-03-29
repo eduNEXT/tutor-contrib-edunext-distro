@@ -1,9 +1,10 @@
+from tutor.types import Config
 from typing import Dict
 
 
 class ThemeSettings:
-    def __init__(self, theme_settings: Dict, tutor_root, tutor_config):
-        self.dir = f"env/build{tutor_config['DISTRO_THEMES_ROOT']}"
+    def __init__(self, theme_settings: Dict, tutor_root: str, tutor_config: Config):
+        self.dir = f"env/build/{tutor_config['DISTRO_THEMES_ROOT']}"
         self.tutor_path = str(tutor_root)
         self.branch = theme_settings["version"]
         self.protocol = theme_settings["protocol"]
