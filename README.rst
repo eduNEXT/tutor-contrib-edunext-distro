@@ -80,7 +80,7 @@ Declare the path of your themes, by default the themes path goes here `/openedx/
 
 
 
-Now setup the directories where going to be placed your themes
+Now setup the directories where going to be placed your themes, to allow openedx to know where can look up them
 
 ::
 
@@ -95,7 +95,7 @@ Now setup the directories where going to be placed your themes
 
 
 
-Setup the theme names of all your themes in this list `THEMES_NAME`
+Declare the theme names of all your themes in this list `THEMES_NAME` to enable correctly them with the distro command `enable-themes`
 
 ::
 
