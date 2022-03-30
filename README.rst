@@ -1,5 +1,9 @@
 edunext-distro plugin for `Tutor <https://docs.tutor.overhang.io>`__
 ===================================================================================
+What is Distro
+--------------
+Distro is an opinioned openedx distribution with some custom stuff to have an easy-to-use and a ready to deploy in local or in development openedx distribution. This can be watch like a tutor-plugin but is taken a little bit far away.
+
 
 Installation
 ------------
@@ -18,6 +22,8 @@ Usage
 How to add packages
 -----
 
+Open your tutordistro/plugin.py
+
 The most important thing you have to declare into `defaults` dict is the upper case package name and set it to True, this is for enable and disable from terminal like:
 
 ::
@@ -25,7 +31,7 @@ The most important thing you have to declare into `defaults` dict is the upper c
     tutor distro --set EOX_CORE=False
 
 
-Before this you must to set a key with the upper case package name followed by `_DPKG` for example `"EOX_CORE_DPKG"`, the value of that key is a dictionary with the following data:
+Then you must to set a key with the upper case package name followed by `_DPKG` for example `"EOX_CORE_DPKG"`, the value of that key is a dictionary with the following data:
 
 - name **# Package name**
 - index **# Where download it (choices are pip or git)**
