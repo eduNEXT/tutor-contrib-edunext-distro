@@ -6,7 +6,7 @@ from tutordistro.distro.domain.distro_repository import DistroRepository
 from tutordistro.distro.domain.theme_settings import ThemeSettings
 
 
-class ThemesEnabler:
+class ThemeEnabler:
     def __init__(self, repository: DistroRepository):
         self.repository = repository
 

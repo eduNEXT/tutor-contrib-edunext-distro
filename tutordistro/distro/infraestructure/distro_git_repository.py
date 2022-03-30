@@ -1,6 +1,8 @@
 import os
 import subprocess
 
+import click
+
 from tutordistro.distro.domain.distro_repository import DistroRepository
 from tutordistro.distro.domain.clone_exception import CloneException
 from tutordistro.distro.domain.theme_settings import ThemeSettings
@@ -17,24 +19,23 @@ class DistroGitRepository(DistroRepository):
         elif "ssh" == theme_settings.settings["protocol"]:
             repo = f"git@{theme_settings.settings['domain']}:{theme_settings.settings['path']}/{theme_settings.settings['repo']}"
 
-        result = subprocess.call(
-            [
-                "git",
-                "clone",
-                "-b",
-                theme_settings.settings["version"],
-                repo,
-                f"{theme_settings.get_full_directory}",
-            ]
-        )
+        try:
+            if os.path.exists(f"{theme_settings.get_full_directory}"):
+                if not click.confirm(f"Do you want to overwrite {theme_settings.get_full_directory}? "):
+                    raise CloneException()
 
-        if result != 0:
-            raise CloneException(
-                f"""
-                Finish not success. Error `subprocess api` {result}
-                There are a trouble to enable themes.
-                """
+            subprocess.call(
+                [
+                    "git",
+                    "clone",
+                    "-b",
+                    theme_settings.settings["version"],
+                    repo,
+                    f"{theme_settings.get_full_directory}",
+                ]
             )
+        except CloneException:
+            pass
 
     def check_directory(self) -> None: pass
         # if os.path.isdir(f"{self.theme_settings.get_full_directory}"):
