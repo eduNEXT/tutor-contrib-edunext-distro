@@ -21,9 +21,9 @@ How to add packages
 The most important thing you have to declare into `defaults` dict is the upper case package name and set it to True, this is for enable and disable from terminal like:
 
 ::
-```bash
-tutor distro --set EOX_CORE=False
-```
+
+    tutor distro --set EOX_CORE=False
+
 
 Before this you must to set a key with the upper case package name followed by `_DPKG` for example `"EOX_CORE_DPKG"`, the value of that key is a dictionary with the following data:
 
@@ -65,6 +65,8 @@ How to add custom themes
 -----
 Declare the path of your themes, by default the themes path goes here `/openedx/themes`
 
+::
+
     "defaults": {
         # Another `defaults` settings
         "THEMES_ROOT": "/openedx/themes"
@@ -74,6 +76,7 @@ Declare the path of your themes, by default the themes path goes here `/openedx/
 
 Now setup the directories where going to be placed your themes
 
+::
 
     "defaults": {
         # Another `defaults` settings
