@@ -1,5 +1,5 @@
 from tutordistro.distro.domain.distro_repository import DistroRepository
-from tutordistro.distro.domain.git_clone_exception import GitCloneException
+from tutordistro.distro.domain.clone_exception import CloneException
 from tutordistro.distro.domain.theme_settings import ThemeSettings
 
 
@@ -14,7 +14,7 @@ class DistroInMemoryRepository(DistroRepository):
 
     def clone(self):
         if not self.repo_exists:
-            raise GitCloneException(
+            raise CloneException(
                 f"""
                 Finish not success.
                 There are a trouble to enable themes.

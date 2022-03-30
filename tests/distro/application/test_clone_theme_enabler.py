@@ -2,7 +2,7 @@ import pytest
 from tests.distro.infraestructure.distro_in_memory_repository import (
     DistroInMemoryRepository,
 )
-from tutordistro.distro.domain.git_clone_exception import GitCloneException
+from tutordistro.distro.domain.clone_exception import CloneException
 from tutordistro.distro.domain.theme_settings import ThemeSettings
 
 
@@ -47,9 +47,9 @@ def test_clon_with_repo_does_not_exists():
     repository = DistroInMemoryRepository(
         theme_settings=theme_settings, repo_exists=repo_exists
     )
-    with pytest.raises(GitCloneException) as git_error:
+    with pytest.raises(CloneException) as git_error:
         repository.clone()
-    assert git_error.type is GitCloneException
+    assert git_error.type is CloneException
 
 def test_clone_when_directory_exists():
     theme_settings = ThemeSettings(
