@@ -88,7 +88,9 @@ Now setup the directories where going to be placed your themes
     }
 
 
- Setup the theme names of all your themes in this list `THEMES_NAME`
+
+Setup the theme names of all your themes in this list `THEMES_NAME`
+
 ::
 
     "defaults": {
