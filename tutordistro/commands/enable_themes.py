@@ -6,18 +6,18 @@ import click
 from tutor import config as tutor_config
 from tutor.commands.context import Context
 
-from .domain.theme_settings import ThemeSettings
-from .domain.git_clone_exception import GitCloneException
+from tutordistro.distro.domain.theme_settings import ThemeSettings
+from tutordistro.distro.domain.clone_exception import CloneException
 
 
-@click.command(help="Enable distro themes")
-@click.pass_obj
-def enable_themes(context: Context) -> None:
-    config = tutor_config.load(context.root)
+@click.command(name="enable-themes", help="Enable distro themes")
+def enable_themes() -> None:
+    directory = subprocess.check_output("tutor config printroot", shell=True).decode("utf-8").strip()
+    config = tutor_config.load(directory)
 
     for theme in config["DISTRO_THEMES"]:
         theme_settings = ThemeSettings(
-            theme_settings=theme, tutor_root=context.root, tutor_config=config
+            settings=theme, tutor_root=directory, tutor_config=config
         )
 
         if os.path.isdir(f"{theme_settings.get_full_directory}"):
@@ -44,7 +44,7 @@ def enable_themes(context: Context) -> None:
         click.echo("finishing...")
         click.echo("Themes are enable now.")
     else:
-        raise GitCloneException(
+        raise CloneException(
             f"""
             Finish not success. Error `subprocess api` {result}
             There are a trouble to enable themes.

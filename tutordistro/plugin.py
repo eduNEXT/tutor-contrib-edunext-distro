@@ -114,3 +114,5 @@ def command(
     context: Context,
 ) -> None:  # pylint: disable=unused-argument,missing-function-docstring
     pass
+
+command.add_command(enable_themes)

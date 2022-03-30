@@ -2,7 +2,7 @@ import os
 import subprocess
 
 from tutordistro.distro.domain.distro_repository import DistroRepository
-from tutordistro.distro.domain.git_clone_exception import GitCloneException
+from tutordistro.distro.domain.clone_exception import CloneException
 from tutordistro.distro.domain.theme_settings import ThemeSettings
 
 
@@ -28,7 +28,7 @@ class DistroGitRepository(DistroRepository):
         )
 
         if result != 0:
-            raise GitCloneException(
+            raise CloneException(
                 f"""
                 Finish not success. Error `subprocess api` {result}
                 There are a trouble to enable themes.
@@ -37,9 +37,6 @@ class DistroGitRepository(DistroRepository):
 
     def check_directory(self) -> None:
         if os.path.isdir(f"{self.theme_settings.get_full_directory}"):
-            self.subprocess.call(
+            subprocess.call(
                 ["sudo", "rm", "-rf", f"{self.theme_settings.get_full_directory}"]
             )
-
-    def create_directory(self) -> None:
-        subprocess.call(["mkdir", "-p", f"{self.theme_settings.get_full_directory}"])
