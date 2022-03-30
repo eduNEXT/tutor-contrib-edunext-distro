@@ -40,7 +40,7 @@ Before this you must to set a key with the upper case package name followed by `
 ::
 ```python
 "defaults": {
-    # Another default section settings
+    # Another `defaults` settings
     "EOX_CORE": True,
     "EOX_CORE_DPKG": {
         "name": "eox-core",
@@ -60,6 +60,62 @@ Before this you must to set a key with the upper case package name followed by `
     }
 }
 ```
+
+
+How to add custom themes
+-----
+## Declare the path of your themes, by default the themes path goes here `/openedx/themes`
+
+```python
+"defaults": {
+    # Another `defaults` settings
+    "THEMES_ROOT": "/openedx/themes"
+}
+```
+
+
+## Now setup the directories where going to be placed your themes
+
+```python
+"defaults": {
+    # Another `defaults` settings
+    "THEME_DIRS": [
+        "/openedx/themes/ednx-saas-themes/edx-platform",
+        "/openedx/themes/ednx-saas-themes/edx-platform/bragi-children",
+        "/openedx/themes/ednx-saas-themes/edx-platform/bragi-generator",
+    ]
+}
+```
+
+## Setup the theme names of all your themes in this list `THEMES_NAME`
+```python
+"defaults": {
+    # Another `defaults` settings
+    "THEMES_NAME": [
+        "bragi",
+    ],
+}
+```
+## Custom docker images
+You need a opinioned docker image and an opinioned edx_platform to manage the local and developmento environment. This settings need to be placed into `set` key and not in `defaults`.
+
+- DOCKER_IMAGE_OPENEDX **# The docker image repository for the openedx-platform**
+- DOCKER_IMAGE_OPENEDX_DEV **# The docker image repository for development environment to openedx-platform**
+- EDX_PLATFORM_REPOSITORY **# This is the git repo to clone the edx-platform in development environment**
+- EDX_PLATFORM_VERSION **# This is to select a version tag or branch from edx-platform repository**
+
+```python
+"set": {
+    # Another `set` stuff
+    "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vM.mango.1.0-plugin",
+    "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:vM.mango.1.0-plugin",
+    "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
+    "EDX_PLATFORM_VERSION": "edunext/mango.master",
+},
+```
+
+
+
 License
 -------
 
