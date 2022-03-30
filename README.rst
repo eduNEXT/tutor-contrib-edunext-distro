@@ -37,7 +37,7 @@ Then you must to set a key with the upper case package name followed by `_DPKG` 
 - index **# Where download it (choices are pip or git)**
 - repository **# This is optional only if you use a git repo**
 - version **#This is optional only if you use a git repo**
-- variables **# The variables key is the part of custom development which you need to setup a `development` or a `production` environment with whatever dava you may need**
+- variables **# The variables key is the part of custom development which you need to setup a `development` or a `production` environment with whatever you may need**
   - development **# A dictionary: Dict[str, str] with all the settings you can need to start a deleopment environment**
   - production **# A dictionary: Dict[str, str] with all the settings you can need to start a production environment**
 
@@ -108,7 +108,7 @@ Declare the theme names of all your themes in this list `THEMES_NAME` to enable 
 
 **Custom docker images**
 
-You need a opinioned docker image and an opinioned edx_platform to manage the local and developmento environment. This settings need to be placed into `set` key and not in `defaults`.
+You need a opinioned docker image and an opinioned edx_platform to manage the local and development environment. This settings need to be placed into `set` key and not in `defaults`.
 
 - DOCKER_IMAGE_OPENEDX **# The docker image repository for the openedx-platform**
 - DOCKER_IMAGE_OPENEDX_DEV **# The docker image repository for development environment to openedx-platform**
