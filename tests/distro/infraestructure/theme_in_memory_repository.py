@@ -1,9 +1,9 @@
-from tutordistro.distro.domain.distro_repository import DistroRepository
+from tutordistro.distro.domain.theme_repository import ThemeRepository
 from tutordistro.distro.domain.clone_exception import CloneException
 from tutordistro.distro.domain.theme_settings import ThemeSettings
 
 
-class DistroInMemoryRepository(DistroRepository):
+class ThemeInMemoryRepository(ThemeRepository):
     """ """
 
     DIRS = []
@@ -28,7 +28,3 @@ class DistroInMemoryRepository(DistroRepository):
         for elem in self.DIRS:
             if self.theme_settings.get_full_directory in elem:
                 self.DIRS.remove(elem)
-
-
-    def create_directory(self) -> None:
-        return super().create_directory()

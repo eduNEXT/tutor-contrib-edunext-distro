@@ -1,6 +1,6 @@
 import pytest
-from tests.distro.infraestructure.distro_in_memory_repository import (
-    DistroInMemoryRepository,
+from tests.distro.infraestructure.theme_in_memory_repository import (
+    ThemeInMemoryRepository,
 )
 from tutordistro.distro.domain.clone_exception import CloneException
 from tutordistro.distro.domain.theme_settings import ThemeSettings
@@ -21,7 +21,7 @@ def test_clone_when_repo_exists():
         tutor_config={"DISTRO_THEMES_ROOT": "distro_themes"},
     )
     repo_exists = True
-    repository = DistroInMemoryRepository(
+    repository = ThemeInMemoryRepository(
         theme_settings=theme_settings, repo_exists=repo_exists
     )
     repository.clone()
@@ -44,7 +44,7 @@ def test_clon_with_repo_does_not_exists():
         tutor_config={"DISTRO_THEMES_ROOT": "distro_themes"},
     )
     repo_exists = False
-    repository = DistroInMemoryRepository(
+    repository = ThemeInMemoryRepository(
         theme_settings=theme_settings, repo_exists=repo_exists
     )
     with pytest.raises(CloneException) as git_error:
@@ -66,7 +66,7 @@ def test_clone_when_directory_exists():
         tutor_config={"DISTRO_THEMES_ROOT": "distro_themes"},
     )
     repo_exists = True
-    repository = DistroInMemoryRepository(
+    repository = ThemeInMemoryRepository(
         theme_settings=theme_settings, repo_exists=repo_exists
     )
     assert len(repository.DIRS) != 0

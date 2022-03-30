@@ -11,5 +11,5 @@ class ThemeSettings:
         self.settings = settings
 
     @property
-    def get_full_directory(self) -> str:
+    def get_full_directory(self) -> str:    # pylint: disable=missing-function-docstring
         return f"{self.tutor_path}/{self.dir}"

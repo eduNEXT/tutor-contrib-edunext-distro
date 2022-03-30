@@ -2,7 +2,7 @@
 import os
 import subprocess
 
-from behave import given, when, then
+from behave import given, when, then    # pylint: disable=no-name-in-module
 from click.testing import CliRunner
 from tutor import config as tutor_config
 
@@ -30,9 +30,11 @@ def step_impl(context): # pylint: disable=function-redefined,missing-function-do
 @given("Already exist theme folder")
 def step_impl(context): # pylint: disable=function-redefined,missing-function-docstring
     name = context.scenario.config["DISTRO_THEMES"][0]["name"]
-    path = f"{context.scenario.tutor_root}/env/build/{context.scenario.config['DISTRO_THEMES_ROOT']}/{name}"
+    path = f"{context.scenario.tutor_root}/env/build/\
+    {context.scenario.config['DISTRO_THEMES_ROOT']}/{name}"
     os.makedirs(path)
     assert os.path.exists(path)
+
 
 @when("I write the command tutor distro enable-themes without confirm")
 def step_impl(context): # pylint: disable=function-redefined,missing-function-docstring
@@ -45,6 +47,7 @@ def step_impl(context): # pylint: disable=function-redefined,missing-function-do
 def step_impl(context): # pylint: disable=function-redefined,missing-function-docstring
     runner = CliRunner()
     result = runner.invoke(enable_themes, obj=context, input="n")
+    print(result)
     assert result.exit_code == 0
 
 
@@ -53,11 +56,13 @@ def step_impl(context): # pylint: disable=function-redefined,missing-function-do
     distro_theme_root = context.scenario.config["DISTRO_THEMES_ROOT"]
     themes = context.scenario.config["DISTRO_THEMES"]
     for theme in themes:
-        assert os.path.exists(f"{context.scenario.tutor_root}/env/build/{distro_theme_root}/{theme['name']}")
+        assert os.path.exists(f"{context.scenario.tutor_root}/env/build/\
+        {distro_theme_root}/{theme['name']}")
 
 
 @then("The folder wasn't modified")
 def step_impl(context): # pylint: disable=function-redefined,missing-function-docstring
     name = context.scenario.config["DISTRO_THEMES"][0]["name"]
-    path = f"{context.scenario.tutor_root}/env/build/{context.scenario.config['DISTRO_THEMES_ROOT']}/{name}"
+    path = f"{context.scenario.tutor_root}/env/build/\
+    {context.scenario.config['DISTRO_THEMES_ROOT']}/{name}"
     assert len(os.listdir(path)) == 0

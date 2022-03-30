@@ -31,6 +31,6 @@ python-acceptance-test: clean python-test-requirements ## Run acceptance tests
 	$(TOX) behave
 
 python-quality-test:
-	$(TOX) pylint --output-format=colorized tutor_data_manager tests features --rcfile=./setup.cfg
+	$(TOX) pylint --output-format=colorized tutordistro tests features --rcfile=./setup.cfg
 
 run-tests: python-unit-tests python-acceptance-test python-quality-test
