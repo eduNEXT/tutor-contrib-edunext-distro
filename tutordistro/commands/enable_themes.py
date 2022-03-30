@@ -1,11 +1,8 @@
 import os
-import shutil
 import subprocess
 
 import click
 from tutor import config as tutor_config
-from tutor.commands.context import Context
-
 from tutordistro.distro.domain.theme_settings import ThemeSettings
 from tutordistro.distro.domain.clone_exception import CloneException
 

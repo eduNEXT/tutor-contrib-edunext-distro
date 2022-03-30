@@ -28,6 +28,7 @@ def behave_tutor_root(ctx):
         os.makedirs(f"{tutor_root}/env/build/openedx/themes")
         current_scenario.tutor_root = tutor_root
 
+
 @fixture(name="fixture.behave.tutor_clean")
 def behave_tutor_clean(ctx):
     """
