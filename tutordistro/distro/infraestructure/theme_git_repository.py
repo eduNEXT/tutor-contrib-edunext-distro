@@ -12,11 +12,9 @@ class ThemeGitRepository(ThemeRepository):
 
     def clone(self, theme_settings: type(ThemeSettings)) -> None:
         if "https" == theme_settings.settings["protocol"]:
-            repo = f"https://{theme_settings.settings['domain']}/\
-            {theme_settings.settings['path']}/{theme_settings.settings['repo']}"
+            repo = f"https://{theme_settings.settings['domain']}/{theme_settings.settings['path']}/{theme_settings.settings['repo']}"
         elif "ssh" == theme_settings.settings["protocol"]:
-            repo = f"git@{theme_settings.settings['domain']}:\
-            {theme_settings.settings['path']}/{theme_settings.settings['repo']}"
+            repo = f"git@{theme_settings.settings['domain']}:{theme_settings.settings['path']}/{theme_settings.settings['repo']}.git"
 
         try:
             if os.path.exists(f"{theme_settings.get_full_directory}"):
