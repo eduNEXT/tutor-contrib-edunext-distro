@@ -1,0 +1,2 @@
+./manage.py lms migrate eox_tenant
+./manage.py lms migrate eox_core

@@ -1,0 +1,27 @@
+{% for pkg in iter_values_named(suffix="_DPKG") %}
+{%- set enable_render = true -%}
+{%- if pkg["name"]=="eox-core" and not (DISTRO_EOX_CORE or DISTRO_EOX_TENANT or DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC) -%}
+{% set enable_render = false %}
+{%- endif -%}
+
+{%- if pkg["name"]=="eox-tenant" and not (DISTRO_EOX_TENANT or DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC) -%}
+{% set enable_render = false %}
+{%- endif -%}
+
+{%- if pkg["name"]=="eox-theming" and not (DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC) -%}
+{% set enable_render = false %}
+{%- endif -%}
+
+{%- if enable_render -%}
+# Start {{ pkg["name"] }} settings
+{%- for key, value in pkg["variables"]["production"].items() %}
+{{ key }} = {% if value is string %}"{{ value }}"{% else %}{{ value }}{% endif %} 
+{%- endfor %}
+# End {{ pkg["name"] }} settings
+{% endif %}
+{% endfor %}
+
+{% if DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC %}
+COMPREHENSIVE_THEME_DIRS.remove('/openedx/themes')
+COMPREHENSIVE_THEME_DIRS.extend({{ DISTRO_THEME_DIRS }})
+{% endif %}
