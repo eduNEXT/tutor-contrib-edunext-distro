@@ -103,9 +103,9 @@ config = {
     },
     "set": {
         "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vM"
-                                ".mango.1.0-plugin",
+                                ".mango.2.0-plugin",
         "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp"
-                                    "-dev:vM.mango.1.0-plugin",
+                                    "-dev:vM.mango.2.0-plugin",
         "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
         "EDX_PLATFORM_VERSION": "edunext/mango.master",
     },
