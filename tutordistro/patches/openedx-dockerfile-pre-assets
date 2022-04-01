@@ -5,7 +5,7 @@ RUN openedx-assets xmodule \
     && openedx-assets npm \
     && openedx-assets webpack --env=prod \
     && openedx-assets common
-COPY --chown=app:app ./distro-themes/ {{ DISTRO_THEMES_ROOT }}
+COPY --chown=app:app ./themes/ {{ DISTRO_THEMES_ROOT }}
 RUN openedx-assets themes \
     --theme-dirs {{ DISTRO_THEME_DIRS | join(' ') }} \
     --themes {{ DISTRO_THEMES_NAME | join(' ') }} \
