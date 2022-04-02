@@ -14,20 +14,16 @@ templates = os.path.join(HERE, "templates")
 config = {
     "defaults": {
         "VERSION": __version__,
-        "ENVIRONMENT_BASIC": False,
-        "EOX_CORE": True,
-        "EOX_TENANT": True,
-        "EOX_THEMING": True,
         # DISTRO PACKAGES
         "EOX_CORE_DPKG": {
             "name": "eox-core",
             "index": "git",
             "repository": "https://github.com/eduNEXT/eox-core.git",
-            "version": "v6.0.1",
+            "version": "v5.1.1",
             "variables": {
                 "development": {
                     "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper"
-                                              ".backends.users_m_v1",
+                                              ".backends.users_l_v1",
                     "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper"
                                                    ".backends.enrollment_l_v1",
                     "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core"
@@ -37,7 +33,7 @@ config = {
                 },
                 "production": {
                     "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper"
-                                              ".backends.users_m_v1",
+                                              ".backends.users_l_v1",
                     "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper"
                                                    ".backends.enrollment_l_v1",
                     "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core"
@@ -50,7 +46,7 @@ config = {
         "EOX_TENANT_DPKG": {
             "name": "eox-tenant",
             "index": "git",
-            "version": "v6.0.0",
+            "version": "v5.1.3",
             "repository": "https://github.com/eduNEXT/eox-tenant.git",
             "variables": {
                 "development": {
@@ -69,7 +65,7 @@ config = {
             "index": "git",
             "name": "eox-theming",
             "repository": "https://github.com/eduNEXT/eox-theming.git",
-            "version": "v3.0.0",
+            "version": "v2.0.0",
             "variables": {
                 "development": {
                     "GET_BRANDING_API": "eox_tenant.edxapp_wrapper.backends"
@@ -78,6 +74,52 @@ config = {
                 "production": {
                     "GET_BRANDING_API": "eox_tenant.edxapp_wrapper.backends"
                                         ".branding_api_l_v1",
+                },
+            },
+        },
+        "EOX_AUDIT_MODEL_DPKG": {
+            "index": "git",
+            "name": "eox-audit-model",
+            "repository": "https://github.com/eduNEXT/eox-audit-model.git",
+            "version": "v0.7.0",
+            "variables": {
+                "development": {
+                },
+                "production": {
+                },
+            },
+        },
+        "EOX_HOOKS_DPKG": {
+            "index": "git",
+            "name": "eox-hooks",
+            "repository": "https://github.com/eduNEXT/eox-hooks.git",
+            "version": "v1.0.0",
+            "variables": {
+                "development": {
+                    "EOX_HOOKS_ENROLLMENTS_BACKEND": "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1",
+                    "EOX_HOOKS_COURSES_BACKEND": "eox_hooks.edxapp_wrapper.backends.courses_l_v1",
+                    "EOX_HOOKS_COURSE_MODES_BACKEND": "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1",
+                    "EOX_HOOKS_MODELS_BACKEND": "eox_hooks.edxapp_wrapper.backends.models_l_v1",
+                },
+                "production": {
+                    "EOX_HOOKS_ENROLLMENTS_BACKEND": "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1",
+                    "EOX_HOOKS_COURSES_BACKEND": "eox_hooks.edxapp_wrapper.backends.courses_l_v1",
+                    "EOX_HOOKS_COURSE_MODES_BACKEND": "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1",
+                    "EOX_HOOKS_MODELS_BACKEND": "eox_hooks.edxapp_wrapper.backends.models_l_v1",
+                },
+            },
+        },
+        "EOX_TAGGING_DPKG": {
+            "index": "git",
+            "name": "eox-tagging",
+            "repository": "https://github.com/eduNEXT/eox-tagging.git",
+            "version": "v3.0.0",
+            "variables": {
+                "development": {
+                    "EOX_TAGGING_GET_ENROLLMENT_OBJECT": "eox_tagging.edxapp_wrappers.backends.enrollment_l_v1",
+                },
+                "production": {
+                    "EOX_TAGGING_GET_ENROLLMENT_OBJECT": "eox_tagging.edxapp_wrappers.backends.enrollment_l_v1",
                 },
             },
         },
@@ -94,7 +136,7 @@ config = {
             {
                 "name": "ednx-saas-themes",
                 "repo": "ednx-saas-themes",
-                "version": "edunext/mango.master",
+                "version": "edunext/limonero.master",
                 "domain": "github.com",
                 "protocol": "ssh",
                 "path": "eduNEXT",
@@ -103,11 +145,11 @@ config = {
     },
     "set": {
         "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vM"
-                                ".mango.2.0-plugin",
+                                ".limonero.1.0-plugin",
         "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp"
-                                    "-dev:vM.mango.2.0-plugin",
+                                    "-dev:vM.limonero.1.0-plugin",
         "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
-        "EDX_PLATFORM_VERSION": "edunext/mango.master",
+        "EDX_PLATFORM_VERSION": "limonero.5.1",
     },
 }
 
