@@ -1,18 +1,4 @@
 {% for pkg in iter_values_named(suffix="_DPKG") %}
-{% set install_pkg = true -%}
-{%- if pkg["name"]=="eox-core" and not (DISTRO_EOX_CORE or DISTRO_EOX_TENANT or DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC) -%}
-{% set install_pkg = false %}
-{%- endif -%}
-
-{%- if pkg["name"]=="eox-tenant" and not (DISTRO_EOX_TENANT or DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC) -%}
-{% set install_pkg = false %}
-{%- endif -%}
-
-{%- if pkg["name"]=="eox-theming" and not (DISTRO_EOX_THEMING or DISTRO_ENVIRONMENT_BASIC) -%}
-{% set install_pkg = false %}
-{%- endif -%}
-
-{%- if install_pkg -%}
 # Install {{ pkg["name"] }}
 {%+ if pkg["index"] and pkg["index"] == "pip" -%}
 RUN pip install {{ pkg["name"] }}=={{ pkg["version"] }}
@@ -20,6 +6,5 @@ RUN pip install {{ pkg["name"] }}=={{ pkg["version"] }}
 RUN mkdir -p /openedx/exra_deps/{{ pkg["name"] }} && \
     git clone -b {{ pkg["version"] }} {{ pkg["repository"] }} /openedx/extra_deps/{{ pkg["name"] }}
 RUN pip install -e /openedx/extra_deps/{{ pkg["name"] }}
-{%- endif -%}
 {%- endif -%}
 {% endfor %}
