@@ -1,3 +1,7 @@
+{% if DISTRO_INSTALL_EDNX_REQUIREMENTS %}
+RUN pip install -r ./requirements/edunext/base.txt
+{% endif %}
+
 {% for pkg in iter_values_named(suffix="_DPKG") %}
 # Install {{ pkg["name"] }}
 {%+ if pkg["index"] and pkg["index"] == "pip" -%}

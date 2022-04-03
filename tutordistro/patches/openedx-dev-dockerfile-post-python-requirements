@@ -6,5 +6,8 @@ RUN pip install {{ pkg["name"] }}=={{ pkg["version"] }}
 RUN mkdir -p /openedx/exra_deps/{{ pkg["name"] }} && \
     git clone -b {{ pkg["version"] }} {{ pkg["repository"] }} /openedx/extra_deps/{{ pkg["name"] }}
 RUN pip install -e /openedx/extra_deps/{{ pkg["name"] }}
+{%- elif pkg["private"] -%}
+RUN mv /openedx/requirements/{{ pkg["name"] }} /openedx/extra_deps/{{ pkg["name"] }}
+RUN pip install -e /openedx/extra_deps/{{ pkg["name"] }}
 {%- endif -%}
 {% endfor %}

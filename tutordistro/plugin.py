@@ -148,6 +148,7 @@ config = {
                 "path": "eduNEXT",
             },
         ],
+        "INSTALL_EDNX_REQUIREMENTS": True,
     },
     "set": {
         "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vL"
