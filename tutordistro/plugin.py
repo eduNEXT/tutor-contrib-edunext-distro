@@ -60,6 +60,7 @@ config = {
                     "EOX_TENANT_LOAD_PERMISSIONS": False,
                 },
             },
+            "private": False,
         },
         "EOX_THEMING_DPKG": {
             "index": "git",
@@ -76,6 +77,7 @@ config = {
                                         ".branding_api_l_v1",
                 },
             },
+            "private": False,
         },
         "EOX_AUDIT_MODEL_DPKG": {
             "index": "git",
@@ -88,6 +90,7 @@ config = {
                 "production": {
                 },
             },
+            "private": False,
         },
         "EOX_HOOKS_DPKG": {
             "index": "git",
@@ -108,6 +111,7 @@ config = {
                     "EOX_HOOKS_MODELS_BACKEND": "eox_hooks.edxapp_wrapper.backends.models_l_v1",
                 },
             },
+            "private": False,
         },
         "EOX_TAGGING_DPKG": {
             "index": "git",
@@ -122,6 +126,7 @@ config = {
                     "EOX_TAGGING_GET_ENROLLMENT_OBJECT": "eox_tagging.edxapp_wrappers.backends.enrollment_l_v1",
                 },
             },
+            "private": False,
         },
         "THEMES_ROOT": "/openedx/themes",
         "THEME_DIRS": [
