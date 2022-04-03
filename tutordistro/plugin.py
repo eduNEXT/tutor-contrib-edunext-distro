@@ -42,6 +42,7 @@ config = {
                                                        ".pre_enrollment_l_v1",
                 },
             },
+            "private": False,
         },
         "EOX_TENANT_DPKG": {
             "name": "eox-tenant",
