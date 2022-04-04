@@ -97,7 +97,7 @@ config = {
             "index": "git",
             "name": "eox-hooks",
             "repository": "https://github.com/eduNEXT/eox-hooks.git",
-            "version": "v1.0.0",
+            "version": "v2.0.0",
             "variables": {
                 "development": {
                     "EOX_HOOKS_ENROLLMENTS_BACKEND": "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1",
