@@ -151,12 +151,10 @@ config = {
         "INSTALL_EDNX_REQUIREMENTS": True,
     },
     "set": {
-        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vL"
-                                ".limonero.1.0-plugin",
-        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp"
-                                    "-dev:vL.limonero.1.0-plugin",
+        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vL.limonero.1.0-plugin.edunext",
+        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:vL.limonero.1.0-plugin.edunext",
         "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
-        "EDX_PLATFORM_VERSION": "limonero.5.1",
+        "EDX_PLATFORM_VERSION": "dam/limonero.plugin",
     },
 }
 
