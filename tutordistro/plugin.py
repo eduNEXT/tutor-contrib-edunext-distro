@@ -19,11 +19,11 @@ config = {
             "name": "eox-core",
             "index": "git",
             "repository": "https://github.com/eduNEXT/eox-core.git",
-            "version": "v5.1.1",
+            "version": "v6.0.1",
             "variables": {
                 "development": {
                     "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper"
-                                              ".backends.users_l_v1",
+                                              ".backends.users_m_v1",
                     "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper"
                                                    ".backends.enrollment_l_v1",
                     "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core"
@@ -33,7 +33,7 @@ config = {
                 },
                 "production": {
                     "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper"
-                                              ".backends.users_l_v1",
+                                              ".backends.users_m_v1",
                     "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper"
                                                    ".backends.enrollment_l_v1",
                     "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core"
@@ -47,7 +47,7 @@ config = {
         "EOX_TENANT_DPKG": {
             "name": "eox-tenant",
             "index": "git",
-            "version": "v5.1.3",
+            "version": "v6.0.0",
             "repository": "https://github.com/eduNEXT/eox-tenant.git",
             "variables": {
                 "development": {
@@ -67,7 +67,7 @@ config = {
             "index": "git",
             "name": "eox-theming",
             "repository": "https://github.com/eduNEXT/eox-theming.git",
-            "version": "v2.0.0",
+            "version": "v3.0.0",
             "variables": {
                 "development": {
                     "GET_BRANDING_API": "eox_tenant.edxapp_wrapper.backends"
@@ -148,7 +148,7 @@ config = {
             {
                 "name": "ednx-saas-themes",
                 "repo": "ednx-saas-themes",
-                "version": "edunext/limonero.master",
+                "version": "edunext/mango.master",
                 "domain": "github.com",
                 "protocol": "ssh",
                 "path": "eduNEXT",
@@ -157,12 +157,12 @@ config = {
         "INSTALL_EDNX_REQUIREMENTS": True,
     },
     "set": {
-        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vL.limonero.1.0-plugin"
-                                ".edunext",
-        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:vL.limonero.1.0"
-                                    "-plugin.edunext",
+        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vM"
+                                ".mango.2.0-plugin",
+        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp"
+                                    "-dev:vM.mango.2.0-plugin",
         "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
-        "EDX_PLATFORM_VERSION": "dam/limonero.plugin",
+        "EDX_PLATFORM_VERSION": "edunext/mango.master",
     },
 }
 
