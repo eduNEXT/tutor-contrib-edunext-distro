@@ -93,39 +93,39 @@ config = {
             },
             "private": False,
         },
-        # "EOX_HOOKS_DPKG": {
-        #     "index": "git",
-        #     "name": "eox-hooks",
-        #     "repository": "https://github.com/eduNEXT/eox-hooks.git",
-        #     "version": "v2.0.0",
-        #     "variables": {
-        #         "development": {
-        #             "EOX_HOOKS_ENROLLMENTS_BACKEND": "eox_hooks"
-        #                                              ".edxapp_wrapper"
-        #                                              ".backends.enrollments_l_v1",
-        #             "EOX_HOOKS_COURSES_BACKEND": "eox_hooks.edxapp_wrapper"
-        #                                          ".backends.courses_l_v1",
-        #             "EOX_HOOKS_COURSE_MODES_BACKEND": "eox_hooks"
-        #                                               ".edxapp_wrapper"
-        #                                               ".backends.course_modes_l_v1",
-        #             "EOX_HOOKS_MODELS_BACKEND": "eox_hooks.edxapp_wrapper"
-        #                                         ".backends.models_l_v1",
-        #         },
-        #         "production": {
-        #             "EOX_HOOKS_ENROLLMENTS_BACKEND": "eox_hooks"
-        #                                              ".edxapp_wrapper"
-        #                                              ".backends.enrollments_l_v1",
-        #             "EOX_HOOKS_COURSES_BACKEND": "eox_hooks.edxapp_wrapper"
-        #                                          ".backends.courses_l_v1",
-        #             "EOX_HOOKS_COURSE_MODES_BACKEND": "eox_hooks"
-        #                                               ".edxapp_wrapper"
-        #                                               ".backends.course_modes_l_v1",
-        #             "EOX_HOOKS_MODELS_BACKEND": "eox_hooks.edxapp_wrapper"
-        #                                         ".backends.models_l_v1",
-        #         },
-        #     },
-        #     "private": False,
-        # },
+        "EOX_HOOKS_DPKG": {
+            "index": "git",
+            "name": "eox-hooks",
+            "repository": "https://github.com/eduNEXT/eox-hooks.git",
+            "version": "v2.0.0",
+            "variables": {
+                "development": {
+                    "EOX_HOOKS_ENROLLMENTS_BACKEND": "eox_hooks"
+                                                     ".edxapp_wrapper"
+                                                     ".backends.enrollments_l_v1",
+                    "EOX_HOOKS_COURSES_BACKEND": "eox_hooks.edxapp_wrapper"
+                                                 ".backends.courses_l_v1",
+                    "EOX_HOOKS_COURSE_MODES_BACKEND": "eox_hooks"
+                                                      ".edxapp_wrapper"
+                                                      ".backends.course_modes_l_v1",
+                    "EOX_HOOKS_MODELS_BACKEND": "eox_hooks.edxapp_wrapper"
+                                                ".backends.models_l_v1",
+                },
+                "production": {
+                    "EOX_HOOKS_ENROLLMENTS_BACKEND": "eox_hooks"
+                                                     ".edxapp_wrapper"
+                                                     ".backends.enrollments_l_v1",
+                    "EOX_HOOKS_COURSES_BACKEND": "eox_hooks.edxapp_wrapper"
+                                                 ".backends.courses_l_v1",
+                    "EOX_HOOKS_COURSE_MODES_BACKEND": "eox_hooks"
+                                                      ".edxapp_wrapper"
+                                                      ".backends.course_modes_l_v1",
+                    "EOX_HOOKS_MODELS_BACKEND": "eox_hooks.edxapp_wrapper"
+                                                ".backends.models_l_v1",
+                },
+            },
+            "private": False,
+        },
         # "EOX_TAGGING_DPKG": {
         #     "index": "git",
         #     "name": "eox-tagging",
@@ -168,9 +168,9 @@ config = {
     },
     "set": {
         "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vM"
-                                ".mango.3.0-plugin",
+                                ".mango.3.1-plugin",
         "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp"
-                                    "-dev:vM.mango.3.0-plugin",
+                                    "-dev:vM.mango.3.1-plugin",
         "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
         "EDX_PLATFORM_VERSION": "edunext/mango.master",
     },
