@@ -18,14 +18,17 @@ def test_clone_when_repo_exists():
             "path": "ednx_saas",
         },
         tutor_root="/path/to/tutor",
-        tutor_config={"DISTRO_THEMES_ROOT": "distro_themes"},
+        tutor_config={"DISTRO_THEMES_ROOT": "/openedx/themes"},
     )
     repo_exists = True
     repository = ThemeInMemoryRepository(
         theme_settings=theme_settings, repo_exists=repo_exists
     )
     repository.clone()
-    full_path_theme = f"Cloned from ednx_saas to /path/to/tutor/env/build/distro_themes/ednx_saas"
+    full_path_theme = f"Cloned from ednx_saas to /path/to/tutor/env/build/openedx/themes/ednx_saas"
+
+    print("FULL_PATH", full_path_theme)
+    print("REPOSITORY DISRS:", repository.DIRS)
 
     assert full_path_theme in repository.DIRS
 
@@ -41,7 +44,7 @@ def test_clon_with_repo_does_not_exists():
             "path": "ednx_saas",
         },
         tutor_root="/path/to/tutor",
-        tutor_config={"DISTRO_THEMES_ROOT": "distro_themes"},
+        tutor_config={"DISTRO_THEMES_ROOT": "/openedx/themes"},
     )
     repo_exists = False
     repository = ThemeInMemoryRepository(
@@ -63,7 +66,7 @@ def test_clone_when_directory_exists():
             "path": "ednx_saas",
         },
         tutor_root="/path/to/tutor",
-        tutor_config={"DISTRO_THEMES_ROOT": "distro_themes"},
+        tutor_config={"DISTRO_THEMES_ROOT": "/openedx/themes"},
     )
     repo_exists = True
     repository = ThemeInMemoryRepository(

@@ -30,7 +30,7 @@ def step_impl(context): # pylint: disable=function-redefined,missing-function-do
 @given("Already exist theme folder")
 def step_impl(context): # pylint: disable=function-redefined,missing-function-docstring
     name = context.scenario.config["DISTRO_THEMES"][0]["name"]
-    path = f"{context.scenario.tutor_root}/env/build/\
+    path = f"{context.scenario.tutor_root}/env/build\
     {context.scenario.config['DISTRO_THEMES_ROOT']}/{name}"
     os.makedirs(path)
     assert os.path.exists(path)
@@ -56,13 +56,13 @@ def step_impl(context): # pylint: disable=function-redefined,missing-function-do
     distro_theme_root = context.scenario.config["DISTRO_THEMES_ROOT"]
     themes = context.scenario.config["DISTRO_THEMES"]
     for theme in themes:
-        assert os.path.exists(f"{context.scenario.tutor_root}/env/build/\
-        {distro_theme_root}/{theme['name']}")
+        path = f"{context.scenario.tutor_root}/env/build{distro_theme_root}/{theme['name']}"
+        assert os.path.exists(path)
 
 
 @then("The folder wasn't modified")
 def step_impl(context): # pylint: disable=function-redefined,missing-function-docstring
     name = context.scenario.config["DISTRO_THEMES"][0]["name"]
-    path = f"{context.scenario.tutor_root}/env/build/\
+    path = f"{context.scenario.tutor_root}/env/build\
     {context.scenario.config['DISTRO_THEMES_ROOT']}/{name}"
     assert len(os.listdir(path)) == 0
