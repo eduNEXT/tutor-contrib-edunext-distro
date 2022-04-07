@@ -42,17 +42,11 @@ EDX_PLATFORM_VERSION: "edunext/mango.master"
 These packages will be installed in a default installation.
 
 - eox-theming (DISTRO_EOX_THEMING_DPKG)
-    - eox-tenant (DISTRO_EOX_TENANT_DPKG)
-      - eox-core (DISTRO_EOX_CORE_DPKG)
-
-## Disable default packages
-It's necessary to know that each eox-package has dependencies, which that means that if you
-enable **DISTRO_EOX_THEMING** this will enable **eox-tenant & eox-core** too, so ,
-if you want just use eox-core you must desable eox-theming and eox-tenant.
-
-```bash
-tutor config save --set DISTRO_EOX_THEMING=false --set DISTRO_EOX_TENAT=false --set DISTRO_EOX_CORE=true
-```
+- eox-tenant (DISTRO_EOX_TENANT_DPKG)
+- eox-core (DISTRO_EOX_CORE_DPKG)
+- eox-hooks (DISTRO_EOX_HOOKS_DPKG)
+- eox-audit-model (DISTRO_EOX_AUDIT_MODEL_DPKG)
+- eox-tagging (DISTRO_EOX_TAGGING_DPKG)
 
 ## How to add a new package
 In your config.yml you can set any package following this structure:
@@ -68,6 +62,7 @@ DISTSRO_MY_PACKAGE_NAME_DPKG:
     production:
       MY_PLUGIN_DEV_PROD_SETTING: "VALUE"
   version: my-plugin-branch
+  private: False
 
 # If you want to install a package from pip
 # you must set the index to pip and remove repository but this
@@ -80,12 +75,28 @@ In the dev environment your package will be cloned on **/openedx/extra_deps/MY-P
 if you want to edit it you can
 [mount a volume](https://docs.tutor.overhang.io/dev.html?highlight=bind#manual-bind-mount-to-any-directory) to that path.
 
+### Private package
+In your new package you can set the setting **private** on true, It's mean that this won't be cloned
+from a public repository, for it works you must clone the repository in `/env/build/openedx/requirements`
+and add it in the file private.txt.
+
+```bash
+git clone git@myserver:myprivaterepo.git
+echo "-e ./myprivaterepo/" >> private.txt
+```
+It will be necessary to build a new image.
+
+You can find more information about it [here](https://docs.tutor.overhang.io/configuration.html#installing-extra-requirements-from-private-repositories)
+
 ## How to override a default package
 You can use the same steps that in **How to add a new package** just set the variable with the same name:
 
 - DISTRO_EOX_CORE_DPKG
 - DISTRO_EOX_TENANT_DPKG
 - DISTRO_EOX_THEMING_DPKG
+- DISTRO_EOX_HOOKS_DPKG
+- DISTRO_EOX_AUDIT_MODEL_DPKG
+- DISTRO_EOX_TAGGING_DPKG
 
 # Themes
 Declare the path of your themes using `tutor config save --set DISTRO_THEMES_ROOT="your_path"`,
