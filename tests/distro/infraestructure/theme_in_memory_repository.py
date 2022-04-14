@@ -1,6 +1,6 @@
-from tutordistro.distro.domain.theme_repository import ThemeRepository
-from tutordistro.distro.domain.clone_exception import CloneException
-from tutordistro.distro.domain.theme_settings import ThemeSettings
+from tutordistro.distro.themes.domain.theme_repository import ThemeRepository
+from tutordistro.distro.themes.domain.clone_exception import CloneException
+from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
 class ThemeInMemoryRepository(ThemeRepository):

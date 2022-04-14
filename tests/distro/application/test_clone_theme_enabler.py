@@ -2,8 +2,8 @@ import pytest
 from tests.distro.infraestructure.theme_in_memory_repository import (
     ThemeInMemoryRepository,
 )
-from tutordistro.distro.domain.clone_exception import CloneException
-from tutordistro.distro.domain.theme_settings import ThemeSettings
+from tutordistro.distro.themes.domain.clone_exception import CloneException
+from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
 def test_clone_when_repo_exists():

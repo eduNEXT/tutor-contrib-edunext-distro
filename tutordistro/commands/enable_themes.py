@@ -3,8 +3,8 @@ import subprocess
 import click
 from tutor import config as tutor_config
 
-from tutordistro.distro.application.theme_enabler import ThemeEnabler
-from tutordistro.distro.infraestructure.theme_git_repository import ThemeGitRepository
+from tutordistro.distro.themes.application.theme_enabler import ThemeEnabler
+from tutordistro.distro.themes.infraestructure.theme_git_repository import ThemeGitRepository
 
 
 @click.command(name="enable-themes", help="Enable distro themes")
