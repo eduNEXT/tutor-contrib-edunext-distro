@@ -126,25 +126,25 @@ config = {
             },
             "private": False,
         },
-        # "EOX_TAGGING_DPKG": {
-        #     "index": "git",
-        #     "name": "eox-tagging",
-        #     "repository": "https://github.com/eduNEXT/eox-tagging.git",
-        #     "version": "v3.0.0",
-        #     "variables": {
-        #         "development": {
-        #             "EOX_TAGGING_GET_ENROLLMENT_OBJECT": "eox_tagging"
-        #                                                  ".edxapp_wrappers"
-        #                                                  ".backends.enrollment_l_v1",
-        #         },
-        #         "production": {
-        #             "EOX_TAGGING_GET_ENROLLMENT_OBJECT": "eox_tagging"
-        #                                                  ".edxapp_wrappers"
-        #                                                  ".backends.enrollment_l_v1",
-        #         },
-        #     },
-        #     "private": False,
-        # },
+        "EOX_TAGGING_DPKG": {
+            "index": "git",
+            "name": "eox-tagging",
+            "repository": "https://github.com/eduNEXT/eox-tagging.git",
+            "version": "v4.0.0",
+            "variables": {
+                "development": {
+                    "EOX_TAGGING_GET_ENROLLMENT_OBJECT": "eox_tagging"
+                                                         ".edxapp_wrappers"
+                                                         ".backends.enrollment_l_v1",
+                },
+                "production": {
+                    "EOX_TAGGING_GET_ENROLLMENT_OBJECT": "eox_tagging"
+                                                         ".edxapp_wrappers"
+                                                         ".backends.enrollment_l_v1",
+                },
+            },
+            "private": False,
+        },
         "THEMES_ROOT": "/openedx/themes",
         "THEME_DIRS": [
             "/openedx/themes/ednx-saas-themes/edx-platform",
@@ -168,9 +168,9 @@ config = {
     },
     "set": {
         "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vM"
-                                ".mango.3.1-plugin",
+                                ".mango.4.0-plugin",
         "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp"
-                                    "-dev:vM.mango.3.1-plugin",
+                                    "-dev:vM.mango.4.0-plugin",
         "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
         "EDX_PLATFORM_VERSION": "edunext/mango.master",
     },
