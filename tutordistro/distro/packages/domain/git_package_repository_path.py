@@ -1,1 +1,0 @@
-class GitPackageRepositoryPath(str): pass
