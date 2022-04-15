@@ -1,0 +1,2 @@
+class PackageDoesNotExist(Exception):
+    pass

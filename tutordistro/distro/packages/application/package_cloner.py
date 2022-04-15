@@ -20,7 +20,6 @@ class PackageCloner:
         name = PackageName(name)
         version = PackageVersion(version)
         domain = PackageDomain(domain)
-
         package = Package(name=name, version=version, domain=domain, extra=extra)
 
         self.repository.clone(package=package, path=path)

@@ -18,7 +18,7 @@ def test_should_clone_one_repository_in_a_path():
     cloner(name=name, domain=domain, version=version, extra=extra, path=path)
 
     # Then
-    assert name in repository.repos[path]
+    assert name in repository.paths[path]
 
 
 def test_should_fail_when_the_repos_has_already_been_cloned():
@@ -26,8 +26,8 @@ def test_should_fail_when_the_repos_has_already_been_cloned():
     mocker = PackageMockMother()
     name, domain, version, extra = mocker.create()
     path = "test_dir"
-    repository = GitInMemoryPackageRepository(repos={
-        path: [name]
+    repository = GitInMemoryPackageRepository(paths={
+        f"{path}": [name]
     })
 
     # When

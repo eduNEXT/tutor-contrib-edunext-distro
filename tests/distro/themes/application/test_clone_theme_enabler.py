@@ -26,11 +26,8 @@ def test_clone_when_repo_exists():
     )
     repository.clone()
     full_path_theme = f"Cloned from ednx_saas to /path/to/tutor/env/build/openedx/themes/ednx_saas"
-
-    print("FULL_PATH", full_path_theme)
-    print("REPOSITORY DISRS:", repository.DIRS)
-
     assert full_path_theme in repository.DIRS
+
 
 def test_clon_with_repo_does_not_exists():
     theme_settings = ThemeSettings(
@@ -53,6 +50,7 @@ def test_clon_with_repo_does_not_exists():
     with pytest.raises(CloneException) as git_error:
         repository.clone()
     assert git_error.type is CloneException
+
 
 def test_clone_when_directory_exists():
     theme_settings = ThemeSettings(
