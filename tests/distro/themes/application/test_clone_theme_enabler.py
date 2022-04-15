@@ -1,8 +1,8 @@
 import pytest
-from tests.distro.infraestructure.theme_in_memory_repository import (
+from tests.distro.themes.infraestructure.theme_in_memory_repository import (
     ThemeInMemoryRepository,
 )
-from tutordistro.distro.themes.domain.clone_exception import CloneException
+from tutordistro.distro.packages.share.domain.clone_exception import CloneException
 from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 

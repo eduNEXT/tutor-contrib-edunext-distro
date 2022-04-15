@@ -1,0 +1,2 @@
+class PackageVersion(str):
+    pass

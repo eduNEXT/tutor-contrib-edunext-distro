@@ -1,0 +1,2 @@
+class PackageIndex(str):
+    pass
