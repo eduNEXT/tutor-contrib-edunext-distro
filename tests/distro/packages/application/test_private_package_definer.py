@@ -16,7 +16,7 @@ def test_should_define_a_private_package_if_it_has_already_been_cloned():
 
     # When
     definer = PrivatePackageDefiner(repository=repository)
-    definer(name=name)
+    definer(name=name, file_path="requirements")
 
     # Then
     assert name in repository.private_file
@@ -31,7 +31,7 @@ def test_should_fail_if_package_has_not_been_cloned_yet():
     # When
     with pytest.raises(PackageDoesNotExist) as package_error:
         definer = PrivatePackageDefiner(repository=repository)
-        definer(name=name)
+        definer(name=name, file_path="requirements")
 
     # Then
     assert package_error.type is PackageDoesNotExist

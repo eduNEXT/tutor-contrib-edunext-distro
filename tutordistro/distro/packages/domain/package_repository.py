@@ -11,5 +11,5 @@ class PackageRepository(ABC):
         pass
 
     @abstractmethod
-    def set_as_private(self, name: PackageName) -> None:
+    def set_as_private(self, name: PackageName, file_path: str) -> None:
         pass

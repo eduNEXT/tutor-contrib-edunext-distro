@@ -6,6 +6,7 @@ from tutor.commands.context import Context
 from tutordistro.commands.enable_themes import enable_themes
 
 from .__about__ import __version__
+from .commands.enable_private_packages import enable_private_packages
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
@@ -16,10 +17,13 @@ config = {
         "VERSION": __version__,
         # DISTRO PACKAGES
         "EOX_CORE_DPKG": {
-            "name": "eox-core",
             "index": "git",
-            "repository": "https://github.com/eduNEXT/eox-core.git",
+            "name": "eox-core",
+            "repo": "eox-core",
             "version": "v5.1.1",
+            "domain": "github.com",
+            "protocol": "https",
+            "path": "eduNEXT",
             "variables": {
                 "development": {
                     "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper"
@@ -45,10 +49,13 @@ config = {
             "private": False,
         },
         "EOX_TENANT_DPKG": {
-            "name": "eox-tenant",
             "index": "git",
+            "name": "eox-tenant",
+            "repo": "eox-tenant",
             "version": "v5.1.3",
-            "repository": "https://github.com/eduNEXT/eox-tenant.git",
+            "domain": "github.com",
+            "protocol": "https",
+            "path": "eduNEXT",
             "variables": {
                 "development": {
                     "EOX_TENANT_USERS_BACKEND": "eox_tenant.edxapp_wrapper"
@@ -66,8 +73,11 @@ config = {
         "EOX_THEMING_DPKG": {
             "index": "git",
             "name": "eox-theming",
-            "repository": "https://github.com/eduNEXT/eox-theming.git",
+            "repo": "eox-theming",
             "version": "v2.0.0",
+            "domain": "github.com",
+            "protocol": "https",
+            "path": "eduNEXT",
             "variables": {
                 "development": {
                     "GET_BRANDING_API": "eox_tenant.edxapp_wrapper.backends"
@@ -83,8 +93,11 @@ config = {
         "EOX_AUDIT_MODEL_DPKG": {
             "index": "git",
             "name": "eox-audit-model",
-            "repository": "https://github.com/eduNEXT/eox-audit-model.git",
+            "repo": "eox-audit-model",
             "version": "v0.7.0",
+            "domain": "github.com",
+            "protocol": "https",
+            "path": "eduNEXT",
             "variables": {
                 "development": {
                 },
@@ -96,8 +109,11 @@ config = {
         "EOX_HOOKS_DPKG": {
             "index": "git",
             "name": "eox-hooks",
-            "repository": "https://github.com/eduNEXT/eox-hooks.git",
+            "repo": "eox-hooks",
             "version": "v2.0.0",
+            "domain": "github.com",
+            "protocol": "https",
+            "path": "eduNEXT",
             "variables": {
                 "development": {
                     "EOX_HOOKS_ENROLLMENTS_BACKEND": "eox_hooks.edxapp_wrapper.backends"
@@ -121,8 +137,11 @@ config = {
         "EOX_TAGGING_DPKG": {
             "index": "git",
             "name": "eox-tagging",
-            "repository": "https://github.com/eduNEXT/eox-tagging.git",
+            "repo": "eox-tagging",
             "version": "v3.0.0",
+            "domain": "github.com",
+            "protocol": "ssh",
+            "path": "eduNEXT",
             "variables": {
                 "development": {
                     "EOX_TAGGING_GET_ENROLLMENT_OBJECT": "eox_tagging.edxapp_wrappers.backends"
@@ -179,10 +198,11 @@ def patches():  # pylint: disable=missing-function-docstring
     return all_patches
 
 
-@click.group(help="Distro plugin", commands=(enable_themes,))
+@click.group(help="Distro plugin", commands=(enable_themes, enable_private_packages))
 @click.pass_obj
 def command(context: Context) -> None:  # pylint: disable=unused-argument,missing-function-docstring
     pass
 
 
 command.add_command(enable_themes)
+command.add_command(enable_private_packages)

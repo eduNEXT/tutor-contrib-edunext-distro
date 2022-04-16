@@ -8,7 +8,8 @@ class PrivatePackageDefiner:
 
     def __call__(
         self,
-        name: str
+        name: str,
+        file_path: str
     ) -> None:
         name = PackageName(name)
-        self.repository.set_as_private(name=name)
+        self.repository.set_as_private(name=name, file_path=file_path)

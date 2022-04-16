@@ -7,6 +7,6 @@ RUN pip install -r ./requirements/edunext/base.txt
 {%+ if pkg["index"] and pkg["index"] == "pip" -%}
 RUN pip install {{ pkg["name"] }}=={{ pkg["version"] }}
 {%- elif not pkg["private"] -%}
-RUN pip install git+{{ pkg["repository"] }}@{{ pkg["version"] }}#{{ pkg["name"] }}=={{ pkg["version"] }}
+RUN pip install git+{{ pkg["protocol"] }}://{{ pkg["domain"] }}/{{ pkg["path"] }}/{{ pkg["repo"] }}.git@{{ pkg["version"] }}#{{ pkg["name"] }}=={{ pkg["version"] }}
 {%- endif -%}
 {% endfor %}

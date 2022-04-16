@@ -25,8 +25,8 @@ class GitInMemoryPackageRepository(PackageRepository):
             f"{path}": [package.name]
         })
 
-    def set_as_private(self, name: PackageName) -> None:
-        if name not in self.paths["requirements"]:
+    def set_as_private(self, name: PackageName, file_path: str) -> None:
+        if name not in self.paths[file_path]:
             raise PackageDoesNotExist
 
         self.private_file.append(name)
