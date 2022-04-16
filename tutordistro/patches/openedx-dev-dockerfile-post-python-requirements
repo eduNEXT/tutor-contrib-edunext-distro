@@ -1,8 +1,10 @@
-{% for pkg in iter_values_named(suffix="_DPKG") %}
+{%- for pkg in iter_values_named(suffix="_DPKG") %}
 {%- if loop.first -%}
 RUN mkdir -p /openedx/extra_deps/
 {% endif %}
+{%- if pkg["private"] == false %}
 # Install {{ pkg["name"] }}
+{%- endif %}
 {%+ if pkg["index"] and pkg["index"] == "pip" -%}
 RUN pip install {{ pkg["name"] }}=={{ pkg["version"] }}
 {%- elif not pkg["private"] -%}

@@ -1,9 +1,10 @@
-{% if DISTRO_INSTALL_EDNX_REQUIREMENTS %}
+{%- if DISTRO_INSTALL_EDNX_REQUIREMENTS %}
 RUN pip install -r ./requirements/edunext/base.txt
-{% endif %}
-
-{% for pkg in iter_values_named(suffix="_DPKG") %}
+{%- endif %}
+{%- for pkg in iter_values_named(suffix="_DPKG") %}
+{%- if pkg["private"] == false %}
 # Install {{ pkg["name"] }}
+{%- endif %}
 {%+ if pkg["index"] and pkg["index"] == "pip" -%}
 RUN pip install {{ pkg["name"] }}=={{ pkg["version"] }}
 {%- elif not pkg["private"] -%}
