@@ -1,9 +1,11 @@
 from abc import ABC, abstractmethod
 
+from build.lib.tutordistro.distro.themes.domain.theme_settings import ThemeSettings
+
 
 class ThemeRepository(ABC):
     @abstractmethod
-    def clone(self) -> None:
+    def clone(self, theme_settings: ThemeSettings) -> None:
         """
         Method to clone themes
         """

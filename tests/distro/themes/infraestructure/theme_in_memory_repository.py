@@ -7,11 +7,10 @@ class ThemeInMemoryRepository(ThemeRepository):
 
     DIRS = []
 
-    def __init__(self, theme_settings: ThemeSettings, repo_exists: bool):
-        self.theme_settings = theme_settings
+    def __init__(self, repo_exists: bool) -> None:
         self.repo_exists = repo_exists
 
-    def clone(self) -> None:
+    def clone(self, theme_settings: ThemeSettings) -> None:
         if not self.repo_exists:
             raise CloneException(
                 """
@@ -20,10 +19,5 @@ class ThemeInMemoryRepository(ThemeRepository):
                 """
             )
 
-        full_theme_path = f"Cloned from {self.theme_settings.name} to {self.theme_settings.get_full_directory}"  # pylint: disable=line-too-long
+        full_theme_path = f"Cloned from {theme_settings.name} to {theme_settings.get_full_directory}"  # pylint: disable=line-too-long
         self.DIRS.append(full_theme_path)
-
-    def check_directory(self) -> None:
-        for elem in self.DIRS:
-            if self.theme_settings.get_full_directory in elem:
-                self.DIRS.remove(elem)
