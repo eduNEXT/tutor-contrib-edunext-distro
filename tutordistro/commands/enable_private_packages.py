@@ -9,13 +9,15 @@ from tutordistro.distro.packages.infrastructure.package_git_repository import Pa
 
 
 def get_distro_packages(settings) -> list:
-    distro_packages = {key: val for key, val in settings.items() if key.endswith("_DPKG")}
+    distro_packages = {key: val for key,
+                       val in settings.items() if key.endswith("_DPKG")}
     return distro_packages
 
 
 def get_private_distro_packages(settings) -> list:
     distro_packages = get_distro_packages(settings)
-    private_packages = {key: val for key, val in distro_packages.items() if val["private"]}
+    private_packages = {key: val for key,
+                        val in distro_packages.items() if val["private"]}
     return private_packages
 
 
@@ -32,15 +34,19 @@ def enable_private_packages() -> None:    # pylint: disable=missing-function-doc
     private_packages = get_private_distro_packages(config)
     requirements_directory = f"{directory}/env/build/openedx/requirements/"
     for package in private_packages.values():
-        cloner(
-            name=package["name"],
-            version=package["version"],
-            domain=package["domain"],
-            extra={
-                "repo": package["repo"],
-                "protocol": package["protocol"],
-                "path": package["path"]
-            },
-            path=requirements_directory
-        )
-        definer(name=package["name"], file_path=f"{requirements_directory}private.txt")
+        try:
+            cloner(
+                name=package["name"],
+                version=package["version"],
+                domain=package["domain"],
+                extra={
+                    "repo": package["repo"],
+                    "protocol": package["protocol"],
+                    "path": package["path"]
+                },
+                path=requirements_directory
+            )
+            definer(name=package["name"],
+                    file_path=f"{requirements_directory}private.txt")
+        except Exception as error: # pylint: disable=broad-except
+            click.echo(error)
