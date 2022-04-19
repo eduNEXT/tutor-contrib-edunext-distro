@@ -4,7 +4,6 @@ from tests.distro.themes.infraestructure.theme_in_memory_repository import (
 )
 from tutordistro.distro.packages.share.domain.clone_exception import CloneException
 from tutordistro.distro.themes.application.theme_enabler import ThemeEnabler
-from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
 def test_clone_when_repo_exists():
@@ -27,7 +26,7 @@ def test_clone_when_repo_exists():
     # When
     enabler(settings=settings, tutor_root=tutor_root, tutor_config=tutor_config)
 
-    full_path_theme = f"Cloned from ednx_saas to {tutor_root}/env/build{tutor_config['DISTRO_THEMES_ROOT']}/{settings['name']}"
+    full_path_theme = f"Cloned from ednx_saas to {tutor_root}/env/build{tutor_config['DISTRO_THEMES_ROOT']}/{settings['name']}"  # pylint: disable=line-too-long
     assert full_path_theme in repository.DIRS
 
 
