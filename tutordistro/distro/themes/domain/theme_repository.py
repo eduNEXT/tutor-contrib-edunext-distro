@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from build.lib.tutordistro.distro.themes.domain.theme_settings import ThemeSettings
+from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
 class ThemeRepository(ABC):
