@@ -4,7 +4,6 @@ from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
 class ThemeInMemoryRepository(ThemeRepository):
-    """ """
 
     DIRS = []
 
@@ -12,17 +11,17 @@ class ThemeInMemoryRepository(ThemeRepository):
         self.theme_settings = theme_settings
         self.repo_exists = repo_exists
 
-    def clone(self):
+    def clone(self) -> None:
         if not self.repo_exists:
             raise CloneException(
-                f"""
+                """
                 Finish not success.
                 There are a trouble to enable themes.
                 """
             )
-        else:
-            full_theme_path = f"Cloned from {self.theme_settings.name} to {self.theme_settings.get_full_directory}"
-            self.DIRS.append(full_theme_path)
+
+        full_theme_path = f"Cloned from {self.theme_settings.name} to {self.theme_settings.get_full_directory}"  # pylint: disable=line-too-long
+        self.DIRS.append(full_theme_path)
 
     def check_directory(self) -> None:
         for elem in self.DIRS:

@@ -14,12 +14,12 @@ class PackageGitRepository(PackageRepository):
         already_exist = False
 
         if os.path.exists(file_path):
-            with open(file_path, mode='r') as private_requirements_file:
+            with open(file_path, mode='r', encoding="utf-8") as private_requirements_file:
                 if name in private_requirements_file.read():
                     already_exist = True
 
         if not already_exist:
-            with open(file_path, mode='a+') as private_requirements_file:
+            with open(file_path, mode='a+', encoding="utf-8") as private_requirements_file:
                 private_requirements_file.write(f"\n-e ./{name}")
 
     def clone(self, package: Package, path: str) -> None:

@@ -15,11 +15,11 @@ class PackageCloner:
         version: str,
         domain: str,
         path: str,
-        extra: dict = {}
+        extra: dict = None
     ) -> None:
         name = PackageName(name)
         version = PackageVersion(version)
         domain = PackageDomain(domain)
-        package = Package(name=name, version=version, domain=domain, extra=extra)
+        package = Package(name=name, version=version, domain=domain, extra=extra if extra else {})
 
         self.repository.clone(package=package, path=path)

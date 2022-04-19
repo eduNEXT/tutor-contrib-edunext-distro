@@ -25,7 +25,7 @@ def test_clone_when_repo_exists():
         theme_settings=theme_settings, repo_exists=repo_exists
     )
     repository.clone()
-    full_path_theme = f"Cloned from ednx_saas to /path/to/tutor/env/build/openedx/themes/ednx_saas"
+    full_path_theme = "Cloned from ednx_saas to /path/to/tutor/env/build/openedx/themes/ednx_saas"
     assert full_path_theme in repository.DIRS
 
 
