@@ -2,8 +2,8 @@ from typing import Dict
 
 from tutor.types import Config
 
-from tutordistro.distro.domain.theme_repository import ThemeRepository
-from tutordistro.distro.domain.theme_settings import ThemeSettings
+from tutordistro.distro.themes.domain.theme_repository import ThemeRepository
+from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
 class ThemeEnabler:

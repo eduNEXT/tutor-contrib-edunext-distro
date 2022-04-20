@@ -1,0 +1,2 @@
+class PackageDomain(str):
+    pass

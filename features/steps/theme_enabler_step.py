@@ -47,7 +47,6 @@ def step_impl(context): # pylint: disable=function-redefined,missing-function-do
 def step_impl(context): # pylint: disable=function-redefined,missing-function-docstring
     runner = CliRunner()
     result = runner.invoke(enable_themes, obj=context, input="n")
-    print(result)
     assert result.exit_code == 0
 
 

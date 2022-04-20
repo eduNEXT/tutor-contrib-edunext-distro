@@ -39,7 +39,7 @@ setup(
     packages=find_packages(exclude=["tests*"]),
     include_package_data=True,
     python_requires=">=3.6",
-    install_requires=["tutor<=13.0.0"],
+    install_requires=["tutor<=14.0.0", "click"],
     extras_require={
             "test": ["behave", "pytest", "pylint"]
         },

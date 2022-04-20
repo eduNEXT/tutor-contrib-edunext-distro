@@ -1,0 +1,2 @@
+class PackageName(str):
+    pass
