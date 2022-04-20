@@ -51,18 +51,23 @@ These packages will be installed in a default installation.
 ## How to add a new package
 In your config.yml you can set any package following this structure:
 
+
+
 ```yaml
 DISTSRO_MY_PACKAGE_NAME_DPKG:
   index: git
-  name: my-plugin-name
-  repository: https://github.com/eduNEXT/my-plugin-name.git
+  name: eox-package # directory name
+  # ---- git package variables
+  repo: eox-package # git repository name
+  domain: github.com
+  path: eduNEXT
+  protocol: ssh
+  # ---- end git package variables
+  version: master
+  private: true
   variables:
-    development:
-      MY_PLUGIN_DEV_SETTING: "VALUE"
-    production:
-      MY_PLUGIN_DEV_PROD_SETTING: "VALUE"
-  version: my-plugin-branch
-  private: False
+    development: {}
+    production: {}
 
 # If you want to install a package from pip
 # you must set the index to pip and remove repository but this
@@ -139,6 +144,11 @@ DISTRO_THEMES_NAME:
 Run the command to clone the themes:
 ```bash
 tutor distro enable-themes
+```
+
+Run the command to clone private packages:
+```bash
+tutor distro enable-private-packages
 ```
 
 - **local**: you must to build a new image to add the new themes and
