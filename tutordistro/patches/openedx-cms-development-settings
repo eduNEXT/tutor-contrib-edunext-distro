@@ -5,3 +5,10 @@
 {%- endfor %}
 # End {{ pkg["name"] }} settings
 {% endfor %}
+
+################## EOX_THEMING ##################
+from lms.envs.common import _make_mako_template_dirs # pylint: disable=import-error
+ENABLE_COMPREHENSIVE_THEMING = True
+TEMPLATES[1]["DIRS"] = _make_mako_template_dirs
+derive_settings("cms.envs.production")
+# EOL
