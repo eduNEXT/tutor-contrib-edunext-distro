@@ -1,0 +1,1 @@
+SESSION_COOKIE_DOMAIN = ".{{ LMS_HOST|common_domain(CMS_HOST) }}"

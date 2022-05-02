@@ -6,6 +6,8 @@
 # End {{ pkg["name"] }} settings
 {% endfor %}
 
+SESSION_COOKIE_DOMAIN = ".{{ LMS_HOST|common_domain(CMS_HOST) }}"
+
 COMPREHENSIVE_THEME_DIRS.remove('/openedx/themes')
 COMPREHENSIVE_THEME_DIRS.extend({{ DISTRO_THEME_DIRS }})
 
