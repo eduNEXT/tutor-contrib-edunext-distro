@@ -16,3 +16,7 @@ if "EOX_THEMING_DEFAULT_THEME_NAME" in locals() and EOX_THEMING_DEFAULT_THEME_NA
     TEMPLATES[1]["DIRS"] = _make_mako_template_dirs
     derive_settings("lms.envs.production")
 # EOL
+
+{% if DISTRO_EXTRA_MIDDLEWARES %}
+MIDDLEWARE.extend({{ DISTRO_EXTRA_MIDDLEWARES }})
+{%- endif -%}
