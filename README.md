@@ -151,9 +151,21 @@ Run the command to clone private packages:
 tutor distro enable-private-packages
 ```
 
-- **local**: you must to build a new image to add the new themes and
+- **local**: you must build a new image to add the new themes and
 compile statics and run the command `tutor local init && tutor local start` again.
 - **dev**: you must run the command `tutor dev init && tutor dev start` again.
+
+# Other Options
+
+## How to add custom middlewares
+You should set the variable **DISTRO_EXTRA_MIDDLEWARES** in your config.yml to add a new
+middleware to **settings.MIDDLEWARE**
+
+```yaml
+DISTRO_EXTRA_MIDDLEWARES:
+- middleware.test.1
+- middleware.test.2
+```
 
 # License
 This software is licensed under the terms of the AGPLv3.
