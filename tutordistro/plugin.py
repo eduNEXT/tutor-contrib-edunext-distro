@@ -15,6 +15,7 @@ templates = os.path.join(HERE, "templates")
 config = {
     "defaults": {
         "VERSION": __version__,
+        "EXTRA_MIDDLEWARES": [],
         # DISTRO PACKAGES
         "EOX_CORE_DPKG": {
             "index": "git",
