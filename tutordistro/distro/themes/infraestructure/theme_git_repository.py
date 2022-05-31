@@ -1,6 +1,6 @@
 import os
 import subprocess
-
+import shutil
 import click
 
 from tutordistro.distro.themes.domain.theme_repository import ThemeRepository
@@ -21,7 +21,8 @@ class ThemeGitRepository(ThemeRepository):
                 if not click.confirm(f"Do you want to overwrite \
                 {theme_settings.get_full_directory}? "):
                     raise CloneException()
-
+                else:
+                    shutil.rmtree(f"{theme_settings.get_full_directory}")
             subprocess.call(
                 [
                     "git",
