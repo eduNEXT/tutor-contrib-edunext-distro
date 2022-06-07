@@ -1,4 +1,4 @@
-# distro plugin for [Tutor](https://docs.tutor.overhang.io)
+# Distro plugin for [Tutor](https://docs.tutor.overhang.io)
 
 ## What is distro
 Distro is an opinioned openedx distribution with some custom stuff to have an easy-to-use
@@ -6,7 +6,7 @@ and a ready to deploy in local or in development openedx distribution.
 This can be watch like a tutor-plugin but is taken a little bit far away.
 
 ## Installation
-`pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro`
+`pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro@v1.0.0`
 
 ## Usage
 ```bash
@@ -18,22 +18,21 @@ This plugin works with some docker images. These are defined by default
 if you have different images that aren't based on these, you can have some problems.
 
 ```yaml
-DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:vM.mango.2.0-plugin"
-DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:vM.mango.2.0-plugin"
+DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:vL.limonero.7.0"
+DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:vL.limonero.7.0"
 ```
 
 Also, you need an edx-platform version distro compatible.
 
-| openedx |  distro  |
-|---------|----------|
-|  lilac  | limonero |
-|  maple  |   mango  |
+| openedx |  distro  |  tutor  |
+|---------|----------|---------|
+|  lilac  | limonero |   v12   |
 
 You can find distro releases on https://github.com/edunext/edunext-platform.
 
 ```yaml
 EDX_PLATFORM_REPOSITORY: "https://github.com/eduNEXT/edunext-platform.git"
-EDX_PLATFORM_VERSION: "edunext/mango.master"
+EDX_PLATFORM_VERSION: "edunext/limonero.master"
 ```
 
 # Packages
@@ -50,8 +49,6 @@ These packages will be installed in a default installation.
 
 ## How to add a new package
 In your config.yml you can set any package following this structure:
-
-
 
 ```yaml
 DISTSRO_MY_PACKAGE_NAME_DPKG:
@@ -82,16 +79,14 @@ if you want to edit it you can
 
 ### Private package
 In your new package you can set the setting **private** on true, It's mean that this won't be cloned
-from a public repository, for it works you must clone the repository in `/env/build/openedx/requirements`
-and add it in the file private.txt.
+from a public repository, for it works you should run the command to clone private packages:
 
 ```bash
-git clone git@myserver:myprivaterepo.git
-echo "-e ./myprivaterepo/" >> private.txt
+tutor distro enable-private-packages
 ```
-It will be necessary to build a new image.
 
-You can find more information about it [here](https://docs.tutor.overhang.io/configuration.html#installing-extra-requirements-from-private-repositories)
+- **local**: It will be necessary to build a new image and run the command tutor local init && tutor local start again.
+- **dev**: you must run the command tutor dev init && tutor dev start again.
 
 ## How to override a default package
 You can use the same steps that in **How to add a new package** just set the variable with the same name:
@@ -110,7 +105,7 @@ by default the themes path goes here **/openedx/themes**
 ## Default themes
 These themes will be installed in a default installation.
 
-- bragi
+- [bragi](https://github.com/eduNEXT/ednx-saas-themes/tree/edunext/limonero.master)
 
 ## How to add a theme
 You can override the default themes on the config.yml but
@@ -124,7 +119,7 @@ DISTRO_THEMES:
   path: eduNEXT
   protocol: ssh
   repo: ednx-saas-themes
-  version: edunext/mango.master
+  version: edunext/limonero.master
 ```
 
 Set themes dir:
@@ -146,14 +141,27 @@ Run the command to clone the themes:
 tutor distro enable-themes
 ```
 
-Run the command to clone private packages:
-```bash
-tutor distro enable-private-packages
-```
-
 - **local**: you must build a new image to add the new themes and
 compile statics and run the command `tutor local init && tutor local start` again.
 - **dev**: you must run the command `tutor dev init && tutor dev start` again.
+
+# Build a new image
+**requirements:** you should have enabled the distro plugin, also you had have run the commands `tutor distro enable-themes` and `tutor distro enable-private-packages`.
+
+1. You should change 2 variables in your config.yml to define the new DOCKER_IMAGE_OPENEDX and DOCKER_IMAGE_OPENEDX_DEV to use.
+
+2. You should run the next command:
+```bash
+export DOCKER_BUILDKIT=1
+tutor images build -a BUILDKIT_INLINE_CACHE=1 --docker-arg="--cache-from" --docker-arg="ednxops/distro-edunext-edxapp:vL.limonero.7.0" -a EDX_PLATFORM_REPOSITORY=https://github.com/eduNEXT/edunext-platform.git -a EDX_PLATFORM_VERSION=edunext/limonero openedx
+```
+If you are using another edx-platform you should change it in the commando.
+
+3. That command will create a new image with the tag defined in your DOCKER_IMAGE_OPENEDX, now, you should run the next command:
+
+```bash
+tutor images push openedx
+```
 
 # Other Options
 
