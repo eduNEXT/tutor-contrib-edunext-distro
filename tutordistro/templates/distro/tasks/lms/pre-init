@@ -1,6 +1,5 @@
 ./manage.py lms migrate contenttypes
 ./manage.py lms migrate eox_tenant
 ./manage.py lms migrate eox_core
-./manage.py lms migrate eox_core
 ./manage.py lms migrate eox_tagging
 ./manage.py lms migrate eox_audit_model
