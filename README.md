@@ -18,8 +18,8 @@ This plugin works with some docker images. These are defined by default
 if you have different images that aren't based on these, you can have some problems.
 
 ```yaml
-DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:vL.limonero.7.0"
-DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:vL.limonero.7.0"
+DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:vL.mango.1.0"
+DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:vL.mango.1.0"
 ```
 
 Also, you need an edx-platform version distro compatible.
@@ -27,12 +27,13 @@ Also, you need an edx-platform version distro compatible.
 | openedx |  distro  |  tutor  |
 |---------|----------|---------|
 |  lilac  | limonero |   v12   |
+|  maple  |   mango  |   v13   |
 
 You can find distro releases on https://github.com/edunext/edunext-platform.
 
 ```yaml
 EDX_PLATFORM_REPOSITORY: "https://github.com/eduNEXT/edunext-platform.git"
-EDX_PLATFORM_VERSION: "edunext/limonero.master"
+EDX_PLATFORM_VERSION: "ednx-release/mango.master"
 ```
 
 # Packages
@@ -105,7 +106,7 @@ by default the themes path goes here **/openedx/themes**
 ## Default themes
 These themes will be installed in a default installation.
 
-- [bragi](https://github.com/eduNEXT/ednx-saas-themes/tree/edunext/limonero.master)
+- [bragi](https://github.com/eduNEXT/ednx-saas-themes/tree/edunext/mango.master)
 
 ## How to add a theme
 You can override the default themes on the config.yml but
@@ -119,7 +120,7 @@ DISTRO_THEMES:
   path: eduNEXT
   protocol: ssh
   repo: ednx-saas-themes
-  version: edunext/limonero.master
+  version: edunext/mango.master
 ```
 
 Set themes dir:
@@ -153,7 +154,7 @@ compile statics and run the command `tutor local init && tutor local start` agai
 2. You should run the next command:
 ```bash
 export DOCKER_BUILDKIT=1
-tutor images build -a BUILDKIT_INLINE_CACHE=1 --docker-arg="--cache-from" --docker-arg="ednxops/distro-edunext-edxapp:vL.limonero.7.0" -a EDX_PLATFORM_REPOSITORY=https://github.com/eduNEXT/edunext-platform.git -a EDX_PLATFORM_VERSION=edunext/limonero openedx
+tutor images build -a BUILDKIT_INLINE_CACHE=1 --docker-arg="--cache-from" --docker-arg="ednxops/distro-edunext-edxapp:vL.mango.1.0" -a EDX_PLATFORM_REPOSITORY=https://github.com/eduNEXT/edunext-platform.git -a EDX_PLATFORM_VERSION=ednx-release/mango.master openedx
 ```
 If you are using another edx-platform you should change it in the commando.
 
