@@ -177,8 +177,8 @@ config = {
         "INSTALL_EDNX_REQUIREMENTS": True,
     },
     "set": {
-        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vL.limonero.7.0",
-        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:vL.limonero.7.0",
+        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:limonero-latest",
+        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:limonero-latest",
         "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
         "EDX_PLATFORM_VERSION": "ednx-release/limonero.master",
     },
