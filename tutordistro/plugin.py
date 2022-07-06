@@ -107,6 +107,34 @@ config = {
             },
             "private": False,
         },
+        "EOX_HOOKS_DPKG": {
+            "index": "git",
+            "name": "eox-hooks",
+            "repo": "eox-hooks",
+            "version": "v2.0.1",
+            "domain": "github.com",
+            "protocol": "https",
+            "path": "eduNEXT",
+            "variables": {
+                "development": {
+                    "EOX_HOOKS_ENROLLMENTS_BACKEND": "eox_hooks.edxapp_wrapper.backends"
+                                                     ".enrollments_l_v1",
+                    "EOX_HOOKS_COURSES_BACKEND": "eox_hooks.edxapp_wrapper.backends.courses_l_v1",
+                    "EOX_HOOKS_COURSE_MODES_BACKEND": "eox_hooks.edxapp_wrapper.backends"
+                                                      ".course_modes_l_v1",
+                    "EOX_HOOKS_MODELS_BACKEND": "eox_hooks.edxapp_wrapper.backends.models_l_v1",
+                },
+                "production": {
+                    "EOX_HOOKS_ENROLLMENTS_BACKEND": "eox_hooks.edxapp_wrapper.backends"
+                                                     ".enrollments_l_v1",
+                    "EOX_HOOKS_COURSES_BACKEND": "eox_hooks.edxapp_wrapper.backends.courses_l_v1",
+                    "EOX_HOOKS_COURSE_MODES_BACKEND": "eox_hooks.edxapp_wrapper.backends"
+                                                      ".course_modes_l_v1",
+                    "EOX_HOOKS_MODELS_BACKEND": "eox_hooks.edxapp_wrapper.backends.models_l_v1",
+                },
+            },
+            "private": False,
+        },
         "EOX_TAGGING_DPKG": {
             "index": "git",
             "name": "eox-tagging",
@@ -152,8 +180,8 @@ config = {
     },
     "unique": {},
     "overrides": {
-        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:vM.mango.1.0",
-        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:vM.mango.1.0",
+        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:mango",
+        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:mango",
         "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
         "EDX_PLATFORM_VERSION": "ednx-release/mango.master",
     },
