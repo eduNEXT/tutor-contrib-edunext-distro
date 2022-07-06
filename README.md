@@ -6,7 +6,7 @@ and a ready to deploy in local or in development openedx distribution.
 This can be watch like a tutor-plugin but is taken a little bit far away.
 
 ## Installation
-`pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro@v1.0.0`
+`pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro@v2.0.0`
 
 ## Usage
 ```bash
@@ -18,8 +18,8 @@ This plugin works with some docker images. These are defined by default
 if you have different images that aren't based on these, you can have some problems.
 
 ```yaml
-DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:vL.mango.1.0"
-DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:vL.mango.1.0"
+DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:mango"
+DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:mango"
 ```
 
 Also, you need an edx-platform version distro compatible.
@@ -52,7 +52,7 @@ These packages will be installed in a default installation.
 In your config.yml you can set any package following this structure:
 
 ```yaml
-DISTSRO_MY_PACKAGE_NAME_DPKG:
+DISTRO_MY_PACKAGE_NAME_DPKG:
   index: git
   name: eox-package # directory name
   # ---- git package variables
@@ -154,7 +154,7 @@ compile statics and run the command `tutor local init && tutor local start` agai
 2. You should run the next command:
 ```bash
 export DOCKER_BUILDKIT=1
-tutor images build -a BUILDKIT_INLINE_CACHE=1 --docker-arg="--cache-from" --docker-arg="ednxops/distro-edunext-edxapp:vL.mango.1.0" -a EDX_PLATFORM_REPOSITORY=https://github.com/eduNEXT/edunext-platform.git -a EDX_PLATFORM_VERSION=ednx-release/mango.master openedx
+tutor images build -a BUILDKIT_INLINE_CACHE=1 --docker-arg="--cache-from" --docker-arg="ednxops/distro-edunext-edxapp:mango" -a EDX_PLATFORM_REPOSITORY=https://github.com/eduNEXT/edunext-platform.git -a EDX_PLATFORM_VERSION=ednx-release/mango.master openedx
 ```
 If you are using another edx-platform you should change it in the commando.
 
