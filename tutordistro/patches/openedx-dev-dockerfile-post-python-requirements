@@ -1,4 +1,5 @@
 {%- for pkg in iter_values_named(suffix="_DPKG") %}
+{%- if pkg != 'None' -%}
 {%- if loop.first -%}
 RUN mkdir -p /openedx/extra_deps/
 {% endif %}
@@ -14,5 +15,6 @@ RUN pip install -e /openedx/extra_deps/{{ pkg["name"] }}
 {%- elif pkg["private"] -%}
 RUN mv /openedx/requirements/{{ pkg["name"] }} /openedx/extra_deps/{{ pkg["name"] }}
 RUN pip install -e /openedx/extra_deps/{{ pkg["name"] }}
+{%- endif -%}
 {%- endif -%}
 {% endfor %}

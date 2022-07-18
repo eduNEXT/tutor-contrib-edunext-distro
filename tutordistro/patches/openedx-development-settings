@@ -1,9 +1,11 @@
 {% for pkg in iter_values_named(suffix="_DPKG") %}
+{%- if pkg != 'None' -%}
 # Start {{ pkg["name"] }} settings
 {%- for key, value in pkg["variables"]["development"].items() %}
 {{ key }} = {% if value is string %}"{{ value }}"{% else %}{{ value }}{% endif %} 
 {%- endfor %}
 # End {{ pkg["name"] }} settings
+{%- endif -%}
 {% endfor %}
 
 COMPREHENSIVE_THEME_DIRS.remove('/openedx/themes')
