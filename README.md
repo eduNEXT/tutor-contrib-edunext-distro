@@ -100,21 +100,16 @@ You can use the same steps that in **How to add a new package** just set the var
 - DISTRO_EOX_TAGGING_DPKG
 
 ## Disable packages
-You can disable any default package following this structure in your config.yml
+You can disable any default package following this structure in your config.yml:
 
 ```yaml
 DISTRO_MY_PACKAGE_NAME_DPKG: None
 ```
 
-> **Warning:** Default packages can have dependencies with other default packages or base application and disable it would break some features.
+Development environment take this changes with _tutor config save_ and restart, the local environment needs to rebuild the image to take it.
 
-## How to check if my application is running some package
+> <span style="color:red"> **Warning:** Default packages can have dependencies with other default packages or base application and disable it would break some features.</span>
 
-You can check if your running application have some package installed following this URL:
-
-```http
-  [BASE_LMS_URL]/MY_PACKAGE_NAME/eox-info
-```
 # Themes
 Declare the path of your themes using `tutor config save --set DISTRO_THEMES_ROOT="your_path"`,
 by default the themes path goes here **/openedx/themes**
