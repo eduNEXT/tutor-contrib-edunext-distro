@@ -108,7 +108,7 @@ DISTRO_MY_PACKAGE_NAME_DPKG: None
 
 Development environment take this changes with _tutor config save_ and restart, the local environment needs to rebuild the image to take it.
 
-> <span style="color:red"> **Warning:** Default packages can have dependencies with other default packages or base application and disable it would break some features.</span>
+> **Warning:** Default packages can have dependencies with other default packages or base application and disable it would break some features.
 
 # Themes
 Declare the path of your themes using `tutor config save --set DISTRO_THEMES_ROOT="your_path"`,
