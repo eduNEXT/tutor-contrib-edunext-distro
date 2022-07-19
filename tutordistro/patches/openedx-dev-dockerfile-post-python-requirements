@@ -18,3 +18,4 @@ RUN pip install -e /openedx/extra_deps/{{ pkg["name"] }}
 {%- endif -%}
 {%- endif -%}
 {% endfor %}
+
