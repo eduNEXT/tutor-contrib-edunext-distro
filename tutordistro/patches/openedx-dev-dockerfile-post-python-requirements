@@ -1,8 +1,8 @@
 {%- for pkg in iter_values_named(suffix="_DPKG") %}
-{%- if pkg != 'None' -%}
 {%- if loop.first -%}
 RUN mkdir -p /openedx/extra_deps/
 {% endif %}
+{%- if pkg != 'None' -%}
 {%- if pkg["private"] == false %}
 # Install {{ pkg["name"] }}
 {%- endif %}
