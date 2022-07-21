@@ -10,7 +10,7 @@ from tutordistro.distro.packages.infrastructure.package_git_repository import Pa
 
 def get_distro_packages(settings) -> list:
     distro_packages = {key: val for key,
-                       val in settings.items() if key.endswith("_DPKG")}
+                       val in settings.items() if key.endswith("_DPKG") and val is not None}
     return distro_packages
 
 
