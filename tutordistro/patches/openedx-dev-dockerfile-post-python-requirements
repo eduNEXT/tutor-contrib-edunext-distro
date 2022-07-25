@@ -2,6 +2,7 @@
 {%- if loop.first -%}
 RUN mkdir -p /openedx/extra_deps/
 {% endif %}
+{%- if pkg != 'None' -%}
 {%- if pkg["private"] == false %}
 # Install {{ pkg["name"] }}
 {%- endif %}
@@ -15,4 +16,6 @@ RUN pip install -e /openedx/extra_deps/{{ pkg["name"] }}
 RUN mv /openedx/requirements/{{ pkg["name"] }} /openedx/extra_deps/{{ pkg["name"] }}
 RUN pip install -e /openedx/extra_deps/{{ pkg["name"] }}
 {%- endif -%}
+{%- endif -%}
 {% endfor %}
+

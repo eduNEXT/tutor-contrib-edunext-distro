@@ -2,6 +2,7 @@
 RUN pip install -r ./requirements/edunext/base.txt
 {%- endif %}
 {%- for pkg in iter_values_named(suffix="_DPKG") %}
+{%- if pkg != 'None' -%}
 {%- if pkg["private"] == false %}
 # Install {{ pkg["name"] }}
 {%- endif %}
@@ -9,5 +10,6 @@ RUN pip install -r ./requirements/edunext/base.txt
 RUN pip install {{ pkg["name"] }}=={{ pkg["version"] }}
 {%- elif not pkg["private"] -%}
 RUN pip install git+{{ pkg["protocol"] }}://{{ pkg["domain"] }}/{{ pkg["path"] }}/{{ pkg["repo"] }}.git@{{ pkg["version"] }}#{{ pkg["name"] }}=={{ pkg["version"] }}
+{%- endif -%}
 {%- endif -%}
 {% endfor %}
