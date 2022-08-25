@@ -5,6 +5,12 @@ RUN openedx-assets xmodule \
     && openedx-assets webpack --env=prod \
     && openedx-assets common
 COPY --chown=app:app ./themes/ {{ DISTRO_THEMES_ROOT }}
+{%- if DISTRO_BRAGI_COLORS|count > 0 -%}
+{%- for bragi_color in DISTRO_BRAGI_COLORS %}
+RUN mkdir {{ DISTRO_THEMES_ROOT }}/ednx-saas-themes/edx-platform/{{bragi_color}} \
+    && cp -R {{ DISTRO_THEMES_ROOT }}/ednx-saas-themes/edx-platform/bragi-generator/{{bragi_color}} {{ DISTRO_THEMES_ROOT }}/ednx-saas-themes/edx-platform/{{bragi_color}}
+{% endfor -%}
+{%- endif -%}
 RUN openedx-assets themes \
     --theme-dirs {{ DISTRO_THEME_DIRS | join(' ') }} \
     --themes {{ DISTRO_THEMES_NAME | join(' ') }} \

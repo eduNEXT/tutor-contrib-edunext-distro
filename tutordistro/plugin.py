@@ -159,13 +159,12 @@ config = {
         },
         "THEMES_ROOT": "/openedx/themes",
         "THEME_DIRS": [
-            "/openedx/themes/ednx-saas-themes/edx-platform",
-            "/openedx/themes/ednx-saas-themes/edx-platform/bragi-children",
-            "/openedx/themes/ednx-saas-themes/edx-platform/bragi-generator",
+            "/openedx/themes/ednx-saas-themes/edx-platform/base"
         ],
         "THEMES_NAME": [
             "bragi",
         ],
+        "BRAGI_COLORS": [],
         "THEMES": [
             {
                 "name": "ednx-saas-themes",
