@@ -6,7 +6,5 @@ RUN openedx-assets xmodule \
     && openedx-assets common
 COPY --chown=app:app ./themes/ {{ DISTRO_THEMES_ROOT }}
 RUN openedx-assets themes \
-    --theme-dirs {{ DISTRO_THEME_DIRS | join(' ') }} \
-    --themes {{ DISTRO_THEMES_NAME | join(' ') }} \
     && openedx-assets collect --settings=tutor.assets \
     && rdfind -makesymlinks true -followsymlinks true /openedx/staticfiles/
