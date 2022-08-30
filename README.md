@@ -30,8 +30,8 @@ This plugin works with some docker images. These are defined by default
 if you have different images that aren't based on these, you can have some problems.
 
 ```yaml
-DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:mango"
-DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:mango"
+DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:nuez"
+DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:nuez"
 ```
 
 Also, you need an edx-platform version distro compatible.
@@ -40,12 +40,13 @@ Also, you need an edx-platform version distro compatible.
 | ------- | -------- | ----- |
 | lilac   | limonero | v12   |
 | maple   | mango    | v13   |
+| nutmeg  | nuez     | v14   |
 
 You can find distro releases on https://github.com/edunext/edunext-platform.
 
 ```yaml
 EDX_PLATFORM_REPOSITORY: "https://github.com/eduNEXT/edunext-platform.git"
-EDX_PLATFORM_VERSION: "ednx-release/mango.master"
+EDX_PLATFORM_VERSION: "ednx-release/nuez.master"
 ```
 
 # Packages
@@ -60,6 +61,8 @@ These packages will be installed in a default installation.
 - eox-hooks (DISTRO_EOX_HOOKS_DPKG)
 - eox-audit-model (DISTRO_EOX_AUDIT_MODEL_DPKG)
 - eox-tagging (DISTRO_EOX_TAGGING_DPKG)
+
+**NOTE**: Currently nuez only install eox-tenant by default.
 
 ## How to add a new package
 
@@ -136,6 +139,8 @@ by default the themes path goes here **/openedx/themes**
 These themes will be installed in a default installation.
 
 - [bragi](https://github.com/eduNEXT/ednx-saas-themes/tree/edunext/mango.master)
+
+**NOTE**: Currently nuez doesn't have a default theme.
 
 ## How to add a theme
 
