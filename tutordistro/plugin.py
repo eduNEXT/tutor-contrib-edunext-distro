@@ -75,7 +75,7 @@ config = {
             "index": "git",
             "name": "eox-theming",
             "repo": "eox-theming",
-            "version": "v3.0.0",
+            "version": "v3.1.0",
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
@@ -89,6 +89,10 @@ config = {
                                         ".branding_api_l_v1",
                 },
             },
+            "EOX_THEMING_CONFIG_SOURCES":[
+                "from_eox_tenant_microsite_v2",
+                "from_django_settings"
+            ],
             "private": False,
         },
         "EOX_AUDIT_MODEL_DPKG": {
