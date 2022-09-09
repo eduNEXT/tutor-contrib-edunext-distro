@@ -5,9 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v2.1.0...HEAD/)
+# [Unreleased]
 ---------------------
 
-[2.2.0] - 2022-07-25
+## [2.3.0] - 2022-09-09
+--------------------
+
+### Added
+
+- feat: use faster config for theming config at eox-tenant
+
+## [2.2.0] - 2022-07-25
 ---------------------
 <!-- Content should be placed here -->
