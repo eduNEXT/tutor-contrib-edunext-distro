@@ -223,6 +223,16 @@ DISTRO_EXTRA_MIDDLEWARES:
   - middleware.test.2
 ```
 
+## How disable MFE
+
+You can disable MFE default redirections and use the legacy frontend in nuez release adding in config.yml:
+
+```yaml
+DISTRO_DISABLE_MFE: true
+```
+
+Remember don't install tutor-mfe.
+
 # License
 
 This software is licensed under the terms of the AGPLv3.
