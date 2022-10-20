@@ -17,6 +17,38 @@ config = {
         "VERSION": __version__,
         "EXTRA_MIDDLEWARES": [],
         # DISTRO PACKAGES
+            "EOX_CORE_DPKG": {
+            "index": "git",
+            "name": "eox-core",
+            "repo": "eox-core",
+            "version": "v7.0.0",
+            "domain": "github.com",
+            "protocol": "https",
+            "path": "eduNEXT",
+            "variables": {
+                "development": {
+                    "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper"
+                                              ".backends.users_m_v1",
+                    "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper"
+                                                   ".backends.enrollment_l_v1",
+                    "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core"
+                                                       ".edxapp_wrapper"
+                                                       ".backends"
+                                                       ".pre_enrollment_l_v1",
+                },
+                "production": {
+                    "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper"
+                                              ".backends.users_m_v1",
+                    "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper"
+                                                   ".backends.enrollment_l_v1",
+                    "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core"
+                                                       ".edxapp_wrapper"
+                                                       ".backends"
+                                                       ".pre_enrollment_l_v1",
+                },
+            },
+            "private": False,
+        },
         "EOX_TENANT_DPKG": {
             "index": "git",
             "name": "eox-tenant",
