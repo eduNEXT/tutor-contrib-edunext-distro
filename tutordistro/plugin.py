@@ -18,6 +18,11 @@ config = {
         "EXTRA_MIDDLEWARES": [],
         # DISTRO PACKAGES
         "PUBLIC_PACKAGES": [ "eox-core[sentry] >= 7.0.0", "eox-tenant >= 6.2.0", "eox-theming >= 4.0", "eox-hooks >= 3.0", "eox-audit-model >= 1.0", "eox-tagging >= 5.0"],
+        "EXTRA_SETTINGS": {
+            "common": {},
+            "development": {},
+            "produccion" : {}
+        },
         "THEMES_ROOT": "/openedx/themes",
         "THEME_DIRS": [],
         "THEMES_NAME": [],

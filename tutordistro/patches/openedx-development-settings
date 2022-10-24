@@ -8,6 +8,13 @@
 {%- endif -%}
 {% endfor %}
 
+{% for  key, value in DISTRO_EXTRA_SETTINGS["common"] %}
+{{ key }} = {% if value is string %}"{{ value }}"{% else %}{{ value }}{% endif %} 
+{% endfor %}
+{% for  key, value in DISTRO_EXTRA_SETTINGS["development"] %}
+{{ key }} = {% if value is string %}"{{ value }}"{% else %}{{ value }}{% endif %} 
+{% endfor %}
+
 COMPREHENSIVE_THEME_DIRS.remove('/openedx/themes')
 COMPREHENSIVE_THEME_DIRS.extend({{ DISTRO_THEME_DIRS }})
 
