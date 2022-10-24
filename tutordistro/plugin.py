@@ -117,6 +117,22 @@ config = {
             },
             "private": False,
         },
+       "EOX_AUDIT_MODEL_DPKG": {
+            "index": "git",
+            "name": "eox-audit-model",
+            "repo": "eox-audit-model",
+            "version": "v1.0.0",
+            "domain": "github.com",
+            "protocol": "https",
+            "path": "eduNEXT",
+            "variables": {
+                "development": {
+                },
+                "production": {
+                },
+            },
+            "private": False,
+        },
         "THEMES_ROOT": "/openedx/themes",
         "THEME_DIRS": [],
         "THEMES_NAME": [],
