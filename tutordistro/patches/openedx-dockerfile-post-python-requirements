@@ -13,3 +13,7 @@ RUN pip install git+{{ pkg["protocol"] }}://{{ pkg["domain"] }}/{{ pkg["path"] }
 {%- endif -%}
 {%- endif -%}
 {% endfor %}
+
+{% for public_package in DISTRO_PUBLIC_PACKAGES %}
+RUN pip install '{{ public_package }}'
+{% endfor %}

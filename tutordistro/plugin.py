@@ -17,28 +17,7 @@ config = {
         "VERSION": __version__,
         "EXTRA_MIDDLEWARES": [],
         # DISTRO PACKAGES
-        "EOX_TENANT_DPKG": {
-            "index": "git",
-            "name": "eox-tenant",
-            "repo": "eox-tenant",
-            "version": "v6.0.1",
-            "domain": "github.com",
-            "protocol": "https",
-            "path": "eduNEXT",
-            "variables": {
-                "development": {
-                    "EOX_TENANT_USERS_BACKEND": "eox_tenant.edxapp_wrapper"
-                                                ".backends.users_l_v1",
-                    "EOX_TENANT_LOAD_PERMISSIONS": False,
-                },
-                "production": {
-                    "EOX_TENANT_USERS_BACKEND": "eox_tenant.edxapp_wrapper"
-                                                ".backends.users_l_v1",
-                    "EOX_TENANT_LOAD_PERMISSIONS": False,
-                },
-            },
-            "private": False,
-        },
+        "PUBLIC_PACKAGES": [ "eox-core[sentry] >= 7.0.0", "eox-tenant >= 6.2.0", "eox-theming >= 4.0", "eox-hooks >= 3.0", "eox-audit-model >= 1.0", "eox-tagging >= 5.0"],
         "THEMES_ROOT": "/openedx/themes",
         "THEME_DIRS": [],
         "THEMES_NAME": [],
