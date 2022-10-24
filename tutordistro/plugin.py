@@ -134,9 +134,23 @@ config = {
             "private": False,
         },
         "THEMES_ROOT": "/openedx/themes",
-        "THEME_DIRS": [],
-        "THEMES_NAME": [],
-        "THEMES": [],
+        "THEME_DIRS": [
+            "/openedx/themes/ednx-saas-themes/edx-platform",
+            "/openedx/themes/ednx-saas-themes/edx-platform/bragi-generator",
+        ],
+        "THEMES_NAME": [
+            "bragi",
+        ],
+        "THEMES": [
+            {
+                "name": "ednx-saas-themes",
+                "repo": "ednx-saas-themes",
+                "version": "edunext/nuez.master",
+                "domain": "github.com",
+                "protocol": "ssh",
+                "path": "eduNEXT",
+            },
+        ],
         "INSTALL_EDNX_REQUIREMENTS": False,
         "DISTRO_DISABLE_MFE": False
     },
