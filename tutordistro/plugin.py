@@ -71,6 +71,24 @@ config = {
             },
             "private": False,
         },
+        "EOX_THEMING_DPKG": {
+            "index": "git",
+            "name": "eox-theming",
+            "repo": "eox-theming",
+            "version": "v4.0.1",
+            "domain": "github.com",
+            "protocol": "https",
+            "path": "eduNEXT",
+            "variables": {
+                "development": {},
+                "production": {},
+            },
+            "EOX_THEMING_CONFIG_SOURCES":[
+                "from_eox_tenant_microsite_v2",
+                "from_django_settings"
+            ],
+            "private": False,
+        },
         "THEMES_ROOT": "/openedx/themes",
         "THEME_DIRS": [],
         "THEMES_NAME": [],
