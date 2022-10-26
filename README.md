@@ -62,7 +62,6 @@ These packages will be installed in a default installation.
 - eox-audit-model (DISTRO_EOX_AUDIT_MODEL_DPKG)
 - eox-tagging (DISTRO_EOX_TAGGING_DPKG)
 
-**NOTE**: Currently nuez only install eox-tenant by default.
 
 ## How to add a new package
 
@@ -140,7 +139,6 @@ These themes will be installed in a default installation.
 
 - [bragi](https://github.com/eduNEXT/ednx-saas-themes/tree/edunext/mango.master)
 
-**NOTE**: Currently nuez doesn't have a default theme.
 
 ## How to add a theme
 

@@ -1,1 +1,2 @@
 USE_EOX_TENANT: True
+DEFAULT_SITE_THEME: "bragi"
