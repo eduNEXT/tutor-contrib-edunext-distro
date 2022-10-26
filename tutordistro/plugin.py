@@ -152,7 +152,7 @@ config = {
             },
         ],
         "INSTALL_EDNX_REQUIREMENTS": False,
-        "DISTRO_DISABLE_MFE": False
+        "DISABLE_MFE": False
     },
     "unique": {},
     "overrides": {
