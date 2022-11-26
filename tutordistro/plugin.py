@@ -53,7 +53,7 @@ config = {
             "index": "git",
             "name": "eox-tenant",
             "repo": "eox-tenant",
-            "version": "v6.0.1",
+            "version": "v6.3.0",
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
