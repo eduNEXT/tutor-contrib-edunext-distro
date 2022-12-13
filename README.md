@@ -139,6 +139,7 @@ These themes will be installed in a default installation.
 
 - [bragi](https://github.com/eduNEXT/ednx-saas-themes/tree/edunext/mango.master)
 
+Defining a DISTRO_DEFAULT_SITE_THEME argument with a color will set a default theme, however, if not specified the default theme will be the first on the DISTRO_THEMES_NAME set of themes.
 
 ## How to add a theme
 
