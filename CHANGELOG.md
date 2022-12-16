@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 # [Unreleased]
 ---------------------
 
+## [3.2.0] - 2022-12-16
+
+### Features
+
+- distro themes lets you specify a desired theme from the config.yml file
+
 ## [3.1.0] - 2022-11-25
 
 ### Features
