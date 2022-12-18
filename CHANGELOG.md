@@ -8,19 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 # [Unreleased]
 ---------------------
 
-## [3.2.0] - 2022-12-16
+## [14.2.0] - 2022-12-16
 
 ### Features
 
 - distro themes lets you specify a desired theme from the config.yml file
 
-## [3.1.0] - 2022-11-25
+## [14.1.0] - 2022-11-25
 
 ### Features
 
 - update eox-tenant version with filter feature in nutmeg
 
-## [3.0.0] - 2022-10-26
+## [14.0.0] - 2022-10-26
 ---------------------
 
 ### Changed
@@ -42,13 +42,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Documentation
 - update README
 
-## [2.3.0] - 2022-09-09
+## [13.3.0] - 2022-09-09
 --------------------
 
 ### Features
 
 - use faster config for theming config at eox-tenant
 
-## [2.2.0] - 2022-07-25
+## [13.2.0] - 2022-07-25
 ---------------------
 <!-- Content should be placed here -->
