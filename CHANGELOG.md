@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 # [Unreleased]
 ---------------------
 
+## [14.3.0] - 2022-12-20
+
+### Features
+
+- update eox-tenant version to v7.0.0
+
 ## [14.2.0] - 2022-12-16
 
 ### Features
