@@ -1,3 +1,6 @@
+"""
+tutordistro plugin.
+"""
 from glob import glob
 import os
 import pkg_resources
@@ -179,7 +182,7 @@ hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
 hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     [
         ("distro/build", "plugins"),
-        ("distro/apps", "plugins"), 
+        ("distro/apps", "plugins"),
     ],
 )
 # Load all patches from the "patches" folder

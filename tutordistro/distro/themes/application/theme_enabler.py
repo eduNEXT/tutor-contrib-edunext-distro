@@ -1,3 +1,4 @@
+"""Theme enabler module."""
 from typing import Dict
 
 from tutor.types import Config
@@ -6,7 +7,8 @@ from tutordistro.distro.themes.domain.theme_repository import ThemeRepository
 from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
-class ThemeEnabler:
+class ThemeEnabler:  # pylint: disable=too-few-public-methods
+    """Theme enabler."""
     def __init__(self, repository: ThemeRepository):
         self.repository = repository
 

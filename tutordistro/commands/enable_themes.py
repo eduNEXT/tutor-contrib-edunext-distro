@@ -1,3 +1,4 @@
+"""Enable distro themes."""
 import subprocess
 
 import click

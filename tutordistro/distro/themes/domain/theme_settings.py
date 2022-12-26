@@ -1,9 +1,11 @@
+"""Theme settings."""
 from typing import Dict
 
 from tutor.types import Config
 
 
-class ThemeSettings:
+class ThemeSettings:  # pylint: disable=too-few-public-methods
+    """Theme settings."""
     def __init__(self, settings: Dict, tutor_root: str, tutor_config: Config):
         self.name = settings["name"]
         self.dir = f"env/build{tutor_config['DISTRO_THEMES_ROOT']}/{self.name}"

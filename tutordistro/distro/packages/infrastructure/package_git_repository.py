@@ -1,3 +1,4 @@
+"""Package Git Repository."""
 import os
 import subprocess
 import shutil
@@ -10,6 +11,7 @@ from tutordistro.distro.packages.share.domain.clone_exception import CloneExcept
 
 
 class PackageGitRepository(PackageRepository):
+    """Package Git Repository."""
     def set_as_private(self, name: PackageName, file_path: str) -> None:
         already_exist = False
 

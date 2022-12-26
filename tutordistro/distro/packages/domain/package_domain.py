@@ -1,2 +1,5 @@
+"""Package domain."""
+
+
 class PackageDomain(str):
-    pass
+    """Package domain."""

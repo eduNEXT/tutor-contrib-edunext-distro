@@ -1,8 +1,10 @@
+"""Private package definer."""
 from tutordistro.distro.packages.domain.package_name import PackageName
 from tutordistro.distro.packages.domain.package_repository import PackageRepository
 
 
-class PrivatePackageDefiner:
+class PrivatePackageDefiner:  # pylint: disable=too-few-public-methods
+    """Private package definer."""
     def __init__(self, repository: PackageRepository) -> None:
         self.repository = repository
 

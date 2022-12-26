@@ -1,2 +1,5 @@
+"""Package name."""
+
+
 class PackageName(str):
-    pass
+    """Package name."""

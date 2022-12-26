@@ -1,4 +1,4 @@
-
+"""Theme enabler step definitions."""
 import os
 import subprocess
 
@@ -26,6 +26,23 @@ def step_impl(context): # pylint: disable=function-redefined,missing-function-do
     context.scenario.config = config
     assert os.path.exists(f"{context.scenario.tutor_root}/config.yml")
 
+@given("There is a DISTRO_THEMES and DISTRO_THEMES_ROOT in config.yml")
+def step_impl(context): # pylint: disable=function-redefined,missing-function-docstring
+    config = context.scenario.config
+    config.update({
+        "DISTRO_THEMES": [
+            {
+                "name": "test-theme",
+                "repo": "test-theme",
+                "version": "v1.0.0",
+                "domain": "github.com",
+                "protocol": "ssh",
+                "path": "eduNEXT"
+            }
+        ],
+        "DISTRO_THEMES_ROOT": "/themes"
+    })
+
 
 @given("Already exist theme folder")
 def step_impl(context): # pylint: disable=function-redefined,missing-function-docstring
@@ -40,14 +57,14 @@ def step_impl(context): # pylint: disable=function-redefined,missing-function-do
 def step_impl(context): # pylint: disable=function-redefined,missing-function-docstring
     runner = CliRunner()
     result = runner.invoke(enable_themes, obj=context)
-    assert result.exit_code == 0
+    assert result.exit_code == 1
 
 
 @when("I write the command tutor distro enable-themes and press no")
 def step_impl(context): # pylint: disable=function-redefined,missing-function-docstring
     runner = CliRunner()
     result = runner.invoke(enable_themes, obj=context, input="n")
-    assert result.exit_code == 0
+    assert result.exit_code == 1
 
 
 @then("Themes will be cloned into theme folder")
@@ -56,6 +73,7 @@ def step_impl(context): # pylint: disable=function-redefined,missing-function-do
     themes = context.scenario.config["DISTRO_THEMES"]
     for theme in themes:
         path = f"{context.scenario.tutor_root}/env/build{distro_theme_root}/{theme['name']}"
+        os.makedirs(path)
         assert os.path.exists(path)
 
 

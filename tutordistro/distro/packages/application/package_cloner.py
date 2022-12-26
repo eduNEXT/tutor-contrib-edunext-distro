@@ -1,3 +1,4 @@
+"""Package cloner."""
 from tutordistro.distro.packages.domain.package import Package
 from tutordistro.distro.packages.domain.package_domain import PackageDomain
 from tutordistro.distro.packages.domain.package_name import PackageName
@@ -5,11 +6,12 @@ from tutordistro.distro.packages.domain.package_repository import PackageReposit
 from tutordistro.distro.packages.domain.package_version import PackageVersion
 
 
-class PackageCloner:
+class PackageCloner:  # pylint: disable=too-few-public-methods
+    """Package cloner."""
     def __init__(self, repository: PackageRepository) -> None:
         self.repository = repository
 
-    def __call__(
+    def __call__(  # pylint: disable=too-many-arguments
         self,
         name: str,
         version: str,
