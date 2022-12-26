@@ -24,7 +24,7 @@ config = {
             "index": "git",
             "name": "eox-core",
             "repo": "eox-core",
-            "version": "v7.0.0",
+            "version": "hpg/upgrade-requirements",
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
