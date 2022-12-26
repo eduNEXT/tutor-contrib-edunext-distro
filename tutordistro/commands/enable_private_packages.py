@@ -1,3 +1,4 @@
+"""Enable private packages command."""
 import subprocess
 
 import click
@@ -9,12 +10,14 @@ from tutordistro.distro.packages.infrastructure.package_git_repository import Pa
 
 
 def get_distro_packages(settings) -> list:
+    """Get distro packages from settings."""
     distro_packages = {key: val for key,
                        val in settings.items() if key.endswith("_DPKG") and val != 'None'}
     return distro_packages
 
 
 def get_private_distro_packages(settings) -> list:
+    """Get private distro packages from settings."""
     distro_packages = get_distro_packages(settings)
     private_packages = {key: val for key,
                         val in distro_packages.items() if val["private"]}

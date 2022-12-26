@@ -1,3 +1,4 @@
+"""Package."""
 from __future__ import annotations
 
 from abc import ABC
@@ -27,16 +28,20 @@ class Package(ABC):
 
     @property
     def name(self) -> PackageName:
+        """name of the package"""
         return self._name
 
     @property
     def domain(self) -> PackageDomain:
+        """domain of the package"""
         return self._domain
 
     @property
     def version(self) -> PackageVersion:
+        """version of the package"""
         return self._version
 
     @property
     def extra(self) -> Dict:
+        """extra data of the package"""
         return self._extra

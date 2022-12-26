@@ -1,9 +1,11 @@
+"""Module to define the theme repository interface."""
 from abc import ABC, abstractmethod
 
 from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
 class ThemeRepository(ABC):
+    """Theme repository interface."""
     @abstractmethod
     def clone(self, theme_settings: ThemeSettings) -> None:
         """

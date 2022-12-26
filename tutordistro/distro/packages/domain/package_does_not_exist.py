@@ -1,2 +1,5 @@
+"""Package does not exist exception."""
+
+
 class PackageDoesNotExist(Exception):
-    pass
+    """Package does not exist exception."""

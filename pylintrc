@@ -1,0 +1,12 @@
+[MASTER]
+ignore = migrations, env
+persistent = yes
+
+[MESSAGES CONTROL]
+disable =
+    missing-module-docstring,
+    too-few-public-methods,
+    missing-class-docstring,
+    duplicate-code,
+    missing-function-docstring,
+    too-many-arguments,

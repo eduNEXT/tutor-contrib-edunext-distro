@@ -1,3 +1,4 @@
+"""Test for clone theme enabler."""
 import pytest
 from tests.distro.themes.infraestructure.theme_in_memory_repository import (
     ThemeInMemoryRepository,
@@ -7,6 +8,7 @@ from tutordistro.distro.themes.application.theme_enabler import ThemeEnabler
 
 
 def test_clone_when_repo_exists():
+    """Test clone when repo exists."""
     # Given
     repo_exists = True
     repository = ThemeInMemoryRepository(repo_exists=repo_exists)
@@ -31,6 +33,7 @@ def test_clone_when_repo_exists():
 
 
 def test_clon_with_repo_does_not_exists():
+    """Test clone when repo does not exists."""
     # Given
     repo_exists = False
     repository = ThemeInMemoryRepository(repo_exists=repo_exists)

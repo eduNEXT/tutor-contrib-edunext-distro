@@ -1,3 +1,4 @@
+"""Package cloner."""
 from tutordistro.distro.packages.domain.package import Package
 from tutordistro.distro.packages.domain.package_domain import PackageDomain
 from tutordistro.distro.packages.domain.package_name import PackageName
@@ -6,6 +7,7 @@ from tutordistro.distro.packages.domain.package_version import PackageVersion
 
 
 class PackageCloner:
+    """Package cloner."""
     def __init__(self, repository: PackageRepository) -> None:
         self.repository = repository
 

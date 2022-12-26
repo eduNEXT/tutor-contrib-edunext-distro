@@ -1,3 +1,4 @@
+"""Theme enabler module."""
 from typing import Dict
 
 from tutor.types import Config
@@ -7,6 +8,7 @@ from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
 class ThemeEnabler:
+    """Theme enabler."""
     def __init__(self, repository: ThemeRepository):
         self.repository = repository
 

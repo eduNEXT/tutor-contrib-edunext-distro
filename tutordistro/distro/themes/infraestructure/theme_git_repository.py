@@ -1,3 +1,4 @@
+"""Theme Git Repository."""
 import os
 import subprocess
 import shutil
@@ -9,7 +10,7 @@ from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
 class ThemeGitRepository(ThemeRepository):
-
+    """Theme Git Repository."""
     def clone(self, theme_settings: type(ThemeSettings)) -> None:
         if "https" == theme_settings.settings["protocol"]:
             repo = f"https://{theme_settings.settings['domain']}/{theme_settings.settings['path']}/{theme_settings.settings['repo']}"  #pylint: disable=line-too-long
@@ -21,8 +22,7 @@ class ThemeGitRepository(ThemeRepository):
                 if not click.confirm(f"Do you want to overwrite \
                 {theme_settings.get_full_directory}? "):
                     raise CloneException()
-                else:
-                    shutil.rmtree(f"{theme_settings.get_full_directory}")
+                shutil.rmtree(f"{theme_settings.get_full_directory}")
             subprocess.call(
                 [
                     "git",

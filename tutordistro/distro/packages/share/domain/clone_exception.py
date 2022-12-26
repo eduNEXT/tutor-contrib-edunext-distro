@@ -1,2 +1,5 @@
+"""Clone exception."""
+
+
 class CloneException(Exception):
-    pass
+    """Clone exception."""

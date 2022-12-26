@@ -1,10 +1,11 @@
+"""Theme enabler step definitions."""
 from tutordistro.distro.themes.domain.theme_repository import ThemeRepository
 from tutordistro.distro.packages.share.domain.clone_exception import CloneException
 from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
 class ThemeInMemoryRepository(ThemeRepository):
-
+    """Theme in memory repository."""
     DIRS = []
 
     def __init__(self, repo_exists: bool) -> None:

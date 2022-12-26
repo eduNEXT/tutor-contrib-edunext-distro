@@ -1,3 +1,4 @@
+"""Theme enabler step definitions."""
 import os
 
 from behave import given, when, then    # pylint: disable=no-name-in-module
