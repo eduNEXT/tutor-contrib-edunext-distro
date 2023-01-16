@@ -21,7 +21,7 @@ config = {
             "index": "git",
             "name": "eox-core",
             "repo": "eox-core",
-            "version": "v7.2.2",
+            "version": "v7.2.3",
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
