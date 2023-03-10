@@ -145,7 +145,7 @@ config = {
             {
                 "name": "ednx-saas-themes",
                 "repo": "ednx-saas-themes",
-                "version": "edunext/nuez.master",
+                "version": "edunext/olmo.master",
                 "domain": "github.com",
                 "protocol": "ssh",
                 "path": "eduNEXT",
@@ -156,10 +156,10 @@ config = {
     },
     "unique": {},
     "overrides": {
-        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:nuez",
-        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:nuez",
+        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:olmo",
+        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:olmo",
         "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
-        "EDX_PLATFORM_VERSION": "ednx-release/nuez.master",
+        "EDX_PLATFORM_VERSION": "ednx-release/olmo.master",
     },
 }
 
