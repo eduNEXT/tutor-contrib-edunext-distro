@@ -1,8 +1,0 @@
-{% if DISTRO_DISABLE_MFE %}
-(./manage.py lms waffle_flag --list | grep course_home.course_home_use_legacy_frontend) || ./manage.py lms waffle_flag --create --everyone course_home.course_home_use_legacy_frontend
-(./manage.py lms waffle_flag --list | grep courseware.use_legacy_frontend) || ./manage.py lms waffle_flag --create --everyone courseware.use_legacy_frontend
-
-{% else %}
-./manage.py lms waffle_delete --flags course_home.course_home_use_legacy_frontend
-./manage.py lms waffle_delete --flags courseware.use_legacy_frontend
-{% endif %}
