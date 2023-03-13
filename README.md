@@ -30,8 +30,8 @@ This plugin works with some docker images. These are defined by default
 if you have different images that aren't based on these, you can have some problems.
 
 ```yaml
-DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:nuez"
-DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:nuez"
+DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:olmo"
+DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:olmo"
 ```
 
 Also, you need an edx-platform version distro compatible.
@@ -41,12 +41,13 @@ Also, you need an edx-platform version distro compatible.
 | lilac   | limonero | v12   |
 | maple   | mango    | v13   |
 | nutmeg  | nuez     | v14   |
+| olive   | olmo     | v15   |
 
 You can find distro releases on https://github.com/edunext/edunext-platform.
 
 ```yaml
 EDX_PLATFORM_REPOSITORY: "https://github.com/eduNEXT/edunext-platform.git"
-EDX_PLATFORM_VERSION: "ednx-release/nuez.master"
+EDX_PLATFORM_VERSION: "ednx-release/olmo.master"
 ```
 
 # Packages
@@ -221,16 +222,6 @@ DISTRO_EXTRA_MIDDLEWARES:
   - middleware.test.1
   - middleware.test.2
 ```
-
-## How disable MFE
-
-You can disable MFE default redirections and use the legacy frontend in nuez release adding in config.yml:
-
-```yaml
-DISTRO_DISABLE_MFE: true
-```
-
-Remember don't install tutor-mfe.
 
 # License
 

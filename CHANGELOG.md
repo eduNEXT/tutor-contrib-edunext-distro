@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 # [Unreleased]
 ---------------------
 
+## [15.0.0] - 2023-03-13
+
+### Features
+
+- Add support for the latest Open edX + eduNEXT release (Olmo).
+
 ## [14.5.0] - 2023-01-12
 
 ### Features

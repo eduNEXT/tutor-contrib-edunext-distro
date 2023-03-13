@@ -21,7 +21,7 @@ config = {
             "index": "git",
             "name": "eox-core",
             "repo": "eox-core",
-            "version": "v7.2.3",
+            "version": "v8.0.0",
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
@@ -30,7 +30,7 @@ config = {
                     "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper"
                                               ".backends.users_m_v1",
                     "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper"
-                                                   ".backends.enrollment_l_v1",
+                                                   ".backends.enrollment_o_v1",
                     "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core"
                                                        ".edxapp_wrapper"
                                                        ".backends"
@@ -40,7 +40,7 @@ config = {
                     "EOX_CORE_USERS_BACKEND": "eox_core.edxapp_wrapper"
                                               ".backends.users_m_v1",
                     "EOX_CORE_ENROLLMENT_BACKEND": "eox_core.edxapp_wrapper"
-                                                   ".backends.enrollment_l_v1",
+                                                   ".backends.enrollment_o_v1",
                     "EOX_CORE_PRE_ENROLLMENT_BACKEND": "eox_core"
                                                        ".edxapp_wrapper"
                                                        ".backends"
@@ -53,7 +53,7 @@ config = {
             "index": "git",
             "name": "eox-tenant",
             "repo": "eox-tenant",
-            "version": "v7.0.0",
+            "version": "v8.0.0",
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
@@ -75,7 +75,7 @@ config = {
             "index": "git",
             "name": "eox-theming",
             "repo": "eox-theming",
-            "version": "v4.0.1",
+            "version": "v5.0.0",
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
@@ -93,7 +93,7 @@ config = {
             "index": "git",
             "name": "eox-hooks",
             "repo": "eox-hooks",
-            "version": "v3.0.0",
+            "version": "v4.0.0",
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
@@ -121,7 +121,7 @@ config = {
             "index": "git",
             "name": "eox-audit-model",
             "repo": "eox-audit-model",
-            "version": "v1.0.0",
+            "version": "v2.0.0",
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
@@ -145,7 +145,7 @@ config = {
             {
                 "name": "ednx-saas-themes",
                 "repo": "ednx-saas-themes",
-                "version": "edunext/nuez.master",
+                "version": "edunext/olmo.master",
                 "domain": "github.com",
                 "protocol": "ssh",
                 "path": "eduNEXT",
@@ -156,10 +156,10 @@ config = {
     },
     "unique": {},
     "overrides": {
-        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:nuez",
-        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:nuez",
+        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:olmo",
+        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:olmo",
         "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
-        "EDX_PLATFORM_VERSION": "ednx-release/nuez.master",
+        "EDX_PLATFORM_VERSION": "ednx-release/olmo.master",
     },
 }
 
