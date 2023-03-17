@@ -163,14 +163,6 @@ config = {
     },
 }
 
-################# Initialization tasks
-# To run the script from templates/distro/tasks/myservice/init, add:
-hooks.Filters.COMMANDS_INIT.add_item(
-    (
-        "lms",
-        ("distro", "tasks", "lms", "init"),
-    )
-)
 
 # Plugin templates
 hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
