@@ -103,8 +103,8 @@ from a public repository, for it works you should run the command to clone priva
 tutor distro enable-private-packages
 ```
 
-- **local**: It will be necessary to build a new image and run the command tutor local init && tutor local start again.
-- **dev**: you must run the command tutor dev init && tutor dev start again.
+- **local**: It will be necessary to build a new image and run the command tutor local do init && tutor local start again.
+- **dev**: you must run the command tutor dev do init && tutor dev start again.
 
 ## How to override a default package
 
@@ -182,8 +182,8 @@ tutor distro enable-themes
 ```
 
 - **local**: you must build a new image to add the new themes and
-  compile statics and run the command `tutor local init && tutor local start` again.
-- **dev**: you must run the command `tutor dev init && tutor dev start` again.
+  compile statics and run the command `tutor local do init && tutor local start` again.
+- **dev**: you must run the command `tutor dev do init && tutor dev start` again.
   - **since tutor 13.0.0** you should recompile statics in the container, you could run the next command to do it:
   ```bash
   openedx-assets themes --theme-dirs THEME_DIRS --themes THEME_NAMES

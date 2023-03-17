@@ -90,11 +90,11 @@ Use your new packages
 To use in local mode:
 
 1. Build the docker image.
-2. Run ``tutor local init``
+2. Run ``tutor local do init``
 3. Run ``tutor local start``
 
 
 To use in dev mode:
 
-1. Run ``tutor dev init``
+1. Run ``tutor dev do init``
 2. Run ``tutor dev start``
