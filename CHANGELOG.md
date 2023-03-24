@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 # [Unreleased]
 ---------------------
 
+## [15.0.1] - 2023-03-24
+
+### Bug Fixes
+
+- Delete init task releted to disable MFE feature
+
+### Documentation
+
+- update tutor commands acording with olive cli
+
 ## [15.0.0] - 2023-03-13
 
 ### Features
