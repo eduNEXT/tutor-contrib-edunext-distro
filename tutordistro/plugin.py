@@ -133,6 +133,20 @@ config = {
             },
             "private": False,
         },
+        "EDX_ORA2_DPKG": {
+            "index": "git",
+            "name": "ora2",
+            "repo": "edx-ora2",
+            "version": "v5.0.0",
+            "domain": "github.com ",
+            "protocol": "https",
+            "path": "openedx",
+            "variables": {
+                "development": {},
+                "production": {},
+            },
+            "private": False,
+        },
         "THEMES_ROOT": "/openedx/themes",
         "THEME_DIRS": [
             "/openedx/themes/ednx-saas-themes/edx-platform",
@@ -152,7 +166,6 @@ config = {
             },
         ],
         "INSTALL_EDNX_REQUIREMENTS": False,
-        "DISABLE_MFE": False
     },
     "unique": {},
     "overrides": {
