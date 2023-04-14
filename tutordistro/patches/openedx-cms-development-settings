@@ -1,9 +1,11 @@
 {% for pkg in iter_values_named(suffix="_DPKG") %}
 {%- if pkg != 'None' -%}
 # Start {{ pkg["name"] }} settings
+{%- if "variable" in pkg -%}
 {%- for key, value in pkg["variables"]["development"].items() %}
 {{ key }} = {% if value is string %}"{{ value }}"{% else %}{{ value }}{% endif %}
 {%- endfor %}
+{%- endif -%}
 # End {{ pkg["name"] }} settings
 {%- endif -%}
 {% endfor %}
