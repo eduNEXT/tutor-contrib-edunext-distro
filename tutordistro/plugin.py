@@ -79,10 +79,6 @@ config = {
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
-            "variables": {
-                "development": {},
-                "production": {},
-            },
             "EOX_THEMING_CONFIG_SOURCES":[
                 "from_eox_tenant_microsite_v2",
                 "from_django_settings"
@@ -97,10 +93,6 @@ config = {
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
-            "variables": {
-                "development": {},
-                "production": {},
-            },
             "private": False,
         },
         "EOX_TAGGING_DPKG": {
@@ -111,10 +103,6 @@ config = {
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
-            "variables": {
-                "development": {},
-                "production": {},
-            },
             "private": False,
         },
        "EOX_AUDIT_MODEL_DPKG": {
@@ -125,12 +113,6 @@ config = {
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
-            "variables": {
-                "development": {
-                },
-                "production": {
-                },
-            },
             "private": False,
         },
         "THEMES_ROOT": "/openedx/themes",
