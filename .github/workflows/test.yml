@@ -1,0 +1,7 @@
+strategy:
+  max-parallel: 2
+  matrix:
+    python-version: ["3.8", "3.10"]
+steps:
+  - name: Checkout
+    uses: actions/checkout@v2
