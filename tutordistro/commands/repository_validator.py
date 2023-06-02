@@ -28,7 +28,7 @@ def repository_validator() -> None:    # pylint: disable=missing-function-docstr
     config = tutor_config.load(directory)
 
     public_packages = get_public_distro_packages(config)
-    
+
     # Check github repos that end with 'DPKG'
     for package in public_packages.values():
         try:
@@ -54,3 +54,4 @@ def repository_validator() -> None:    # pylint: disable=missing-function-docstr
                 openedx_extra_pip_requirements_validate.validate()
             except Exception as error: # pylint: disable=broad-except
                 click.echo(error)
+                

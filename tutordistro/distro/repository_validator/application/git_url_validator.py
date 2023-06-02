@@ -21,3 +21,4 @@ class GitURLValidator:
             repository_url = URLValidator(self.url)
             git_repository_checker = GitRepositoryChecker()
             return git_repository_checker.check(repository_url)
+        
