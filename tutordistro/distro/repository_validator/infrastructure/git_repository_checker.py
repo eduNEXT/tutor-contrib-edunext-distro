@@ -3,8 +3,7 @@ import requests
 
 class GitRepositoryChecker:
     def check(self, url):
-        try:
-            response = requests.get(url)
-            return response.status_code == 200
-        except requests.exceptions.RequestException:
+        response = requests.get(url)
+        if response.status_code != 200:
             return False
+        return True

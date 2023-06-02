@@ -28,26 +28,29 @@ def repository_validator() -> None:    # pylint: disable=missing-function-docstr
     config = tutor_config.load(directory)
 
     public_packages = get_public_distro_packages(config)
-
+    
+    # Check github repos that end with 'DPKG'
     for package in public_packages.values():
         try:
             validator = GitURLValidator(package)
             validator.validate()
-            
         except Exception as error: # pylint: disable=broad-except
             click.echo(error)
     
+    # Check the edx_platform_repository
     edx_platform_repository_validate = GitURLEdxPlatformRepositoryValidator(config.get('EDX_PLATFORM_REPOSITORY', ""), config.get('EDX_PLATFORM_VERSION', ""))
     try:
         edx_platform_repository_validate.validate()
     except Exception as error: # pylint: disable=broad-except
         click.echo(error)
 
+    # Check the openedx_extra_pip_requirements repos
     openedx_extra_pip_requirements = config.get('OPENEDX_EXTRA_PIP_REQUIREMENTS', [])
 
     for git_url in openedx_extra_pip_requirements:
         openedx_extra_pip_requirements_validate = GitURLOpenedxExtraPipRequirementsValidator(git_url)
-        try:
-            openedx_extra_pip_requirements_validate.validate()
-        except Exception as error: # pylint: disable=broad-except
-            click.echo(error)
+        if openedx_extra_pip_requirements_validate.format_git_url():
+            try:
+                openedx_extra_pip_requirements_validate.validate()
+            except Exception as error: # pylint: disable=broad-except
+                click.echo(error)
