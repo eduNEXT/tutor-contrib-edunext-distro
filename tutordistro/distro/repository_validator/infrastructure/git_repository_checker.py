@@ -7,3 +7,4 @@ class GitRepositoryChecker:
         if response.status_code != 200:
             return False
         return True
+    
