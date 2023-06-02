@@ -1,4 +1,4 @@
-{%- if DISTRO_INSTALL_EDNX_REQUIREMENTS %}
+{%- if DISTRO_INSTALL_EDNX_REQUIREMENTS is defined and DISTRO_INSTALL_EDNX_REQUIREMENTS %}
 RUN pip install -r ./requirements/edunext/base.txt
 {%- endif %}
 {%- for pkg in iter_values_named(suffix="_DPKG") %}

@@ -26,5 +26,6 @@ def enable_themes() -> None:
     repository = ThemeGitRepository()
     enabler = ThemeEnabler(repository=repository)
 
-    for theme in config["DISTRO_THEMES"]:
-        enabler(settings=theme, tutor_root=directory, tutor_config=config)
+    if config.get("DISTRO_THEMES"):
+        for theme in config["DISTRO_THEMES"]:
+            enabler(settings=theme, tutor_root=directory, tutor_config=config)

@@ -1,2 +1,4 @@
 USE_EOX_TENANT: True
+{% if DISTRO_DEFAULT_SITE_THEME is defined or DISTRO_THEMES_NAME is defined %}
 DEFAULT_SITE_THEME: "{{ DISTRO_DEFAULT_SITE_THEME | default(DISTRO_THEMES_NAME[0]) }}"
+{%- endif -%}

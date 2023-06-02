@@ -11,7 +11,9 @@
 {% endfor %}
 
 COMPREHENSIVE_THEME_DIRS.remove('/openedx/themes')
+{% if DISTRO_THEME_DIRS is defined %}
 COMPREHENSIVE_THEME_DIRS.extend({{ DISTRO_THEME_DIRS }})
+{%- endif -%}
 
 ################## EOX_THEMING ##################
 from lms.envs.common import _make_mako_template_dirs # pylint: disable=import-error

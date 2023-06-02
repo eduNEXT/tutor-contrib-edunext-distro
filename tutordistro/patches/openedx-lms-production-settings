@@ -11,7 +11,9 @@
 {% endfor %}
 
 COMPREHENSIVE_THEME_DIRS.remove('/openedx/themes')
+{% if DISTRO_THEME_DIRS is defined %}
 COMPREHENSIVE_THEME_DIRS.extend({{ DISTRO_THEME_DIRS }})
+{%- endif -%}
 
 ################## EOX_THEMING ##################
 if "EOX_THEMING_DEFAULT_THEME_NAME" in locals() and EOX_THEMING_DEFAULT_THEME_NAME:
@@ -21,6 +23,6 @@ if "EOX_THEMING_DEFAULT_THEME_NAME" in locals() and EOX_THEMING_DEFAULT_THEME_NA
     derive_settings("lms.envs.production")
 # EOL
 
-{% if DISTRO_EXTRA_MIDDLEWARES %}
+{% if DISTRO_EXTRA_MIDDLEWARES is defined %}
 MIDDLEWARE.extend({{ DISTRO_EXTRA_MIDDLEWARES }})
 {%- endif -%}
