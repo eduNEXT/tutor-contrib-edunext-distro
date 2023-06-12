@@ -4,8 +4,8 @@ Distro package repository.
 
 from abc import ABC, abstractmethod
 
-from tutordistro.distro.packages.domain.package import Package
-from tutordistro.distro.packages.domain.package_name import PackageName
+from tutordistro.distro.share.domain.package import Package
+from tutordistro.distro.share.domain.package_name import PackageName
 
 
 class PackageRepository(ABC):

@@ -5,7 +5,7 @@ Test cloner theme enabler application.
 import pytest
 
 from tests.distro.themes.infraestructure.theme_in_memory_repository import ThemeInMemoryRepository
-from tutordistro.distro.packages.share.domain.clone_exception import CloneException
+from tutordistro.distro.share.domain.clone_exception import CloneException
 from tutordistro.distro.themes.application.theme_enabler import ThemeEnabler
 
 

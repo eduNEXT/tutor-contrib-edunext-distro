@@ -10,3 +10,16 @@ class GitPackageRepository(CloudPackageRepository):
         response = requests.get(package.to_url())
         if response.status_code != 200:
             raise PackageDoesNotExist(f"The package {package.name} or branch doesn't exist or is private")
+
+
+
+
+
+class InMemoryPackageRepository(CloudPackageRepository):
+    repositories = [
+        "https://github.com/edunext/probando/tree/patata"
+    ]
+
+    def validate(self, package: CloudPackage) -> None:
+        if not package.to_url() in self.repositories:
+            raise PackageDoesNotExist(f"The package {package.name} or branch doesn't exist or is private")

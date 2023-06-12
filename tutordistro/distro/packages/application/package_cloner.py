@@ -2,11 +2,11 @@
 Package cloner process.
 """
 
-from tutordistro.distro.packages.domain.package import Package
-from tutordistro.distro.packages.domain.package_domain import PackageDomain
-from tutordistro.distro.packages.domain.package_name import PackageName
+from tutordistro.distro.share.domain.package import Package
+from tutordistro.distro.share.domain.package_domain import PackageDomain
+from tutordistro.distro.share.domain.package_name import PackageName
 from tutordistro.distro.packages.domain.package_repository import PackageRepository
-from tutordistro.distro.packages.domain.package_version import PackageVersion
+from tutordistro.distro.share.domain.package_version import PackageVersion
 
 
 class PackageCloner:  # pylint: disable=too-few-public-methods

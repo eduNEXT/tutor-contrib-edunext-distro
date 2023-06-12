@@ -2,7 +2,7 @@
 Theme in memory repository infrastructure.
 """
 
-from tutordistro.distro.packages.share.domain.clone_exception import CloneException
+from tutordistro.distro.share.domain.clone_exception import CloneException
 from tutordistro.distro.themes.domain.theme_repository import ThemeRepository
 from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 

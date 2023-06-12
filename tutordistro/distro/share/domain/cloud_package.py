@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 from tutordistro.distro.share.domain.package import Package
 
 
-class GitPackage:
+class CloudPackage:
     domain: str | None = None
     name: str | None = None
     version: str | None = None
@@ -20,7 +20,13 @@ class GitPackage:
         self.path = path
 
     @staticmethod
-    def __parse_url(url) -> GitPackage:
+    def is_valid_requirement(url) -> bool:
+        pattern = r"git\+(https?://\S+?)(?:#|$)"
+        result = re.search(pattern, url)
+        return True if result else False
+
+    @staticmethod
+    def __parse_url(url) -> CloudPackage:
         version: str = ""
 
         pattern = r"git\+(https?://\S+?)(?:#|$)"
@@ -40,7 +46,7 @@ class GitPackage:
 
         path = partes_path[1]
 
-        return GitPackage(
+        return CloudPackage(
             domain=domain,
             name=name,
             version=version,
@@ -49,22 +55,22 @@ class GitPackage:
         )
 
     @staticmethod
-    def __parse_package(package: Package) -> GitPackage:
-        return GitPackage(
+    def __parse_package(package: Package) -> CloudPackage:
+        return CloudPackage(
             path=package.extra["path"],
             protocol=package.extra["protocol"],
             domain=package.domain,
             version=package.version,
-            name=package.name
+            name=package.extra["repo"]
         )
 
     @staticmethod
-    def from_string(url: str) -> GitPackage:
-        return GitPackage.__parse_url(url=url)
+    def from_string(url: str) -> CloudPackage:
+        return CloudPackage.__parse_url(url=url)
 
     @staticmethod
-    def from_package(package: Package) -> GitPackage:
-        return GitPackage.__parse_package(package=package)
+    def from_package(package: Package) -> CloudPackage:
+        return CloudPackage.__parse_package(package=package)
 
     def to_url(self) -> str:
         version_url = f"/tree/{self.version}" if self.version != "" else ""
