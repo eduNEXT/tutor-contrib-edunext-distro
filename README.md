@@ -15,6 +15,7 @@ This can be watch like a tutor-plugin but is taken a little bit far away.
 ```bash
 tutor plugins enable distro
 tutor distro enable-themes
+tutor distro repository-validator
 ```
 
 ### Documentation
@@ -208,6 +209,14 @@ If you are using another edx-platform you should change it in the commando.
 
 ```bash
 tutor images push openedx
+```
+
+# Check git repository URL
+
+If you want to make sure that the git repository urls in the config.yml file are valid, run the following command:
+
+```bash
+tutor distro repository-validator
 ```
 
 # Other Options
