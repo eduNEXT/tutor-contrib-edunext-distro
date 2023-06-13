@@ -1,3 +1,7 @@
+"""
+Distro enable theme command.
+"""
+
 import subprocess
 
 import click
@@ -8,7 +12,13 @@ from tutordistro.distro.themes.infraestructure.theme_git_repository import Theme
 
 
 @click.command(name="enable-themes", help="Enable distro themes")
-def enable_themes() -> None:    # pylint: disable=missing-function-docstring
+def enable_themes() -> None:
+    """
+    Enable distro themes.
+
+    This function enables the themes specified in the `DISTRO_THEMES` configuration
+    and applies them using the ThemeEnabler and ThemeGitRepository classes.
+    """
     directory = subprocess.check_output("tutor config printroot", shell=True).\
         decode("utf-8").strip()
     config = tutor_config.load(directory)

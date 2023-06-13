@@ -1,3 +1,7 @@
+"""
+Distro enable private packages command.
+"""
+
 import subprocess
 
 import click
@@ -8,13 +12,31 @@ from tutordistro.distro.packages.application.private_package_definer import Priv
 from tutordistro.distro.packages.infrastructure.package_git_repository import PackageGitRepository
 
 
-def get_distro_packages(settings) -> list:
+def get_distro_packages(settings):
+    """
+    Get distro packages from settings.
+
+    Args:
+        settings (dict): Distro settings.
+
+    Returns:
+        list: List of distro packages.
+    """
     distro_packages = {key: val for key,
                        val in settings.items() if key.endswith("_DPKG") and val != 'None'}
     return distro_packages
 
 
-def get_private_distro_packages(settings) -> list:
+def get_private_distro_packages(settings):
+    """
+    Get private distro packages from settings.
+
+    Args:
+        settings (dict): Distro settings.
+
+    Returns:
+        list: List of private distro packages.
+    """
     distro_packages = get_distro_packages(settings)
     private_packages = {key: val for key,
                         val in distro_packages.items() if val["private"]}
@@ -22,7 +44,16 @@ def get_private_distro_packages(settings) -> list:
 
 
 @click.command(name="enable-private-packages", help="Enable distro private packages")
-def enable_private_packages() -> None:    # pylint: disable=missing-function-docstring
+def enable_private_packages():
+    """
+    Enable private packages command.
+
+    This command enables distro private packages by cloning the packages and
+    defining them as private.
+
+    Raises:
+        Exception: If an error occurs during the cloning or defining process.
+    """
     directory = subprocess.check_output("tutor config printroot", shell=True).\
         decode("utf-8").strip()
     config = tutor_config.load(directory)
@@ -48,5 +79,5 @@ def enable_private_packages() -> None:    # pylint: disable=missing-function-doc
             )
             definer(name=package["name"],
                     file_path=f"{requirements_directory}private.txt")
-        except Exception as error: # pylint: disable=broad-except
+        except Exception as error:  # pylint: disable=broad-exception-caught
             click.echo(error)

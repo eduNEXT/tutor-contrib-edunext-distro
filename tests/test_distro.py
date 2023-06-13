@@ -9,4 +9,4 @@ def test_version():
     """
     Tutor distro plugin tests version
     """
-    assert __version__ == '15.0.0'
+    assert __version__ == '15.0.2'

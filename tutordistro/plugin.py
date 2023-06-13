@@ -1,7 +1,11 @@
-from glob import glob
-import os
-import pkg_resources
+"""
+Tutor distrto defaults settings.
+"""
 
+import os
+from glob import glob
+
+import pkg_resources
 from tutor import hooks
 
 from tutordistro.commands.cli import distro
@@ -17,7 +21,7 @@ config = {
         "VERSION": __version__,
         "EXTRA_MIDDLEWARES": [],
         # DISTRO PACKAGES
-            "EOX_CORE_DPKG": {
+        "EOX_CORE_DPKG": {
             "index": "git",
             "name": "eox-core",
             "repo": "eox-core",
@@ -79,7 +83,7 @@ config = {
             "domain": "github.com",
             "protocol": "https",
             "path": "eduNEXT",
-            "EOX_THEMING_CONFIG_SOURCES":[
+            "EOX_THEMING_CONFIG_SOURCES": [
                 "from_eox_tenant_microsite_v2",
                 "from_django_settings"
             ],
@@ -105,7 +109,7 @@ config = {
             "path": "eduNEXT",
             "private": False,
         },
-       "EOX_AUDIT_MODEL_DPKG": {
+        "EOX_AUDIT_MODEL_DPKG": {
             "index": "git",
             "name": "eox-audit-model",
             "repo": "eox-audit-model",
@@ -138,10 +142,14 @@ config = {
     },
     "unique": {},
     "overrides": {
-        "DOCKER_IMAGE_OPENEDX": "docker.io/ednxops/distro-edunext-edxapp:olmo",
-        "DOCKER_IMAGE_OPENEDX_DEV": "docker.io/ednxops/distro-edunext-edxapp-dev:olmo",
-        "EDX_PLATFORM_REPOSITORY": "https://github.com/eduNEXT/edunext-platform.git",
-        "EDX_PLATFORM_VERSION": "ednx-release/olmo.master",
+        "DOCKER_IMAGE_OPENEDX":
+            "docker.io/ednxops/distro-edunext-edxapp:olmo",
+        "DOCKER_IMAGE_OPENEDX_DEV":
+            "docker.io/ednxops/distro-edunext-edxapp-dev:olmo",
+        "EDX_PLATFORM_REPOSITORY":
+            "https://github.com/eduNEXT/edunext-platform.git",
+        "EDX_PLATFORM_VERSION":
+            "ednx-release/olmo.master",
     },
 }
 
@@ -153,7 +161,7 @@ hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
 hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     [
         ("distro/build", "plugins"),
-        ("distro/apps", "plugins"), 
+        ("distro/apps", "plugins"),
     ],
 )
 # Load all patches from the "patches" folder
@@ -164,7 +172,9 @@ for path in glob(
     )
 ):
     with open(path, encoding="utf-8") as patch_file:
-        hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
+        hooks.Filters.ENV_PATCHES.add_item(
+            os.path.basename(path), patch_file.read()
+        )
 
 # Load all configuration entries
 hooks.Filters.CLI_COMMANDS.add_items(
