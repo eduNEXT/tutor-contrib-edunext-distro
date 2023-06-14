@@ -1,28 +1,56 @@
+"""
+Distro theme funtions.
+"""
+
 import os
-import subprocess
 import shutil
+import subprocess
+
 import click
 
-from tutordistro.distro.themes.domain.theme_repository import ThemeRepository
 from tutordistro.distro.packages.share.domain.clone_exception import CloneException
+from tutordistro.distro.themes.domain.theme_repository import ThemeRepository
 from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
-class ThemeGitRepository(ThemeRepository):
+class ThemeGitRepository(ThemeRepository):  # pylint: disable=too-few-public-methods
+    """
+    Git repository for themes.
 
-    def clone(self, theme_settings: type(ThemeSettings)) -> None:
+    This class provides functionality to clone theme repositories.
+
+    Args:
+        ThemeRepository (class): Base theme repository class.
+    """
+
+    def clone(self, theme_settings: type(ThemeSettings)):
+        """
+        Clone the theme repository.
+
+        This method clones the theme repository based on the provided theme settings.
+
+        Args:
+            theme_settings (ThemeSettings): Theme settings.
+        """
         if "https" == theme_settings.settings["protocol"]:
-            repo = f"https://{theme_settings.settings['domain']}/{theme_settings.settings['path']}/{theme_settings.settings['repo']}"  #pylint: disable=line-too-long
+            repo = (
+                f"https://{theme_settings.settings['domain']}/"
+                f"{theme_settings.settings['path']}/"
+                f"{theme_settings.settings['repo']}"
+            )
         elif "ssh" == theme_settings.settings["protocol"]:
-            repo = f"git@{theme_settings.settings['domain']}:{theme_settings.settings['path']}/{theme_settings.settings['repo']}.git"  #pylint: disable=line-too-long
+            repo = (
+                f"git@{theme_settings.settings['domain']}:"
+                f"{theme_settings.settings['path']}/"
+                f"{theme_settings.settings['repo']}.git"
+            )
 
         try:
             if os.path.exists(f"{theme_settings.get_full_directory}"):
                 if not click.confirm(f"Do you want to overwrite \
                 {theme_settings.get_full_directory}? "):
                     raise CloneException()
-                else:
-                    shutil.rmtree(f"{theme_settings.get_full_directory}")
+                shutil.rmtree(f"{theme_settings.get_full_directory}")
             subprocess.call(
                 [
                     "git",

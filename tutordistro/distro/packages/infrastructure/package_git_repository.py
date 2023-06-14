@@ -1,6 +1,11 @@
+"""
+Package git repository ingrastructure.
+"""
+
 import os
-import subprocess
 import shutil
+import subprocess
+
 import click
 
 from tutordistro.distro.packages.domain.package import Package
@@ -10,7 +15,22 @@ from tutordistro.distro.packages.share.domain.clone_exception import CloneExcept
 
 
 class PackageGitRepository(PackageRepository):
+    """
+    Package Git repository infrastructure.
+
+    This class provides functionality to clone and manage packages from a Git repository.
+    """
+
     def set_as_private(self, name: PackageName, file_path: str) -> None:
+        """
+        Set a package as private.
+
+        This method appends the package as a private requirement in the given requirements file.
+
+        Args:
+            name (PackageName): The name of the package.
+            file_path (str): The file path of the requirements file.
+        """
         already_exist = False
 
         if os.path.exists(file_path):
@@ -23,10 +43,27 @@ class PackageGitRepository(PackageRepository):
                 private_requirements_file.write(f"\n-e ./{name}")
 
     def clone(self, package: Package, path: str) -> None:
+        """
+        Clone a package from the Git repository.
+
+        This method clones the package from the specified Git repository.
+
+        Args:
+            package (Package): The package to be cloned.
+            path (str): The destination path for cloning the package.
+        """
         if "https" == package.extra["protocol"]:
-            repo = f"https://{package.domain}/{package.extra['path']}/{package.extra['repo']}"  # pylint: disable=line-too-long
+            repo = (
+                f"https://{package.domain}/"
+                f"{package.extra['path']}/"
+                f"{package.extra['repo']}"
+            )
         elif "ssh" == package.extra["protocol"]:
-            repo = f"git@{package.domain}:{package.extra['path']}/{package.extra['repo']}.git"  # pylint: disable=line-too-long
+            repo = (
+                f"git@{package.domain}:"
+                f"{package.extra['path']}/"
+                f"{package.extra['repo']}.git"
+            )
 
         package_folder = f"{path}{package.name}"
 

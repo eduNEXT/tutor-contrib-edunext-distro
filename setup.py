@@ -41,7 +41,7 @@ setup(
     python_requires=">=3.6",
     install_requires=["tutor>=15.0.0, <16", "click"],
     extras_require={
-            "test": ["behave", "pytest", "pylint"]
+            "test": ["behave", "pytest", "pylint", "pycodestyle", "isort"]
         },
     entry_points={
         "tutor.plugin.v1": [

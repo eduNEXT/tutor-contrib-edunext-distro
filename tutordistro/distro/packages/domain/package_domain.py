@@ -1,2 +1,9 @@
+"""
+Package domain.
+"""
+
+
 class PackageDomain(str):
-    pass
+    """
+    Custom class for representing a package domain.
+    """

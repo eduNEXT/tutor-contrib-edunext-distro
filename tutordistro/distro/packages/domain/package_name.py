@@ -1,2 +1,9 @@
+"""
+Package name.
+"""
+
+
 class PackageName(str):
-    pass
+    """
+    Custom class for representing a package name.
+    """

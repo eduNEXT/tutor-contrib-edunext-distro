@@ -1,2 +1,9 @@
+"""
+Package does not exist.
+"""
+
+
 class PackageDoesNotExist(Exception):
-    pass
+    """
+    Exception raised when a package does not exist.
+    """
