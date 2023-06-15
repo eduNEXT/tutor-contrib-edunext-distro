@@ -7,7 +7,7 @@ def get_distro_packages(settings) -> dict:
 def get_public_distro_packages(settings) -> dict:
     distro_packages = get_distro_packages(settings)
     public_packages = {key: val for key,
-                        val in distro_packages.items() if not val["private"]}
+                       val in distro_packages.items() if not val["private"]}
     return public_packages
 
 

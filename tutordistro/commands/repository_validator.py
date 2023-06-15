@@ -1,12 +1,20 @@
+"""
+This module provides a repository validator command-line tool.
+It validates the repositories used in the project, checking for specific conditions and
+requirements.
+"""
+
+
 import subprocess
 
 import click
 from tutor import config as tutor_config
 
 from tutordistro.distro.repository_validator.application.dpkg_url_validator import DPKGUrlValidator
-from tutordistro.distro.repository_validator.application.extra_pip_requirements_url_validator import \
-    ExtraPipRequirementsUrlValidator
-from tutordistro.distro.repository_validator.infrastructure.git_package_repository import GitPackageRepository
+from tutordistro.distro.repository_validator.application.extra_pip_requirements_url_validator \
+    import ExtraPipRequirementsUrlValidator
+from tutordistro.distro.repository_validator.infrastructure.git_package_repository \
+    import GitPackageRepository
 from tutordistro.utils.packages import (
     get_public_distro_packages
 )
@@ -37,7 +45,7 @@ def repository_validator() -> None:    # pylint: disable=missing-function-docstr
                     "path": package["path"]
                 }
             )
-        except Exception as error: # pylint: disable=broad-except
+        except Exception as error:  # pylint: disable=broad-except
             click.echo(error)
 
     # Check the openedx_extra_pip_requirements repos
@@ -48,6 +56,5 @@ def repository_validator() -> None:    # pylint: disable=missing-function-docstr
     for git_url in openedx_extra_pip_requirements:
         try:
             epr_controller(url=git_url)
-        except Exception as error: # pylint: disable=broad-except
+        except Exception as error:  # pylint: disable=broad-except
             click.echo(error)
-                
