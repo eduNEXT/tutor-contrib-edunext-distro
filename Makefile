@@ -33,6 +33,6 @@ python-acceptance-test: clean python-test-requirements ## Run acceptance tests
 python-quality-test:
 	$(TOX) pycodestyle tutordistro tests
 	$(TOX) pylint --output-format=colorized tutordistro tests --rcfile=./setup.cfg
-	$(TOX) isort --check-only --diff tutordistro tests
+	$(TOX) isort --check-only --diff tutordistro tests --settings-path=./setup.cfg
 
 run-tests: python-unit-tests python-quality-test

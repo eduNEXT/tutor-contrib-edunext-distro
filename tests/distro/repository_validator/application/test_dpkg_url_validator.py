@@ -17,11 +17,12 @@ validator when extra pip requirements do not exist.
 
 
 import pytest
-from tests.distro.repository_validator.infrastructure.in_memory_package_repository \
-    import InMemoryPackageRepository
+
+from tests.distro.repository_validator.infrastructure.in_memory_package_repository import InMemoryPackageRepository
 from tutordistro.distro.repository_validator.application.dpkg_url_validator import DPKGUrlValidator
-from tutordistro.distro.repository_validator.application.extra_pip_requirements_url_validator \
-    import ExtraPipRequirementsUrlValidator
+from tutordistro.distro.repository_validator.application.extra_pip_requirements_url_validator import (
+    ExtraPipRequirementsUrlValidator,
+)
 from tutordistro.distro.share.domain.package_does_not_exist import PackageDoesNotExist
 
 

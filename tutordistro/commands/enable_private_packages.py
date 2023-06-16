@@ -40,7 +40,7 @@ def enable_private_packages():
                 name=package["name"],
                 version=package["version"],
                 domain=package["domain"],
-                extra={
+                extra={  # pylint:disable=duplicate-code
                     "repo": package["repo"],
                     "protocol": package["protocol"],
                     "path": package["path"]

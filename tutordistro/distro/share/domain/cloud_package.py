@@ -6,6 +6,7 @@ The CloudPackage class is used to parse and manipulate URLs representing cloud-b
 
 
 from __future__ import annotations
+
 import re
 from urllib.parse import urlparse
 

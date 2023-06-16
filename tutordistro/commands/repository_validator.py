@@ -11,13 +11,11 @@ import click
 from tutor import config as tutor_config
 
 from tutordistro.distro.repository_validator.application.dpkg_url_validator import DPKGUrlValidator
-from tutordistro.distro.repository_validator.application.extra_pip_requirements_url_validator \
-    import ExtraPipRequirementsUrlValidator
-from tutordistro.distro.repository_validator.infrastructure.git_package_repository \
-    import GitPackageRepository
-from tutordistro.utils.packages import (
-    get_public_distro_packages
+from tutordistro.distro.repository_validator.application.extra_pip_requirements_url_validator import (
+    ExtraPipRequirementsUrlValidator,
 )
+from tutordistro.distro.repository_validator.infrastructure.git_package_repository import GitPackageRepository
+from tutordistro.utils.packages import get_public_distro_packages
 
 
 @click.command(name="repository-validator", help="Repository validator")

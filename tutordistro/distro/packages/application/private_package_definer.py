@@ -2,8 +2,8 @@
 Private package denifer process.
 """
 
-from tutordistro.distro.share.domain.package_name import PackageName
 from tutordistro.distro.packages.domain.package_repository import PackageRepository
+from tutordistro.distro.share.domain.package_name import PackageName
 
 
 class PrivatePackageDefiner:  # pylint: disable=too-few-public-methods

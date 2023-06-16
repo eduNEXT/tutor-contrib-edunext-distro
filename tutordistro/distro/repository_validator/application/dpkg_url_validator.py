@@ -3,12 +3,12 @@ This module provides the DPKGUrlValidator class for validating DPKG URLs.
 """
 
 
+from tutordistro.distro.share.domain.cloud_package import CloudPackage
+from tutordistro.distro.share.domain.cloud_package_repository import CloudPackageRepository
 from tutordistro.distro.share.domain.package import Package
 from tutordistro.distro.share.domain.package_domain import PackageDomain
 from tutordistro.distro.share.domain.package_name import PackageName
 from tutordistro.distro.share.domain.package_version import PackageVersion
-from tutordistro.distro.share.domain.cloud_package import CloudPackage
-from tutordistro.distro.share.domain.cloud_package_repository import CloudPackageRepository
 
 
 class DPKGUrlValidator:  # pylint: disable=too-few-public-methods
@@ -20,7 +20,7 @@ class DPKGUrlValidator:  # pylint: disable=too-few-public-methods
     def __init__(self, repository: CloudPackageRepository) -> None:
         self.repository = repository
 
-    def __call__(
+    def __call__(  # pylint:disable=duplicate-code
         self,
         name: str,
         version: str,
