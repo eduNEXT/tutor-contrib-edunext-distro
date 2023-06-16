@@ -6,7 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 # [Unreleased]
----------------------
+
+
+---
+
+## v15.0.3 - 2023-06-16
+
+### [15.0.3](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v15.0.2...v15.0.3) (2023-06-16)
+
+### Bug Fixes
+
+- solve array problem ([#50](https://github.com/eduNEXT/tutor-contrib-edunext-distro/issues/50)) ([5fb9eb6](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/5fb9eb6366d7bac42b6285111630130addddfa6c))
+
+### Continuous Integration
+
+- add pipelines workflows ([e27e3b4](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/e27e3b4ef6b4785abbbd6b08041e6671d391bbb4))
+- change for correct file pattern ([#51](https://github.com/eduNEXT/tutor-contrib-edunext-distro/issues/51)) ([42673fa](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/42673fa5a50770521c16fca32fbe3b3ca20b672c))
+- fix bumpversion workflow with correct token ([8b9e9ef](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/8b9e9efd8769a7451bf3f0a93b2c4fb14a4453ad))
 
 ## [15.0.2] - 2023-04-21
 
@@ -61,7 +77,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - update eox-tenant version with filter feature in nutmeg
 
 ## [14.0.0] - 2022-10-26
----------------------
+
+
+---
 
 ### Changed
 
@@ -80,15 +98,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add bragi nuez version
 
 ### Documentation
+
 - update README
 
 ## [13.3.0] - 2022-09-09
---------------------
+
+
+---
 
 ### Features
 
 - use faster config for theming config at eox-tenant
 
 ## [13.2.0] - 2022-07-25
----------------------
+
+
+---
+
 <!-- Content should be placed here -->
