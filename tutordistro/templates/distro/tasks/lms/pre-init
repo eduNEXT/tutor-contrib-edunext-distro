@@ -1,5 +1,5 @@
-./manage.py lms migrate contenttypes
-./manage.py lms migrate eox_core
-./manage.py lms migrate eox_tenant
-./manage.py lms migrate eox_tagging
-./manage.py lms migrate eox_audit_model
+{% if ENABLE_EOX_SETTINGS["pre_init_lms_tasks"] is defined %}
+{% for task in ENABLE_EOX_SETTINGS["pre_init_lms_tasks"] %}
+{{ task }}
+{% endfor %}
+{% endif %}
