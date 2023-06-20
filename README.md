@@ -262,6 +262,43 @@ DISTRO_EXTRA_MIDDLEWARES:
   - middleware.test.2
 ```
 
+## How to add extra files requirements
+
+You should set the variable **INSTALL_EXTRA_FILE_REQUIREMENTS** in your config.yml file if you need to install extra files with. The structure should be like:
+
+```yaml
+INSTALL_EXTRA_FILE_REQUIREMENTS:
+  path: ./requirements/extra_file/
+  files: [
+    /edunext/base.txt,
+    /test/test.txt
+  ]
+```
+
+It's important that ``.txt`` files are added in requirements directory, similar to EXTRA PIP REQUIREMENTS from [Tutor](https://docs.tutor.overhang.io/configuration.html#installing-extra-xblocks-and-requirements).
+
+## How to enable eox settings
+
+You should set the variable **ENABLE_EOX_SETTINGS** in your config.yml file if you need to enable some eox settings to plugins works as expected. For now the principals settings should be like this:
+
+```yaml
+ENABLE_EOX_SETTINGS:
+  USE_EOX_TENANT: true
+  ENABLE_EOX_THEMING_DERIVE_WORKAROUND: true
+  ENABLE_COMPREHENSIVE_THEMING: true
+  pre_init_lms_tasks: [
+    ./manage.py lms migrate contenttypes,
+    ./manage.py lms migrate eox_core,
+    ./manage.py lms migrate eox_tenant,
+    ./manage.py lms migrate eox_tagging,
+    ./manage.py lms migrate eox_audit_model
+  ]
+```
+
+The list could grow according to the needs that arise at the time of configuring the eox plugins.
+
+:warning: **Note**: Other Options as ``INSTALL_EXTRA_FILE_REQUIREMENTS`` and ``ENABLE_EOX_SETTINGS`` are included from Olmo version, you can use it from this release.
+
 # License
 
 This software is licensed under the terms of the AGPLv3.
