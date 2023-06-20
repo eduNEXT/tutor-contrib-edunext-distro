@@ -97,11 +97,11 @@ def test_validator_when_extra_pip_requeriments_exists():
     3. Invoke the validator with a valid URL.
     """
     repository = InMemoryPackageRepository(
-        ["https://github.com/eduNEXT/edx_xblock_scorm/tree/v2.0.0"]
+        ["https://github.com/test/testrepo/tree/2.0.1"]
     )
     validator = ExtraPipRequirementsUrlValidator(repository=repository)
     validator(
-        url="git+https://github.com/eduNEXT/edx_xblock_scorm@v2.0.0#egg=scormxblock-xblock==2.0.0"
+        url="git+https://github.com/test/testrepo@2.0.1"
     )
 
 
@@ -123,7 +123,7 @@ def test_validator_when_extra_pip_requeriments_does_not_exists():
         validator = ExtraPipRequirementsUrlValidator(repository=repository)
 
         validator(
-            url="git+https://github.com/eduNEXT/edx_xblock_scorm@v2.0.0"
+            url="git+https://github.com/test/testrepo@2.0.1"
             "#egg=scormxblock-xblock==2.0.0"
         )
 
