@@ -3,7 +3,7 @@ How to override or add a new package
 
 You can add or override a package directly in config.yml file (``$(tutor config printroot)/config.yaml``).
 
-It's possible to install from a repository or by pip but take in mind, the second option couldn't install it as editable. 
+It's possible to install from a repository or by pip but take in mind, the second option couldn't install it as editable.
 
 Follow the next structure:
 
@@ -48,7 +48,7 @@ To override a default package identify its name and set it like ``DISTRO_<PACKAG
 An example of override eox-theming plugin:
 
 .. code-block:: yml
-    
+
     DISTRO_EOX_THEMING_DPKG:
         index: git
         name: eox-theming
@@ -72,6 +72,7 @@ An example of override eox-theming plugin:
                 "from_django_settings"
             ]
 
+:warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file.
 
 Private packages
 ----------------
@@ -79,9 +80,9 @@ Private packages
 Once you define your private packages in config file you need to enable them with command:
 
 .. code-block:: bash
-    
+
     tutor distro enable-private-packages
-    
+
 
 
 Use your new packages

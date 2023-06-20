@@ -86,8 +86,10 @@ You can disable anyone by the ``tutor config save --set DISTRO_<PLUGIN_NAME>_DPK
 
 
 .. code-block:: yml
-    
-        DISTRO_<PLUGIN_NAME>_DPKG: None
-        
 
-If you want to override default packages or add a new one go to the corresponding section: `How to override or add a new package. <./how_to_add_new_packages.rst>`_ 
+        DISTRO_<PLUGIN_NAME>_DPKG: None
+
+
+:warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file.
+
+If you want to override default packages or add a new one go to the corresponding section: `How to add a new package. <./how_to_add_new_packages.rst>`_
