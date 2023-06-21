@@ -1,6 +1,11 @@
-{% if ENABLE_EOX_SETTINGS["USE_EOX_TENANT"] is defined %}
-USE_EOX_TENANT: {{ ENABLE_EOX_SETTINGS["USE_EOX_TENANT"] }}
-{% endif %}
-{% if DISTRO_DEFAULT_SITE_THEME is defined or DISTRO_THEMES_NAME is defined %}
+{% if OPENEDX_EXTRA_SETTINGS is defined and OPENEDX_EXTRA_SETTINGS["cms_env"] is defined %}
+############### extra cms-env settings #############
+{%- for setting in OPENEDX_EXTRA_SETTINGS["cms_env"] %}
+{%- for key, value in setting.items() %}
+{{ key }}: {{ value }}
+{%- endfor %}
+{%- endfor %}
+{%- endif %}
+{%- if DISTRO_DEFAULT_SITE_THEME is defined or DISTRO_THEMES_NAME is defined %}
 DEFAULT_SITE_THEME: "{{ DISTRO_DEFAULT_SITE_THEME | default(DISTRO_THEMES_NAME[0]) }}"
-{%- endif -%}
+{% endif %}

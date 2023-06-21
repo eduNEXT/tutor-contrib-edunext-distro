@@ -1,4 +1,4 @@
-{% if ENABLE_EOX_SETTINGS["pre_init_lms_tasks"] is defined %}
+{% if OPENEDX_EXTRA_SETTINGS is defined and OPENEDX_EXTRA_SETTINGS["pre_init_lms_tasks"] is defined %}
 {% for task in ENABLE_EOX_SETTINGS["pre_init_lms_tasks"] %}
 {{ task }}
 {% endfor %}
