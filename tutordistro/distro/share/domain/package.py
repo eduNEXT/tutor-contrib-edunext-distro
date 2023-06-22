@@ -7,9 +7,9 @@ from __future__ import annotations
 from abc import ABC
 from typing import Dict
 
-from tutordistro.distro.packages.domain.package_domain import PackageDomain
-from tutordistro.distro.packages.domain.package_name import PackageName
-from tutordistro.distro.packages.domain.package_version import PackageVersion
+from tutordistro.distro.share.domain.package_domain import PackageDomain
+from tutordistro.distro.share.domain.package_name import PackageName
+from tutordistro.distro.share.domain.package_version import PackageVersion
 
 
 class Package(ABC):

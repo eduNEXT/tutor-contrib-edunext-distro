@@ -15,6 +15,7 @@ This can be watch like a tutor-plugin but is taken a little bit far away.
 ```bash
 tutor plugins enable distro
 tutor distro enable-themes
+tutor distro repository-validator
 ```
 
 ### Documentation
@@ -208,6 +209,33 @@ If you are using another edx-platform you should change it in the commando.
 
 ```bash
 tutor images push openedx
+```
+
+# Check git repository URL
+
+If you want to make sure that the git repository urls in the config.yml file are valid, run the following command:
+
+```bash
+tutor distro repository-validator
+```
+
+The command will check the git URLs of the OPENEDX_EXTRA_PIP_REQUIREMENTS element, for example: git+https://github.com/openedx/DoneXBlock@2.0.1#egg=done-xblock
+
+It will also check all elements that end in DPKG and have the parameter private: false, for example:
+
+```bash
+DISTRO_EOX_HOOKS_DPKG:
+  index: git
+  name: eox-hooks
+  repo: eox-hooks
+  domain: github.com
+  path: eduNEXT
+  protocol: https
+  private: false
+  variables:
+    development: {}
+    production: {}
+  version: master
 ```
 
 # Other Options

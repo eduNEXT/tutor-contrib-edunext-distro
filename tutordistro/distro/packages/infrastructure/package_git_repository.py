@@ -8,10 +8,10 @@ import subprocess
 
 import click
 
-from tutordistro.distro.packages.domain.package import Package
-from tutordistro.distro.packages.domain.package_name import PackageName
 from tutordistro.distro.packages.domain.package_repository import PackageRepository
-from tutordistro.distro.packages.share.domain.clone_exception import CloneException
+from tutordistro.distro.share.domain.clone_exception import CloneException
+from tutordistro.distro.share.domain.package import Package
+from tutordistro.distro.share.domain.package_name import PackageName
 
 
 class PackageGitRepository(PackageRepository):

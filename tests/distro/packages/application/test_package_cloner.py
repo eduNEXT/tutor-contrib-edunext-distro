@@ -3,7 +3,7 @@ import pytest
 from tests.distro.packages.application.package_mock_mother import PackageMockMother
 from tests.distro.packages.infrastructure.git_in_memory_package_repository import GitInMemoryPackageRepository
 from tutordistro.distro.packages.application.package_cloner import PackageCloner
-from tutordistro.distro.packages.share.domain.clone_exception import CloneException
+from tutordistro.distro.share.domain.clone_exception import CloneException
 
 
 def test_should_clone_one_repository_in_a_path():

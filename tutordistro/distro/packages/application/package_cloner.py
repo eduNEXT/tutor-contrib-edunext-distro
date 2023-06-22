@@ -2,11 +2,11 @@
 Package cloner process.
 """
 
-from tutordistro.distro.packages.domain.package import Package
-from tutordistro.distro.packages.domain.package_domain import PackageDomain
-from tutordistro.distro.packages.domain.package_name import PackageName
 from tutordistro.distro.packages.domain.package_repository import PackageRepository
-from tutordistro.distro.packages.domain.package_version import PackageVersion
+from tutordistro.distro.share.domain.package import Package
+from tutordistro.distro.share.domain.package_domain import PackageDomain
+from tutordistro.distro.share.domain.package_name import PackageName
+from tutordistro.distro.share.domain.package_version import PackageVersion
 
 
 class PackageCloner:  # pylint: disable=too-few-public-methods
@@ -32,7 +32,7 @@ class PackageCloner:  # pylint: disable=too-few-public-methods
         domain: str,
         path: str,
         extra: dict = None
-    ) -> None:
+    ) -> None:  # pylint:disable=duplicate-code
         """
         Clone a package to the specified path.
 

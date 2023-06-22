@@ -10,37 +10,7 @@ from tutor import config as tutor_config
 from tutordistro.distro.packages.application.package_cloner import PackageCloner
 from tutordistro.distro.packages.application.private_package_definer import PrivatePackageDefiner
 from tutordistro.distro.packages.infrastructure.package_git_repository import PackageGitRepository
-
-
-def get_distro_packages(settings):
-    """
-    Get distro packages from settings.
-
-    Args:
-        settings (dict): Distro settings.
-
-    Returns:
-        list: List of distro packages.
-    """
-    distro_packages = {key: val for key,
-                       val in settings.items() if key.endswith("_DPKG") and val != 'None'}
-    return distro_packages
-
-
-def get_private_distro_packages(settings):
-    """
-    Get private distro packages from settings.
-
-    Args:
-        settings (dict): Distro settings.
-
-    Returns:
-        list: List of private distro packages.
-    """
-    distro_packages = get_distro_packages(settings)
-    private_packages = {key: val for key,
-                        val in distro_packages.items() if val["private"]}
-    return private_packages
+from tutordistro.utils.packages import get_private_distro_packages
 
 
 @click.command(name="enable-private-packages", help="Enable distro private packages")
@@ -70,7 +40,7 @@ def enable_private_packages():
                 name=package["name"],
                 version=package["version"],
                 domain=package["domain"],
-                extra={
+                extra={  # pylint:disable=duplicate-code
                     "repo": package["repo"],
                     "protocol": package["protocol"],
                     "path": package["path"]
