@@ -11,6 +11,7 @@ import re
 from urllib.parse import urlparse
 
 from tutordistro.distro.share.domain.package import Package
+from tutordistro.distro.share.domain.package_does_not_exist import PackageDoesNotExist
 
 
 class CloudPackage:
@@ -63,8 +64,15 @@ class CloudPackage:
         partes_path = path.split('/')
         name = partes_path[2]
 
+        if len(partes_path) > 5:
+            raise PackageDoesNotExist(f"The package {url} \
+                                      or branch doesn't exist or is private")
+
         if '/tree/' in url:
             version = partes_path[-1]
+        if len(partes_path) > 3 and '/tree/' not in url:
+            raise PackageDoesNotExist(f"The package {url} \
+                                      or branch doesn't exist or is private")
 
         path = partes_path[1]
 
