@@ -62,11 +62,15 @@ General Settings
 |                                                                                                                                                        |       /test/test.txt                                                                                                 |
 |                                                                                                                                                        |     ]                                                                                                                |
 +-------------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
-|  **ENABLE_EOX_SETTINGS**                                                                                                                               |.. code-block:: yml                                                                                                   |
+|  **OPENEDX_EXTRA_SETTINGS**                                                                                                                            |.. code-block:: yml                                                                                                   |
 |                                                                                                                                                        |                                                                                                                      |
-| Enable eox settings to configure eox plugins variables                                                                                                 |     USE_EOX_TENANT: true                                                                                             |
-|                                                                                                                                                        |     ENABLE_EOX_THEMING_DERIVE_WORKAROUND: true                                                                       |
-|                                                                                                                                                        |     ENABLE_COMPREHENSIVE_THEMING: true                                                                               |
+| Enable openedx extra settings to configure cms_env, lms_env or pre_init_lms_tasks variables                                                            |     cms_env: [                                                                                                       |
+|                                                                                                                                                        |       USE_EOX_TENANT: true                                                                                           |
+|                                                                                                                                                        |     ]                                                                                                                |
+|                                                                                                                                                        |     lms_env: [                                                                                                       |
+|                                                                                                                                                        |       USE_EOX_TENANT: true,                                                                                          |
+|                                                                                                                                                        |       ENABLE_EOX_THEMING_DERIVE_WORKAROUND: true                                                                     |
+|                                                                                                                                                        |     ]
 |                                                                                                                                                        |     pre_init_lms_tasks: [                                                                                            |
 |                                                                                                                                                        |       ./manage.py lms migrate contenttypes,                                                                          |
 |                                                                                                                                                        |       ./manage.py lms migrate eox_core,                                                                              |
@@ -77,7 +81,7 @@ General Settings
 
 To override these settings define it on config.yml file (``$(tutor config printroot)/config.yaml``) or use the command ``tutor config save --set GENERAL_SETTING=Value``.
 
-:warning: **Note**: Other Options as ``INSTALL_EXTRA_FILE_REQUIREMENTS`` and ``ENABLE_EOX_SETTINGS`` are included from Olmo version, you can use it from this release.
+:warning: **Note**: Other Options as ``INSTALL_EXTRA_FILE_REQUIREMENTS`` and ``OPENEDX_EXTRA_SETTINGS`` are included from Olmo version, you can use it from this release.
 
 
 Plugins or packages

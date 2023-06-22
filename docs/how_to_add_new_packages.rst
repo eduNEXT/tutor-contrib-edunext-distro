@@ -101,15 +101,19 @@ INSTALL_EXTRA_FILE_REQUIREMENTS:
 
 It's important that ``.txt`` files are added in requirements directory, similar to EXTRA PIP REQUIREMENTS from [Tutor](https://docs.tutor.overhang.io/configuration.html#installing-extra-xblocks-and-requirements).
 
-* How to enable eox settings
+* How to enable openedx extra settings
 
-You should set the variable **ENABLE_EOX_SETTINGS** in your config.yml file if you need to enable some eox settings to plugins works as expected. For now the principals settings should be like this:
+You should set the variable **OPENEDX_EXTRA_SETTINGS** in your config.yml file if you need to enable ``cms_env``, ``lms_env`` or ``pre_init_lms_task`` settings to plugins works as expected. For now the principals settings should be like this:
 
 ```yaml
-ENABLE_EOX_SETTINGS:
-  USE_EOX_TENANT: true
-  ENABLE_EOX_THEMING_DERIVE_WORKAROUND: true
-  ENABLE_COMPREHENSIVE_THEMING: true
+OPENEDX_EXTRA_SETTINGS:
+  cms_env: [
+    USE_EOX_TENANT: true
+  ]
+  lms_env: [
+    USE_EOX_TENANT: true,
+    ENABLE_EOX_THEMING_DERIVE_WORKAROUND: true
+  ]
   pre_init_lms_tasks: [
     ./manage.py lms migrate contenttypes,
     ./manage.py lms migrate eox_core,
@@ -119,9 +123,9 @@ ENABLE_EOX_SETTINGS:
   ]
 ```
 
-The list could grow according to the needs that arise at the time of configuring the eox plugins.
+The list could grow according to the needs that arise at the time of configuring the plugins.
 
-:warning: **Note**: Other Options as ``INSTALL_EXTRA_FILE_REQUIREMENTS`` and ``ENABLE_EOX_SETTINGS`` are included from Olmo version, you can use it from this release.
+:warning: **Note**: Other Options as ``INSTALL_EXTRA_FILE_REQUIREMENTS`` and ``OPENEDX_EXTRA_SETTINGS`` are included from Olmo version, you can use it from this release.
 
 Use your new packages
 ----------------------
