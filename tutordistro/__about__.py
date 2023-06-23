@@ -2,4 +2,4 @@
 Tutor Distro version.
 """
 
-__version__ = "15.0.3"
+__version__ = "15.1.0"
