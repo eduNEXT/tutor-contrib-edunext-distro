@@ -1,14 +1,16 @@
 {% for pkg in iter_values_named(suffix="_DPKG") %}
-{%- if pkg != 'None' -%}
+{%- if pkg != 'None' and pkg["variables"] is defined %}
 # Start {{ pkg["name"] }} settings
 {%- if "variables" in pkg and "development" in pkg["variables"] -%}
 {%- for key, value in pkg["variables"]["development"].items() %}
-{{ key }} = {% if value is string %}"{{ value }}"{% else %}{{ value }}{% endif %} 
+{{ key }} = {% if value is string %}"{{ value }}"{% else %}{{ value }}{% endif %}
 {%- endfor %}
 # End {{ pkg["name"] }} settings
 {%- endif -%}
 {%- endif -%}
 {% endfor %}
 
+{%- if DISTRO_THEME_DIRS is defined %}
 COMPREHENSIVE_THEME_DIRS.remove('/openedx/themes')
 COMPREHENSIVE_THEME_DIRS.extend({{ DISTRO_THEME_DIRS }})
+{%- endif %}

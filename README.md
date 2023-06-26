@@ -23,7 +23,7 @@ tutor distro repository-validator
 Distro plugin manages a set of settings that you can configure, to know how to do that check:
 
 - [How to custumize distro](./docs/how_to_customize_distro.rst)
-- [How to override or add a new package](./docs/how_to_add_new_packages.rst)
+- [How to add a new package](./docs/how_to_add_new_packages.rst)
 
 # Required tutor settings
 
@@ -64,6 +64,7 @@ These packages will be installed in a default installation.
 - eox-audit-model (DISTRO_EOX_AUDIT_MODEL_DPKG)
 - eox-tagging (DISTRO_EOX_TAGGING_DPKG)
 
+:warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file. See [How to add a new package](./docs/how_to_add_new_packages.rst)
 
 ## How to add a new package
 
@@ -118,6 +119,8 @@ You can use the same steps that in **How to add a new package** just set the var
 - DISTRO_EOX_AUDIT_MODEL_DPKG
 - DISTRO_EOX_TAGGING_DPKG
 
+:warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file. See [How to add a new package](./docs/how_to_add_new_packages.rst)
+
 ## Disable packages
 
 You can disable any default package following this structure in your config.yml:
@@ -130,10 +133,14 @@ Development environment take this changes with _tutor config save_ and restart, 
 
 > **Warning:** Default packages can have dependencies with other default packages or base application and disable it would break some features.
 
+:warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file. See [How to add a new package](./docs/how_to_add_new_packages.rst)
+
 # Themes
 
 Declare the path of your themes using `tutor config save --set DISTRO_THEMES_ROOT="your_path"`,
 by default the themes path goes here **/openedx/themes**
+
+:warning: **NOTE**: From Olmo version Distro has not defaulted themes path. Now it is necessary to add the themes path in ``config.yml`` file or running command above.
 
 ## Default themes
 
@@ -142,6 +149,8 @@ These themes will be installed in a default installation.
 - [bragi](https://github.com/eduNEXT/ednx-saas-themes/tree/edunext/mango.master)
 
 Defining a DISTRO_DEFAULT_SITE_THEME argument with a color will set a default theme, however, if not specified the default theme will be the first on the DISTRO_THEMES_NAME set of themes.
+
+:warning: **NOTE**: From Olmo version Distro has not defaulted themes. Now it is necessary to add the themes in ``config.yml`` file. See [How to add a theme](https://github.com/eduNEXT/tutor-contrib-edunext-distro#how-to-add-a-theme).
 
 ## How to add a theme
 
@@ -189,6 +198,8 @@ tutor distro enable-themes
   ```bash
   openedx-assets themes --theme-dirs THEME_DIRS --themes THEME_NAMES
   ```
+
+:warning: **NOTE**: From Olmo version Distro has not defaulted themes. Now it is necessary to add the themes in ``config.yml`` file.
 
 # Build a new image
 
@@ -250,6 +261,47 @@ DISTRO_EXTRA_MIDDLEWARES:
   - middleware.test.1
   - middleware.test.2
 ```
+
+## How to add extra files requirements
+
+You should set the variable **INSTALL_EXTRA_FILE_REQUIREMENTS** in your config.yml file if you need to install extra files with. The structure should be like:
+
+```yaml
+INSTALL_EXTRA_FILE_REQUIREMENTS:
+  path: ./requirements/extra_file/
+  files: [
+    /edunext/base.txt,
+    /test/test.txt
+  ]
+```
+
+It's important that ``.txt`` files are added in requirements directory, similar to EXTRA PIP REQUIREMENTS from [Tutor](https://docs.tutor.overhang.io/configuration.html#installing-extra-xblocks-and-requirements).
+
+## How to enable openedx extra settings
+
+You should set the variable **OPENEDX_EXTRA_SETTINGS** in your config.yml file if you need to enable ``cms_env``, ``lms_env`` or ``pre_init_lms_task`` settings to plugins works as expected. For now the principals settings should be like this:
+
+```yaml
+OPENEDX_EXTRA_SETTINGS:
+  cms_env: [
+    USE_EOX_TENANT: true
+  ]
+  lms_env: [
+    USE_EOX_TENANT: true,
+    ENABLE_EOX_THEMING_DERIVE_WORKAROUND: true
+  ]
+  pre_init_lms_tasks: [
+    ./manage.py lms migrate contenttypes,
+    ./manage.py lms migrate eox_core,
+    ./manage.py lms migrate eox_tenant,
+    ./manage.py lms migrate eox_tagging,
+    ./manage.py lms migrate eox_audit_model
+  ]
+```
+
+The list could grow according to the needs that arise at the time of configuring the plugins.
+
+:warning: **Note**: Other Options as ``INSTALL_EXTRA_FILE_REQUIREMENTS`` and ``OPENEDX_EXTRA_SETTINGS`` are included from Olmo version, you can use it from this release.
 
 # License
 

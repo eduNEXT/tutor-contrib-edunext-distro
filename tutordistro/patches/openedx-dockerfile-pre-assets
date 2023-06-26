@@ -4,9 +4,13 @@ RUN openedx-assets xmodule \
     && openedx-assets npm \
     && openedx-assets webpack --env=prod \
     && openedx-assets common
+{% if DISTRO_THEMES_ROOT is defined %}
 COPY --chown=app:app ./themes/ {{ DISTRO_THEMES_ROOT }}
+{% endif %}
+{% if DISTRO_THEME_DIRS is defined and DISTRO_THEMES_NAME is defined %}
 RUN openedx-assets themes \
     --theme-dirs {{ DISTRO_THEME_DIRS | join(' ') }} \
     --themes {{ DISTRO_THEMES_NAME | join(' ') }} \
     && openedx-assets collect --settings=tutor.assets \
     && rdfind -makesymlinks true -followsymlinks true /openedx/staticfiles/
+{% endif %}

@@ -1,4 +1,12 @@
-USE_EOX_TENANT: True
+{% if OPENEDX_EXTRA_SETTINGS is defined and OPENEDX_EXTRA_SETTINGS["lms_env"] is defined %}
+############### extra cms-env settings #############
+{%- for setting in OPENEDX_EXTRA_SETTINGS["lms_env"] %}
+{%- for key, value in setting.items() %}
+{{ key }}: {{ value }}
+{%- endfor %}
+{%- endfor %}
+{%- endif %}
+{%- if DISTRO_DEFAULT_SITE_THEME is defined or DISTRO_THEMES_NAME is defined %}
 DEFAULT_SITE_THEME: "{{ DISTRO_DEFAULT_SITE_THEME | default(DISTRO_THEMES_NAME[0]) }}"
-ENABLE_EOX_THEMING_DERIVE_WORKAROUND: True
+{% endif %}
 SESSION_COOKIE_DOMAIN: ".{{ LMS_HOST|common_domain(CMS_HOST) }}"

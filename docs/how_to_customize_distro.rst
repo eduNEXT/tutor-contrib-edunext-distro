@@ -54,9 +54,34 @@ General Settings
 |                                                                                                                                                        |                                                                                                                      |
 | Add any middleware to openedx setting MIDDLEWARE                                                                                                       |     - middleware.test.1                                                                                              |
 +-------------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+|  **INSTALL_EXTRA_FILE_REQUIREMENTS**                                                                                                                   |.. code-block:: yml                                                                                                   |
+|                                                                                                                                                        |                                                                                                                      |
+| Add any extra files to aditional requirements                                                                                                          |     path: ./requirements/extra_file/                                                                                 |
+|                                                                                                                                                        |     files: [                                                                                                         |
+|                                                                                                                                                        |       /edunext/base.txt,                                                                                             |
+|                                                                                                                                                        |       /test/test.txt                                                                                                 |
+|                                                                                                                                                        |     ]                                                                                                                |
++-------------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+|  **OPENEDX_EXTRA_SETTINGS**                                                                                                                            |.. code-block:: yml                                                                                                   |
+|                                                                                                                                                        |                                                                                                                      |
+| Enable openedx extra settings to configure cms_env, lms_env or pre_init_lms_tasks variables                                                            |     cms_env: [                                                                                                       |
+|                                                                                                                                                        |       USE_EOX_TENANT: true                                                                                           |
+|                                                                                                                                                        |     ]                                                                                                                |
+|                                                                                                                                                        |     lms_env: [                                                                                                       |
+|                                                                                                                                                        |       USE_EOX_TENANT: true,                                                                                          |
+|                                                                                                                                                        |       ENABLE_EOX_THEMING_DERIVE_WORKAROUND: true                                                                     |
+|                                                                                                                                                        |     ]
+|                                                                                                                                                        |     pre_init_lms_tasks: [                                                                                            |
+|                                                                                                                                                        |       ./manage.py lms migrate contenttypes,                                                                          |
+|                                                                                                                                                        |       ./manage.py lms migrate eox_core,                                                                              |
+|                                                                                                                                                        |       ./manage.py lms migrate eox_tenant                                                                             |
+|                                                                                                                                                        |     ]                                                                                                                |
++-------------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
 
 
 To override these settings define it on config.yml file (``$(tutor config printroot)/config.yaml``) or use the command ``tutor config save --set GENERAL_SETTING=Value``.
+
+:warning: **Note**: Other Options as ``INSTALL_EXTRA_FILE_REQUIREMENTS`` and ``OPENEDX_EXTRA_SETTINGS`` are included from Olmo version, you can use it from this release.
 
 
 Plugins or packages
@@ -86,8 +111,10 @@ You can disable anyone by the ``tutor config save --set DISTRO_<PLUGIN_NAME>_DPK
 
 
 .. code-block:: yml
-    
-        DISTRO_<PLUGIN_NAME>_DPKG: None
-        
 
-If you want to override default packages or add a new one go to the corresponding section: `How to override or add a new package. <./how_to_add_new_packages.rst>`_ 
+        DISTRO_<PLUGIN_NAME>_DPKG: None
+
+
+:warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file.
+
+If you want to override default packages or add a new one go to the corresponding section: `How to add a new package. <./how_to_add_new_packages.rst>`_

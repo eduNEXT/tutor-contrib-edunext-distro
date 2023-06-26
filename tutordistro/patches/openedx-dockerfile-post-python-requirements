@@ -1,5 +1,10 @@
-{%- if DISTRO_INSTALL_EDNX_REQUIREMENTS %}
-RUN pip install -r ./requirements/edunext/base.txt
+{%- if INSTALL_EXTRA_FILE_REQUIREMENTS is defined %}
+# Install extra file requirements: this is useful for installing custom requirements.
+COPY {{ INSTALL_EXTRA_FILE_REQUIREMENTS["path"] }} /openedx/requirements
+{%- for file in INSTALL_EXTRA_FILE_REQUIREMENTS["files"] %}
+# Install extra file {{ file }} from {{ INSTALL_EXTRA_FILE_REQUIREMENTS["path"] }}
+RUN pip install -r /openedx/requirements{{ file }}
+{% endfor %}
 {%- endif %}
 {%- for pkg in iter_values_named(suffix="_DPKG") %}
 {%- if pkg != 'None' -%}
