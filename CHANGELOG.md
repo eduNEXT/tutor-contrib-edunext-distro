@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## v15.2.0 - 2023-06-26
+
+### [15.2.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v15.1.0...v15.2.0) (2023-06-26)
+
+#### Features
+
+- remove distro defaults settings to add from strain/conf file ([#46](https://github.com/eduNEXT/tutor-contrib-edunext-distro/issues/46)) ([cc449b0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/cc449b0cf8dd5e8efbe04595a1c36544a5a4f2fa))
+
 ## v15.1.0 - 2023-06-23
 
 ### [15.1.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v15.0.3...v15.1.0) (2023-06-23)
