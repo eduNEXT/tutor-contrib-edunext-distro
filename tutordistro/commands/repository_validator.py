@@ -19,7 +19,25 @@ from tutordistro.utils.packages import get_public_distro_packages
 
 
 @click.command(name="repository-validator", help="Repository validator")
-def repository_validator() -> None:    # pylint: disable=missing-function-docstring
+def repository_validator() -> None:
+    """
+    Validate the repositories used in the project.
+
+    This function checks for specific conditions and requirements in the repositories
+    defined in the project's configuration. It validates GitHub repositories that end with
+    'DPKG' and the repositories specified in the 'OPENEDX_EXTRA_PIP_REQUIREMENTS' configuration.
+
+    It uses the DPKGUrlValidator to validate GitHub repositories and the
+    ExtraPipRequirementsUrlValidator to validate 'OPENEDX_EXTRA_PIP_REQUIREMENTS' repositories.
+
+    The validation results are printed using click.echo.
+
+    Raises:
+        Exception: If an error occurs during validation.
+
+    Returns:
+        None
+    """
     directory = subprocess.check_output("tutor config printroot", shell=True).\
         decode("utf-8").strip()
     config = tutor_config.load(directory)

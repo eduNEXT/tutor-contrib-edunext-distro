@@ -10,7 +10,7 @@ from tutordistro.distro.themes.domain.theme_repository import ThemeRepository
 from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
-class ThemeEnabler:  # pylint: disable=too-few-public-methods
+class ThemeEnabler:
     """
     Theme enabler configuration.
 

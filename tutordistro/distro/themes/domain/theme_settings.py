@@ -7,7 +7,7 @@ from typing import Dict
 from tutor.types import Config
 
 
-class ThemeSettings:  # pylint: disable=too-few-public-methods
+class ThemeSettings:
     """
     Settings for a theme.
 

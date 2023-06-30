@@ -65,14 +65,12 @@ class CloudPackage:
         name = partes_path[2]
 
         if len(partes_path) > 5:
-            raise PackageDoesNotExist(f"The package {url} \
-                                      or branch doesn't exist or is private")
+            raise PackageDoesNotExist(f"The package {url} or branch doesn't exist or is private")
 
         if '/tree/' in url:
             version = partes_path[-1]
         if len(partes_path) > 3 and '/tree/' not in url:
-            raise PackageDoesNotExist(f"The package {url} \
-                                      or branch doesn't exist or is private")
+            raise PackageDoesNotExist(f"The package {url} or branch doesn't exist or is private")
 
         path = partes_path[1]
 

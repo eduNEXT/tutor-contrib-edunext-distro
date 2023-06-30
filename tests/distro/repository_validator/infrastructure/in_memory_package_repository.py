@@ -12,7 +12,7 @@ from tutordistro.distro.share.domain.cloud_package_repository import CloudPackag
 from tutordistro.distro.share.domain.package_does_not_exist import PackageDoesNotExist
 
 
-class InMemoryPackageRepository(CloudPackageRepository):  # pylint: disable=too-few-public-methods
+class InMemoryPackageRepository(CloudPackageRepository):
     """
     InMemoryPackageRepository class implements the CloudPackageRepository
     interface and provides an in-memory storage for repositories.

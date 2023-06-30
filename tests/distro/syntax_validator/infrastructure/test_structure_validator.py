@@ -1,10 +1,25 @@
+"""
+Module for testing the validation functions.
+"""
+
 import pytest
-from tutordistro.distro.share.domain.config_file_validation_error import ConfigFileValidationError
-from tutordistro.distro.syntax_validator.infrastructure.structure_validator import validate_extra_files_requirements, validate_extra_pip_requirements, validate_extra_settings, validate_packages, validate_theme_settings, validate_themes
 from schema import SchemaError
+
+from tutordistro.distro.share.domain.config_file_validation_error import ConfigFileValidationError
+from tutordistro.distro.syntax_validator.infrastructure.structure_validator import (
+    validate_extra_files_requirements,
+    validate_extra_pip_requirements,
+    validate_extra_settings,
+    validate_packages,
+    validate_theme_settings,
+    validate_themes,
+)
 
 
 def test_validate_packages():
+    """
+    Test the validate_packages function.
+    """
     config = {
         "DISTRO_EOX_TEST_DPKG": {
             "domain": "github.com",
@@ -37,7 +52,11 @@ def test_validate_packages():
     }
     assert_no_exception(lambda: validate_packages(config))
 
+
 def test_validate_extra_pip_requirements():
+    """
+    Test the validate_extra_pip_requirements function.
+    """
     config = {
         "OPENEDX_EXTRA_PIP_REQUIREMENTS": [
             "eox-test==1.0.0",
@@ -48,7 +67,11 @@ def test_validate_extra_pip_requirements():
     }
     assert_no_exception(lambda: validate_extra_pip_requirements(config))
 
+
 def test_validate_themes():
+    """
+    Test the validate_themes function.
+    """
     config = {
         'DISTRO_THEMES': [
             {
@@ -63,7 +86,11 @@ def test_validate_themes():
     }
     assert_no_exception(lambda: validate_themes(config))
 
+
 def test_validate_theme_settings():
+    """
+    Test the validate_theme_settings function.
+    """
     config = {
         'DISTRO_THEMES_NAME': ['test'],
         'DISTRO_THEMES_ROOT': '/test/themes',
@@ -75,7 +102,11 @@ def test_validate_theme_settings():
     }
     assert_no_exception(lambda: validate_theme_settings(config))
 
+
 def test_validate_extra_files_requirements():
+    """
+    Test the validate_extra_files_requirements function.
+    """
     config = {
         'INSTALL_EXTRA_FILE_REQUIREMENTS': {
             'files': [
@@ -87,7 +118,11 @@ def test_validate_extra_files_requirements():
     }
     assert_no_exception(lambda: validate_extra_files_requirements(config))
 
+
 def test_validate_extra_settings():
+    """
+    Test the validate_extra_settings function.
+    """
     config = {
         'OPENEDX_EXTRA_SETTINGS': {
             'cms_env': [{'USE_EOX_TEST': True}],
@@ -100,10 +135,14 @@ def test_validate_extra_settings():
     }
     assert_no_exception(lambda: validate_extra_settings(config))
 
+
 def assert_no_exception(func):
+    """
+    Assert that the provided function does not raise ConfigFileValidationError or SchemaError.
+    """
     try:
         func()
-    except ConfigFileValidationError as e:
-        pytest.fail(f"ConfigFileValidationError occurred: {str(e)}")
-    except SchemaError as e:
-        pytest.fail(f"SchemaError occurred: {str(e)}")
+    except ConfigFileValidationError as error:
+        pytest.fail(f"ConfigFileValidationError occurred: {str(error)}")
+    except SchemaError as error:
+        pytest.fail(f"SchemaError occurred: {str(error)}")

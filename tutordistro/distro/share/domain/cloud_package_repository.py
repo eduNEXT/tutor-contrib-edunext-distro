@@ -8,7 +8,7 @@ from abc import ABC, abstractmethod
 from tutordistro.distro.share.domain.cloud_package import CloudPackage
 
 
-class CloudPackageRepository(ABC):  # pylint: disable=too-few-public-methods
+class CloudPackageRepository(ABC):
     """
     Abstract base class for cloud package repositories.
 

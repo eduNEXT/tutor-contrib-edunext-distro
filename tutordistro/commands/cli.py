@@ -9,6 +9,7 @@ from tutordistro.commands.enable_themes import enable_themes
 from tutordistro.commands.repository_validator import repository_validator
 from tutordistro.commands.syntax_validator import syntax_validator
 
+
 @click.group(help="Run distro commands")
 def distro() -> None:
     """

@@ -11,7 +11,7 @@ from tutordistro.distro.share.domain.package_name import PackageName
 from tutordistro.distro.share.domain.package_version import PackageVersion
 
 
-class DPKGUrlValidator:  # pylint: disable=too-few-public-methods
+class DPKGUrlValidator:
     """
     Validator class for validating DPKG URLs.
 
