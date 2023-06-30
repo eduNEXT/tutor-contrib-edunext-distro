@@ -8,14 +8,22 @@ This can be watch like a tutor-plugin but is taken a little bit far away.
 
 ## Installation
 
-`pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro@v2.0.0`
+```bash
+pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro@v15.2.0
+```
 
 ## Usage
 
 ```bash
 tutor plugins enable distro
-tutor distro enable-themes
+
+# Validator commands for config file
+tutor distro syntax_validator
 tutor distro repository-validator
+
+# Enabler commands
+tutor distro enable-themes
+tutor distro enable_private_packages
 ```
 
 ### Documentation
@@ -44,6 +52,8 @@ Also, you need an edx-platform version distro compatible.
 | nutmeg  | nuez     | v14   |
 | olive   | olmo     | v15   |
 
+:warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file. See [How to add a new package](./docs/how_to_add_new_packages.rst)
+
 You can find distro releases on https://github.com/edunext/edunext-platform.
 
 ```yaml
@@ -52,19 +62,6 @@ EDX_PLATFORM_VERSION: "ednx-release/olmo.master"
 ```
 
 # Packages
-
-## Default packages
-
-These packages will be installed in a default installation.
-
-- eox-theming (DISTRO_EOX_THEMING_DPKG)
-- eox-tenant (DISTRO_EOX_TENANT_DPKG)
-- eox-core (DISTRO_EOX_CORE_DPKG)
-- eox-hooks (DISTRO_EOX_HOOKS_DPKG)
-- eox-audit-model (DISTRO_EOX_AUDIT_MODEL_DPKG)
-- eox-tagging (DISTRO_EOX_TAGGING_DPKG)
-
-:warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file. See [How to add a new package](./docs/how_to_add_new_packages.rst)
 
 ## How to add a new package
 
@@ -108,49 +105,12 @@ tutor distro enable-private-packages
 - **local**: It will be necessary to build a new image and run the command tutor local do init && tutor local start again.
 - **dev**: you must run the command tutor dev do init && tutor dev start again.
 
-## How to override a default package
-
-You can use the same steps that in **How to add a new package** just set the variable with the same name:
-
-- DISTRO_EOX_CORE_DPKG
-- DISTRO_EOX_TENANT_DPKG
-- DISTRO_EOX_THEMING_DPKG
-- DISTRO_EOX_HOOKS_DPKG
-- DISTRO_EOX_AUDIT_MODEL_DPKG
-- DISTRO_EOX_TAGGING_DPKG
-
-:warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file. See [How to add a new package](./docs/how_to_add_new_packages.rst)
-
-## Disable packages
-
-You can disable any default package following this structure in your config.yml:
-
-```yaml
-DISTRO_MY_PACKAGE_NAME_DPKG: None
-```
-
-Development environment take this changes with _tutor config save_ and restart, the local environment needs to rebuild the image to take it.
-
-> **Warning:** Default packages can have dependencies with other default packages or base application and disable it would break some features.
-
-:warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file. See [How to add a new package](./docs/how_to_add_new_packages.rst)
-
 # Themes
 
 Declare the path of your themes using `tutor config save --set DISTRO_THEMES_ROOT="your_path"`,
 by default the themes path goes here **/openedx/themes**
 
 :warning: **NOTE**: From Olmo version Distro has not defaulted themes path. Now it is necessary to add the themes path in ``config.yml`` file or running command above.
-
-## Default themes
-
-These themes will be installed in a default installation.
-
-- [bragi](https://github.com/eduNEXT/ednx-saas-themes/tree/edunext/mango.master)
-
-Defining a DISTRO_DEFAULT_SITE_THEME argument with a color will set a default theme, however, if not specified the default theme will be the first on the DISTRO_THEMES_NAME set of themes.
-
-:warning: **NOTE**: From Olmo version Distro has not defaulted themes. Now it is necessary to add the themes in ``config.yml`` file. See [How to add a theme](https://github.com/eduNEXT/tutor-contrib-edunext-distro#how-to-add-a-theme).
 
 ## How to add a theme
 
@@ -222,7 +182,9 @@ If you are using another edx-platform you should change it in the commando.
 tutor images push openedx
 ```
 
-# Check git repository URL
+# Validator Commands
+
+## Check git repository URL
 
 If you want to make sure that the git repository urls in the config.yml file are valid, run the following command:
 
@@ -248,6 +210,23 @@ DISTRO_EOX_HOOKS_DPKG:
     production: {}
   version: master
 ```
+
+## Check syntax in configuration file
+
+If you want to validate the syntax of the config.yml file, run the following command:
+
+```bash
+tutor distro syntax-validator
+```
+
+The command will check the configuration for:
+
+- Packages, ending whit _DPKG
+- OPENEDX_EXTRA_PIP_REQUIREMENTS
+- DISTRO_THEMES
+- Theme settings like DISTRO_THEMES_NAME, DISTRO_THEME_DIRS and DISTRO_THEMES_ROOT
+- INSTALL_EXTRA_FILE_REQUIREMENTS
+- OPENEDX_EXTRA_SETTINGS
 
 # Other Options
 

@@ -1,7 +1,7 @@
-How to override or add a new package
+How to add a new package
 ====================================
 
-You can add or override a package directly in config.yml file (``$(tutor config printroot)/config.yaml``).
+You can add a package directly in config.yml file (``$(tutor config printroot)/config.yaml``).
 
 It's possible to install from a repository or by pip but take in mind, the second option couldn't install it as editable.
 
@@ -40,39 +40,32 @@ Follow the next structure:
 +------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
 
 
-Override packages
------------------
-
-To override a default package identify its name and set it like ``DISTRO_<PACKAGE_NAME>_DPKG:``, and add the package variables. You can check all default plugins name `here <./how_to_customize_distro.rst#plugins-or-packages>`_ 
-
-An example of override eox-theming plugin:
+It should look like this:
 
 .. code-block:: yml
 
-    DISTRO_EOX_THEMING_DPKG:
-        index: git
-        name: eox-theming
-        private: false
-        repo: eox-theming
-        domain: github.com
-        path: eduNEXT
-        protocol: https
-        version: v3.1.0
-        variables:
-        development:
-            GET_BRANDING_API: eox_tenant.edxapp_wrapper.backends.branding_api_l_v1
-            EOX_THEMING_CONFIG_SOURCES: [
-                "from_eox_tenant_microsite_v2",
-                "from_django_settings"
-            ]
-        production:
-            GET_BRANDING_API: eox_tenant.edxapp_wrapper.backends.branding_api_l_v1
-            EOX_THEMING_CONFIG_SOURCES: [
-                "from_eox_tenant_microsite_v2",
-                "from_django_settings"
-            ]
-
-:warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file.
+  DISTRO_EOX_THEMING_DPKG:
+    index: git
+    name: eox-theming
+    private: false
+    repo: eox-theming
+    domain: github.com
+    path: eduNEXT
+    protocol: https
+    version: v3.1.0
+    variables:
+      development:
+        GET_BRANDING_API: eox_tenant.edxapp_wrapper.backends.branding_api_l_v1
+        EOX_THEMING_CONFIG_SOURCES: [
+          "from_eox_tenant_microsite_v2",
+          "from_django_settings"
+        ]
+      production:
+        GET_BRANDING_API: eox_tenant.edxapp_wrapper.backends.branding_api_l_v1
+        EOX_THEMING_CONFIG_SOURCES: [
+          "from_eox_tenant_microsite_v2",
+          "from_django_settings"
+        ]
 
 Private packages
 ----------------
@@ -81,51 +74,52 @@ Once you define your private packages in config file you need to enable them wit
 
 .. code-block:: bash
 
-    tutor distro enable-private-packages
+  tutor distro enable-private-packages
 
 Other Options
 -------------
 
-* How to add extra files requirements
+How to add extra files requirements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You should set the variable **INSTALL_EXTRA_FILE_REQUIREMENTS** in your config.yml file if you need to install extra files with. The structure should be like:
 
-```yaml
-INSTALL_EXTRA_FILE_REQUIREMENTS:
-  path: ./requirements/extra_file/
-  files: [
-    /edunext/base.txt,
-    /test/test.txt
-  ]
-```
+.. code-block:: yaml
 
-It's important that ``.txt`` files are added in requirements directory, similar to EXTRA PIP REQUIREMENTS from [Tutor](https://docs.tutor.overhang.io/configuration.html#installing-extra-xblocks-and-requirements).
+  INSTALL_EXTRA_FILE_REQUIREMENTS:
+    path: ./requirements/extra_file/
+    files: [
+      /edunext/base.txt,
+      /test/test.txt
+    ]
 
-* How to enable openedx extra settings
+It's important that ``.txt`` files are added in requirements directory, similar to EXTRA PIP REQUIREMENTS from `Tutor <https://docs.tutor.overhang.io/configuration.html#installing-extra-xblocks-and-requirements>`__.
 
+How to enable openedx extra settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 You should set the variable **OPENEDX_EXTRA_SETTINGS** in your config.yml file if you need to enable ``cms_env``, ``lms_env`` or ``pre_init_lms_task`` settings to plugins works as expected. For now the principals settings should be like this:
 
-```yaml
-OPENEDX_EXTRA_SETTINGS:
-  cms_env: [
-    USE_EOX_TENANT: true
-  ]
-  lms_env: [
-    USE_EOX_TENANT: true,
-    ENABLE_EOX_THEMING_DERIVE_WORKAROUND: true
-  ]
-  pre_init_lms_tasks: [
-    ./manage.py lms migrate contenttypes,
-    ./manage.py lms migrate eox_core,
-    ./manage.py lms migrate eox_tenant,
-    ./manage.py lms migrate eox_tagging,
-    ./manage.py lms migrate eox_audit_model
-  ]
-```
+.. code-block:: yaml
+
+  OPENEDX_EXTRA_SETTINGS:
+    cms_env: [
+      USE_EOX_TENANT: true
+    ]
+    lms_env: [
+      USE_EOX_TENANT: true,
+      ENABLE_EOX_THEMING_DERIVE_WORKAROUND: true
+    ]
+    pre_init_lms_tasks: [
+      ./manage.py lms migrate contenttypes,
+      ./manage.py lms migrate eox_core,
+      ./manage.py lms migrate eox_tenant,
+      ./manage.py lms migrate eox_tagging,
+      ./manage.py lms migrate eox_audit_model
+    ]
 
 The list could grow according to the needs that arise at the time of configuring the plugins.
 
-:warning: **Note**: Other Options as ``INSTALL_EXTRA_FILE_REQUIREMENTS`` and ``OPENEDX_EXTRA_SETTINGS`` are included from Olmo version, you can use it from this release.
+  **Note**: Other Options as ``INSTALL_EXTRA_FILE_REQUIREMENTS`` and ``OPENEDX_EXTRA_SETTINGS`` are included from Olmo version, you can use it from this release.
 
 Use your new packages
 ----------------------
