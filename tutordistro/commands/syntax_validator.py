@@ -5,9 +5,13 @@ Distro config syntax validator command.
 import subprocess
 
 import click
-from tutor import config as tutor_config
 
-from tutordistro.distro.syntax_validator.application.validate_config_use_case import ValidateConfigUseCase
+from tutordistro.distro.share.domain.config_extra_files_requirements_setting import ConfigExtraFilesRequirementsSetting
+from tutordistro.distro.share.domain.config_extra_pip_requirements_setting import ConfigExtraPipRequirementsSetting
+from tutordistro.distro.share.domain.config_extra_setting import ConfigExtraSetting
+from tutordistro.distro.share.domain.config_packages_setting import ConfigPackagesSetting
+from tutordistro.distro.share.domain.config_themes_setting import ConfigThemesSetting
+from tutordistro.distro.syntax_validator.application.config_syntax_validator import ConfigSyntaxValidator
 from tutordistro.distro.syntax_validator.infrastructure.config_repository import ConfigRepository
 
 
@@ -17,15 +21,21 @@ def syntax_validator() -> None:
     Command to perform syntax validation on the configuration.
 
     This command loads the Tutor configuration, validates it using the
-    ValidateConfigUseCase, and displays the validation result.
+    ConfigSyntaxValidator, and displays the validation result.
     """
-    directory = subprocess.check_output("tutor config printroot", shell=True).decode("utf-8").strip()
-    config = tutor_config.load(directory)
+    file_path = subprocess.check_output("tutor config printroot", shell=True).decode("utf-8").strip()
 
-    config_repository = ConfigRepository()
-    validate_config_use_case = ValidateConfigUseCase(config_repository)
+    config_settings = [
+        ConfigExtraFilesRequirementsSetting,
+        ConfigExtraPipRequirementsSetting,
+        ConfigExtraSetting,
+        ConfigPackagesSetting,
+        ConfigThemesSetting,
+    ]
+    repository = ConfigRepository(config_settings)
 
-    is_valid = validate_config_use_case.execute(config)
+    syntax_validator = ConfigSyntaxValidator(repository)
+    is_valid = syntax_validator.execute(file_path)
 
     if is_valid:
         click.echo("Success validation")
