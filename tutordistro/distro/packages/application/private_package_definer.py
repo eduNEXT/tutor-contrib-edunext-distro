@@ -6,7 +6,7 @@ from tutordistro.distro.packages.domain.package_repository import PackageReposit
 from tutordistro.distro.share.domain.package_name import PackageName
 
 
-class PrivatePackageDefiner:  # pylint: disable=too-few-public-methods
+class PrivatePackageDefiner:
     """
     Private package definer process.
 

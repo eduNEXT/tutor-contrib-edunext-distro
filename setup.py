@@ -39,9 +39,9 @@ setup(
     packages=find_packages(exclude=["tests*"]),
     include_package_data=True,
     python_requires=">=3.6",
-    install_requires=["tutor>=15.0.0, <16", "click"],
+    install_requires=["tutor>=15.0.0, <16", "click", "schema"],
     extras_require={
-            "test": ["behave", "pytest", "pylint", "pycodestyle", "isort"]
+            "test": ["behave", "pytest", "pylint", "pytest-mock", "pycodestyle", "isort", "schema"]
         },
     entry_points={
         "tutor.plugin.v1": [

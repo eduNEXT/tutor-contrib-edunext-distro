@@ -8,7 +8,7 @@ from tutordistro.distro.share.domain.cloud_package import CloudPackage
 from tutordistro.distro.share.domain.cloud_package_repository import CloudPackageRepository
 
 
-class ExtraPipRequirementsUrlValidator:  # pylint: disable=too-few-public-methods
+class ExtraPipRequirementsUrlValidator:
     """
     Validator class for validating extra pip requirements URLs.
 

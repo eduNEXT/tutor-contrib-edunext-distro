@@ -9,7 +9,7 @@ from tutordistro.distro.share.domain.package_name import PackageName
 from tutordistro.distro.share.domain.package_version import PackageVersion
 
 
-class PackageCloner:  # pylint: disable=too-few-public-methods
+class PackageCloner:
     """
     Package cloner process.
 

@@ -7,7 +7,7 @@ from abc import ABC, abstractmethod
 from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
-class ThemeRepository(ABC):  # pylint: disable=too-few-public-methods
+class ThemeRepository(ABC):
     """
     Abstract base class for theme repositories.
 

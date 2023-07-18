@@ -7,7 +7,7 @@ from tutordistro.distro.themes.domain.theme_repository import ThemeRepository
 from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
-class ThemeInMemoryRepository(ThemeRepository):  # pylint: disable=too-few-public-methods
+class ThemeInMemoryRepository(ThemeRepository):
     """
     In-memory theme repository.
 

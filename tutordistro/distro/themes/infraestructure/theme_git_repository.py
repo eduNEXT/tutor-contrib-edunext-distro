@@ -13,7 +13,7 @@ from tutordistro.distro.themes.domain.theme_repository import ThemeRepository
 from tutordistro.distro.themes.domain.theme_settings import ThemeSettings
 
 
-class ThemeGitRepository(ThemeRepository):  # pylint: disable=too-few-public-methods
+class ThemeGitRepository(ThemeRepository):
     """
     Git repository for themes.
 
