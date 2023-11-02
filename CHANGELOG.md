@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## v15.3.1 - 2023-11-02
+
+### [15.3.1](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v15.3.0...v15.3.1) (2023-11-02)
+
+### Bug Fixes
+
+- wrong CMS development settings ([#54](https://github.com/eduNEXT/tutor-contrib-edunext-distro/issues/54)) ([64e5cd6](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/64e5cd60e827295201bcbcc98e0f717853a05a2e))
+
 ## v15.3.0 - 2023-07-18
 
 ### [15.3.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v15.2.0...v15.3.0) (2023-07-18)
