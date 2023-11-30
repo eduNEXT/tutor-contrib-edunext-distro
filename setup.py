@@ -38,8 +38,8 @@ setup(
     long_description=load_readme(),
     packages=find_packages(exclude=["tests*"]),
     include_package_data=True,
-    python_requires=">=3.6",
-    install_requires=["tutor>=15.0.0, <16", "click", "schema"],
+    python_requires=">=3.8",
+    install_requires=["tutor>=16.0.0, <17", "click", "schema"],
     extras_require={
             "test": ["behave", "pytest", "pylint", "pytest-mock", "pycodestyle", "isort", "schema"]
         },
