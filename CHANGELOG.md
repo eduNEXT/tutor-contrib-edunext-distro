@@ -10,12 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [16.0.0] - 2023-11-30
-
-### Features
-
-- Add support for the latest Open edX + eduNEXT release (Palm).
-
 ## v15.3.1 - 2023-11-02
 
 ### [15.3.1](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v15.3.0...v15.3.1) (2023-11-02)
