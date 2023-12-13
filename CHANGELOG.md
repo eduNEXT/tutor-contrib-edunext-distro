@@ -10,6 +10,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## v16.0.0 - 2023-12-13
+
+### [16.0.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v15.3.1...v16.0.0) (2023-12-13)
+
+#### ⚠ BREAKING CHANGES
+
+* add support for palm
+  
+* feat: some configurations have been reverted to the previous version
+  
+
+#### Performance Improvements
+
+* add support for Palm version ([#55](https://github.com/eduNEXT/tutor-contrib-edunext-distro/issues/55)) ([6f1f12a](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/6f1f12a91d0c5a5920aa1c5dfab218060af8674e))
+
 ## v15.3.1 - 2023-11-02
 
 ### [15.3.1](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v15.3.0...v15.3.1) (2023-11-02)
