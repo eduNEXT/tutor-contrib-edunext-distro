@@ -39,8 +39,8 @@ This plugin works with some docker images. These are defined by default
 if you have different images that aren't based on these, you can have some problems.
 
 ```yaml
-DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:olmo"
-DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:olmo"
+DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:palma"
+DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:palma"
 ```
 
 Also, you need an edx-platform version distro compatible.
@@ -51,6 +51,7 @@ Also, you need an edx-platform version distro compatible.
 | maple   | mango    | v13   |
 | nutmeg  | nuez     | v14   |
 | olive   | olmo     | v15   |
+| palm    | palma    | v16   |
 
 :warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file. See [How to add a new package](./docs/how_to_add_new_packages.rst)
 
@@ -58,7 +59,7 @@ You can find distro releases on https://github.com/edunext/edunext-platform.
 
 ```yaml
 EDX_PLATFORM_REPOSITORY: "https://github.com/eduNEXT/edunext-platform.git"
-EDX_PLATFORM_VERSION: "ednx-release/olmo.master"
+EDX_PLATFORM_VERSION: "ednx-release/palma.master"
 ```
 
 # Packages
