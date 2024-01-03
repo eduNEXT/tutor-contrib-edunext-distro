@@ -18,12 +18,12 @@ pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro@v15.2.0
 tutor plugins enable distro
 
 # Validator commands for config file
-tutor distro syntax_validator
+tutor distro syntax-validator
 tutor distro repository-validator
 
 # Enabler commands
 tutor distro enable-themes
-tutor distro enable_private_packages
+tutor distro enable-private-packages
 ```
 
 ### Documentation
@@ -145,6 +145,16 @@ Set themes name:
 DISTRO_THEMES_NAME:
   - bragi
 ```
+
+Set themes root (which is where the theme will be installed):
+
+When you set the ``DISTRO_THEMES_ROOT``, the theme will be in your ``<tutor_root>/env/build<distro_themes_root>``.
+
+```yaml
+DISTRO_THEMES_ROOT: /openedx/themes
+```
+
+In the previous example, the theme will be in ``env/build/openedx/themes`` when you execute the ``enable-themes`` command.
 
 Run the command to clone the themes:
 
