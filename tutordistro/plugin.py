@@ -9,6 +9,7 @@ import pkg_resources
 from tutor import hooks
 
 from tutordistro.commands.cli import distro
+from tutormfe.hooks import MFE_APPS
 
 from .__about__ import __version__
 
@@ -65,3 +66,47 @@ hooks.Filters.CONFIG_UNIQUE.add_items(
     ]
 )
 hooks.Filters.CONFIG_OVERRIDES.add_items(list(config["overrides"].items()))
+
+@MFE_APPS.add()
+def _add_my_mfe(mfes):
+    mfes["learning"] = {
+        "repository": "https://github.com/eduNEXT/frontend-app-learning.git",
+        "port": 2000,
+        "version": "ednx-release/palma.master",
+    }
+    mfes["account"] = {
+        "repository": "https://github.com/eduNEXT/frontend-app-account.git",
+        "port": 1997,
+        "version": "ednx-release/palma.master",
+    }
+    mfes["gradebook"] = {
+        "repository": "https://github.com/eduNEXT/frontend-app-gradebook.git",
+        "port": 1994,
+        "version": "ednx-release/palma.master",
+    }
+    mfes["profile"] = {
+        "repository": "https://github.com/eduNEXT/frontend-app-profile.git",
+        "port": 1995,
+        "version": "ednx-release/palma.master",
+    }
+    mfes["authn"] = {
+        "repository": "https://github.com/eduNEXT/frontend-app-authn.git",
+        "port": 1999,
+        "version": "ednx-release/palma.master",
+    }
+    mfes["communications"] = {
+        "repository": "https://github.com/eduNEXT/frontend-app-communications.git",
+        "port": 1984,
+        "version": "ednx-release/palma.master",
+    }
+    mfes["discussions"] = {
+        "repository": "https://github.com/eduNEXT/frontend-app-discussions.git",
+        "port": 2002,
+        "version": "ednx-release/palma.master",
+    }
+    mfes["ora-grading"] = {
+        "repository": "https://github.com/edunext/frontend-app-ora-grading.git",
+        "port": 1993,
+        "version": "ednx-release/palma.master",
+    }
+    return mfes
