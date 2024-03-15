@@ -5,6 +5,7 @@ Distro enable private packages command.
 import subprocess
 
 import click
+
 from tutor import config as tutor_config
 
 from tutordistro.distro.packages.application.package_cloner import PackageCloner
@@ -26,6 +27,9 @@ def enable_private_packages():
     """
     directory = subprocess.check_output("tutor config printroot", shell=True).\
         decode("utf-8").strip()
+    plugin_directory = directory + "/tutor-contrib-edunext-distro/tutordistro/plugin.py"
+    print('hi')
+    print(plugin_directory)
     config = tutor_config.load(directory)
 
     repository = PackageGitRepository()
@@ -49,5 +53,27 @@ def enable_private_packages():
             )
             definer(name=package["name"],
                     file_path=f"{requirements_directory}private.txt")
+
+            # Run tutor mounts add command for the package
+            subprocess.check_output(f"tutor mounts add {requirements_directory}{package['name']}", shell=True)
+            text = f'hooks.Filters.MOUNTED_DIRECTORIES.add_item(("openedx", "{package["name"]}"))'
+
+            append_text_to_file(file_path=plugin_directory, text_to_append=text)
+            subprocess.check_output("tutor config save", shell=True)
         except Exception as error:  # pylint: disable=broad-exception-caught
             click.echo(error)
+
+
+def append_text_to_file(file_path, text_to_append):
+
+    with open(file_path, 'a+') as my_file:  # Open file in append and read mode
+
+        my_file.seek(0)  # Move the cursor to the beginning of the file
+        existing_lines = my_file.readlines()
+        package_name = text_to_append.split('"')[3]  # Extract package name from text_to_append
+
+        # Check if package name already exists in the file
+        if any(package_name in line for line in existing_lines):
+            print(f"Package '{package_name}' already present in the file.")
+        else:
+            my_file.write(text_to_append + "\n")
