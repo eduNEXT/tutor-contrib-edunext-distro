@@ -5,7 +5,6 @@ Distro enable private packages command.
 import subprocess
 
 import click
-
 from tutor import config as tutor_config
 
 from tutordistro.distro.packages.application.package_cloner import PackageCloner
@@ -56,24 +55,27 @@ def enable_private_packages():
 
             # Run tutor mounts add command for the package
             subprocess.check_output(f"tutor mounts add {requirements_directory}{package['name']}", shell=True)
-            text = f'hooks.Filters.MOUNTED_DIRECTORIES.add_item(("openedx", "{package["name"]}"))'
+            hook = f'hooks.Filters.MOUNTED_DIRECTORIES.add_item(("openedx", "{package["name"]}"))'
 
-            append_text_to_file(file_path=plugin_directory, text_to_append=text)
+            hook_writer(file_path=plugin_directory, hook_to_append=hook)
             subprocess.check_output("tutor config save", shell=True)
         except Exception as error:  # pylint: disable=broad-exception-caught
             click.echo(error)
 
 
-def append_text_to_file(file_path, text_to_append):
+def hook_writer(file_path, hook_to_append):
+    """
+    Function to write the corresponding hooks depending on the private packages.
+    """
 
-    with open(file_path, 'a+') as my_file:  # Open file in append and read mode
+    with open(file_path, 'a+', encoding='utf-8') as my_file:  # Open file in append and read mode
 
         my_file.seek(0)  # Move the cursor to the beginning of the file
         existing_lines = my_file.readlines()
-        package_name = text_to_append.split('"')[3]  # Extract package name from text_to_append
+        package_name = hook_to_append.split('"')[3]  # Extract package name from hook_to_append
 
         # Check if package name already exists in the file
         if any(package_name in line for line in existing_lines):
             print(f"Package '{package_name}' already present in the file.")
         else:
-            my_file.write(text_to_append + "\n")
+            my_file.write(hook_to_append + "\n")

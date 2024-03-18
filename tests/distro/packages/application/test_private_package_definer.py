@@ -1,3 +1,7 @@
+"""
+Test the private package definer scenarios.
+"""
+
 import pytest
 
 from tests.distro.packages.application.package_mock_mother import PackageMockMother
@@ -7,6 +11,9 @@ from tutordistro.distro.share.domain.package_does_not_exist import PackageDoesNo
 
 
 def test_should_define_a_private_package_if_it_has_already_been_cloned():
+    """
+    Defines the package as private if it has been cloned.
+    """
     # Given
     mocker = PackageMockMother()
     name, *_ = mocker.create()
@@ -23,6 +30,9 @@ def test_should_define_a_private_package_if_it_has_already_been_cloned():
 
 
 def test_should_fail_if_package_has_not_been_cloned_yet():
+    """
+    Should not define the package as private since it has not been cloned.
+    """
     # Given
     mocker = PackageMockMother()
     name, *_ = mocker.create()
