@@ -36,7 +36,7 @@ setup(
     author="eduNEXT",
     description="edunext-distro plugin for Tutor",
     long_description=load_readme(),
-    packages=find_packages(exclude=["tests*"]),
+    packages=find_packages(),
     include_package_data=True,
     python_requires=">=3.8",
     install_requires=["tutor>=17.0.0, <18", "click", "schema"],
