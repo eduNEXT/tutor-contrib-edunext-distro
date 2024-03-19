@@ -27,8 +27,6 @@ def enable_private_packages():
     directory = subprocess.check_output("tutor config printroot", shell=True).\
         decode("utf-8").strip()
     plugin_directory = directory + "/tutor-contrib-edunext-distro/tutordistro/plugin.py"
-    print('hi')
-    print(plugin_directory)
     config = tutor_config.load(directory)
 
     repository = PackageGitRepository()
