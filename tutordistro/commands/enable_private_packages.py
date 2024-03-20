@@ -26,7 +26,6 @@ def enable_private_packages():
     """
     directory = subprocess.check_output("tutor config printroot", shell=True).\
         decode("utf-8").strip()
-    plugin_directory = directory + "/tutor-contrib-edunext-distro/tutordistro/plugin.py"
     config = tutor_config.load(directory)
 
     repository = PackageGitRepository()
@@ -55,17 +54,45 @@ def enable_private_packages():
             subprocess.check_output(f"tutor mounts add {requirements_directory}{package['name']}", shell=True)
             hook = f'hooks.Filters.MOUNTED_DIRECTORIES.add_item(("openedx", "{package["name"]}"))'
 
-            hook_writer(file_path=plugin_directory, hook_to_append=hook)
+            hook_writer(hook_to_append=hook)
             subprocess.check_output("tutor config save", shell=True)
         except Exception as error:  # pylint: disable=broad-exception-caught
             click.echo(error)
 
 
-def hook_writer(file_path, hook_to_append):
+def get_distro_location():
+    """
+    Function to get the right distro path
+    """
+
+    try:
+        result = subprocess.run(['pip', 'show', 'tutor-contrib-edunext-distro'],
+                                capture_output=True, text=True, check=True)
+
+        # Check if the command was successful
+        if result.returncode == 0:
+            # Split the output into lines
+            lines = result.stdout.splitlines()
+
+            # Loop through each line to find the Location
+            for line in lines:
+                if line.startswith('Location:'):
+                    # Extract the location path
+                    location_path = line.split(':', 1)[1].strip() + "/tutordistro/plugin.py"
+                    return location_path
+    except subprocess.CalledProcessError as e:
+        # Print error message if command failed
+        print("Error running pip show distro:", e.stderr)
+
+    # Return a default value if the location is not found or an error occurs
+    return None
+
+
+def hook_writer(hook_to_append):
     """
     Function to write the corresponding hooks depending on the private packages.
     """
-
+    file_path = get_distro_location()
     with open(file_path, 'a+', encoding='utf-8') as my_file:  # Open file in append and read mode
 
         my_file.seek(0)  # Move the cursor to the beginning of the file
