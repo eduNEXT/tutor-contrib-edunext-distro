@@ -18,7 +18,7 @@ class CommandsRunner:
     def __init__(self, commands_manager: CommandManager):
         self.commands_manager = commands_manager
 
-    def __call__(self, command: str, tutor_root: str):
+    def __call__(self, command: str):
         """
         Run the provided command.
 
@@ -29,4 +29,4 @@ class CommandsRunner:
             command (str): Command to execute.
         """
 
-        return self.commands_manager.run_command(command=command, tutor_root=tutor_root)
+        return self.commands_manager.run_command(command=command)

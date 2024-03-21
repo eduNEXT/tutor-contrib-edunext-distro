@@ -20,7 +20,7 @@ class TutorCommandManager(CommandManager):
         CommandManager (class): Base command manager class.
     """
 
-    def run_command(self, command: str, tutor_root: str):
+    def run_command(self, command: str):
         """
         Run an extra command.
 
@@ -39,10 +39,8 @@ class TutorCommandManager(CommandManager):
                 else:
                     raise CommandError(f'Command "{command}" is not a valid Tutor command. Take the official Tutor commands into account https://docs.tutor.edly.io/reference/cli/index.html')
             
-
-            activate_env_script = os.path.join(tutor_root, '.tvm/bin/activate')
             process = subprocess.Popen(
-                f'source {activate_env_script} && {command} && tvmoff',
+                f'{command}',
                 shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, executable='/bin/bash'
             )
 
