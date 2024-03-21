@@ -40,7 +40,7 @@ class TutorCommandManager(CommandManager):
                     raise CommandError(f'Command "{command}" is not a valid Tutor command. Take the official Tutor commands into account https://docs.tutor.edly.io/reference/cli/index.html')
             
             process = subprocess.Popen(
-                f'{command}',
+                command,
                 shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, executable='/bin/bash'
             )
 
