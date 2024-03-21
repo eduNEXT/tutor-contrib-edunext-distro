@@ -45,10 +45,9 @@ class TutorCommandManager(CommandManager):
             )
 
             output, error = process.communicate()
-            if process.returncode == 0:
-                print(f'Commands ran properly!\n{output.decode()}')
-            else:
+            # If a command failed
+            if process.returncode != 0:
                 raise CommandError(f'Error running command "{command}".\n{output.decode()}\n{error.decode()}')
-            
+
         except subprocess.SubprocessError as error:
             raise CommandError(f'Error running command {command}: {error}') from error
