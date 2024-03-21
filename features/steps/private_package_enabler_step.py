@@ -23,15 +23,6 @@ def step_impl(context):  # pylint: disable=function-redefined,missing-function-d
         assert os.path.exists(path)
 
 
-@then("Packages will be present in the file private.txt")
-def step_impl(context):  # pylint: disable=function-redefined,missing-function-docstring
-    distro_packages = get_private_distro_packages(context.scenario.config)
-    private_file = f"{context.scenario.tutor_root}/env/build/openedx/requirements/private.txt"
-    with open(private_file, mode="r", encoding="utf-8") as private_requirements_file:
-        for package in distro_packages.values():
-            assert package["name"] in private_requirements_file.read()
-
-
 @given("There is a private package")
 def step_impl(context):  # pylint: disable=function-redefined,missing-function-docstring
     eox_test = {

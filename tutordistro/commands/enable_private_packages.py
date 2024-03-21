@@ -8,7 +8,6 @@ import click
 from tutor import config as tutor_config
 
 from tutordistro.distro.packages.application.package_cloner import PackageCloner
-from tutordistro.distro.packages.application.private_package_definer import PrivatePackageDefiner
 from tutordistro.distro.packages.infrastructure.package_git_repository import PackageGitRepository
 from tutordistro.utils.packages import get_private_distro_packages
 
@@ -30,7 +29,6 @@ def enable_private_packages():
 
     repository = PackageGitRepository()
     cloner = PackageCloner(repository=repository)
-    definer = PrivatePackageDefiner(repository=repository)
 
     private_packages = get_private_distro_packages(config)
     requirements_directory = f"{directory}/env/build/openedx/requirements/"
@@ -47,8 +45,6 @@ def enable_private_packages():
                 },
                 path=requirements_directory
             )
-            definer(name=package["name"],
-                    file_path=f"{requirements_directory}private.txt")
 
             # Run tutor mounts add command for the package
             subprocess.check_output(f"tutor mounts add {requirements_directory}{package['name']}", shell=True)
