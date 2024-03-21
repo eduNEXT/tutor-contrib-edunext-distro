@@ -30,4 +30,4 @@ def run_extra_commands():
 
     if config.get("DISTRO_EXTRA_COMMANDS"):
         for command in config["DISTRO_EXTRA_COMMANDS"]:
-            run_tutor_command(command=command, tutor_root=directory)
+            run_tutor_command(command=command)
