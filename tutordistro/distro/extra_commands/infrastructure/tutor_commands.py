@@ -1,12 +1,10 @@
 """
-Distro theme funtions.
+Distro tutor commands functions.
 """
 
 import os
-import shutil
 import subprocess
-
-import click
+import re
 
 from tutordistro.distro.extra_commands.domain.command_manager import CommandManager
 from tutordistro.distro.share.domain.command_error import CommandError
@@ -32,14 +30,27 @@ class TutorCommandManager(CommandManager):
             command (str): Tutor command.
             tutor_root (str): Tutor path where to execute the command.
         """
-        """Run a command."""
         try:
-            if "tutor" not in command.lower():
-                raise CommandError(f'Command {command} is not a valid Tutor command')
+            is_tutor_bad_written = re.match(r'[tT](?:[oru]{3}|[oru]{2}[rR]|[oru]u?)', command)
 
-            subprocess.run(f'source {tutor_root}/.tvm/bin/activate &&'
-                           f'{command} && tvmoff',
-                           shell=True, check=False,
-                           executable='/bin/bash')
+            if "tutor" not in command.lower():
+                if is_tutor_bad_written:
+                    raise CommandError(f'Maybe you have a typo using the command "{command}"')
+                else:
+                    raise CommandError(f'Command "{command}" is not a valid Tutor command. Take the official Tutor commands into account https://docs.tutor.edly.io/reference/cli/index.html')
+            
+
+            activate_env_script = os.path.join(tutor_root, '.tvm/bin/activate')
+            process = subprocess.Popen(
+                f'source {activate_env_script} && {command} && tvmoff',
+                shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, executable='/bin/bash'
+            )
+
+            output, error = process.communicate()
+            if process.returncode == 0:
+                print(f'Commands ran properly!\n{output.decode()}')
+            else:
+                raise CommandError(f'Error running command "{command}".\n{output.decode()}\n{error.decode()}')
+            
         except subprocess.SubprocessError as error:
-            raise CommandError(f'Error running command {command}') from error
+            raise CommandError(f'Error running command {command}: {error}') from error
