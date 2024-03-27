@@ -2,12 +2,11 @@
 Distro tutor commands functions.
 """
 
-import os
 import subprocess
-import re
 
 from tutordistro.distro.extra_commands.domain.command_manager import CommandManager
 from tutordistro.distro.share.domain.command_error import CommandError
+from tutordistro.utils.constants import find_tutor_misspelled
 
 
 class TutorCommandManager(CommandManager):
@@ -28,26 +27,36 @@ class TutorCommandManager(CommandManager):
 
         Args:
             command (str): Tutor command.
-            tutor_root (str): Tutor path where to execute the command.
         """
         try:
-            is_tutor_bad_written = re.match(r'[tT](?:[oru]{3}|[oru]{2}[rR]|[oru]u?)', command)
+            is_tutor_misspelled = find_tutor_misspelled(command)
 
             if "tutor" not in command.lower():
-                if is_tutor_bad_written:
-                    raise CommandError(f'Maybe you have a typo using the command "{command}"')
-                else:
-                    raise CommandError(f'Command "{command}" is not a valid Tutor command. Take the official Tutor commands into account https://docs.tutor.edly.io/reference/cli/index.html')
-            
-            process = subprocess.Popen(
+                if is_tutor_misspelled:
+                    raise CommandError(
+                        f'Maybe you have a typo using the command "{command}"'
+                    )
+                raise CommandError(
+                    f"""
+                        Command "{command}" is not a valid Tutor command.
+                        Take the official Tutor commands into account
+                        https://docs.tutor.edly.io/reference/cli/index.html
+                    """
+                )
+            with subprocess.Popen(
                 command,
-                shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, executable='/bin/bash'
-            )
-
-            output, error = process.communicate()
-            # If a command failed
-            if process.returncode != 0:
-                raise CommandError(f'Error running command "{command}".\n{output.decode()}\n{error.decode()}')
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                executable="/bin/bash",
+            ) as process:
+                output, error = process.communicate()
+                # If a command failed
+                if process.returncode != 0:
+                    raise CommandError(
+                        f'Error running command "{command}".\n{error.decode()}'
+                    )
+                print(output.decode())
 
         except subprocess.SubprocessError as error:
-            raise CommandError(f'Error running command {command}: {error}') from error
+            raise CommandError(f"Error running command {command}: {error}") from error
