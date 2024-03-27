@@ -8,5 +8,5 @@ class CommandManager(metaclass=abc.ABCMeta):
     """Command Manager"""
 
     @abstractmethod
-    def run_command(self, command: str, tutor_root: str):
+    def run_command(self, command: str):
         """Run a command."""
