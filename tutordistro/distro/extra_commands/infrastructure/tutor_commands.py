@@ -1,5 +1,5 @@
 """
-Distro tutor commands functions.
+Distro tutor command functions.
 """
 
 import subprocess

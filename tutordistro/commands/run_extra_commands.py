@@ -13,10 +13,10 @@ from tutordistro.distro.extra_commands.infrastructure.tutor_commands import (
 )
 
 
-@click.command(name="run-extra-commands", help="Run distro extra commands")
+@click.command(name="run-extra-commands", help="Run tutor commands")
 def run_extra_commands():
     """
-    This command runs the distro extra commands
+    This command runs tutor commands defined in DISTRO_EXTRA_COMMANDS
     """
     directory = (
         subprocess.check_output("tutor config printroot", shell=True)
