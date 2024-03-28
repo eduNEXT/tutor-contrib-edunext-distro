@@ -36,10 +36,10 @@ setup(
     author="eduNEXT",
     description="edunext-distro plugin for Tutor",
     long_description=load_readme(),
-    packages=find_packages(exclude=["tests*"]),
+    packages=find_packages(),
     include_package_data=True,
     python_requires=">=3.8",
-    install_requires=["tutor>=16.0.0, <17", "click", "schema"],
+    install_requires=["tutor>=17.0.3, <18", "click", "schema"],
     extras_require={
             "test": ["behave", "pytest", "pylint", "pytest-mock", "pycodestyle", "isort", "schema"]
         },
