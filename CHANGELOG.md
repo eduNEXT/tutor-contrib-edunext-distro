@@ -10,6 +10,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## v16.1.0 - 2024-03-28
+
+### [16.1.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v16.0.0...v16.1.0) (2024-03-28)
+
+#### Features
+
+* add quince compatibility for distro ([#57](https://github.com/eduNEXT/tutor-contrib-edunext-distro/issues/57)) ([4e78afd](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/4e78afdacf91f3852c7b45d153875968c0cfcb47))
+
+#### Documentation
+
+* consistency in commands and the need for themes root ([#56](https://github.com/eduNEXT/tutor-contrib-edunext-distro/issues/56)) ([561abf9](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/561abf9d1c7ab15fcafde8cce904cfc2bf26a6de))
+
 ## v16.0.0 - 2023-12-13
 
 ### [16.0.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v15.3.1...v16.0.0) (2023-12-13)
