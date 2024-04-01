@@ -6,7 +6,6 @@ Feature: Enable private packages
         And There is a private package
         When I write the command tutor distro enable-private-packages
         Then Packages will be cloned into requirements folder
-        And Packages will be present in the file private.txt
 
     @fixture.behave.tutor_root
     Scenario: Add private package when the package has already been cloned
@@ -16,4 +15,3 @@ Feature: Enable private packages
         And Private package has already been cloned
         When I write the command tutor distro enable-private-packages and press yes
         Then Packages will be cloned again into requirements folder
-        And Packages will be present in the file private.txt

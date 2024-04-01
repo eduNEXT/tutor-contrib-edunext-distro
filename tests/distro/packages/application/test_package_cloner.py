@@ -1,3 +1,7 @@
+"""
+Test the package cloner scenarios.
+"""
+
 import pytest
 
 from tests.distro.packages.application.package_mock_mother import PackageMockMother
@@ -7,6 +11,9 @@ from tutordistro.distro.share.domain.clone_exception import CloneException
 
 
 def test_should_clone_one_repository_in_a_path():
+    """
+    Normal repo cloning behaviour test.
+    """
     # Given
     mocker = PackageMockMother()
     name, domain, version, extra = mocker.create()
@@ -22,6 +29,9 @@ def test_should_clone_one_repository_in_a_path():
 
 
 def test_should_fail_when_the_repos_has_already_been_cloned():
+    """
+    Error repo cloning behaviour test.
+    """
     # Given
     mocker = PackageMockMother()
     name, domain, version, extra = mocker.create()
