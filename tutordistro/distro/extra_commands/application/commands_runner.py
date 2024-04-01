@@ -15,8 +15,9 @@ class CommandsRunner:
         commands_manager (ThemeRepository): The command manager to use for executing the extra command.
     """
 
-    def __init__(self, commands_manager: CommandManager):
+    def __init__(self, commands_manager: CommandManager, commands: list[str]):
         self.commands_manager = commands_manager
+        commands_manager.validate_commands(commands)
 
     def __call__(self, command: str):
         """

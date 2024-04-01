@@ -22,10 +22,11 @@ def run_extra_commands():
         .strip()
     )
     config = tutor_config.load(directory)
+    distro_extra_commands = config.get("DISTRO_EXTRA_COMMANDS", None)
 
     tutor_commands_manager = TutorCommandManager()
-    run_tutor_command = CommandsRunner(commands_manager=tutor_commands_manager)
+    run_tutor_command = CommandsRunner(commands_manager=tutor_commands_manager, commands=distro_extra_commands)
 
-    if config.get("DISTRO_EXTRA_COMMANDS"):
-        for command in config["DISTRO_EXTRA_COMMANDS"]:
+    if distro_extra_commands:
+        for command in distro_extra_commands:
             run_tutor_command(command=command)
