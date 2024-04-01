@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## v17.1.0 - 2024-04-01
+
+### [17.1.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v17.0.0...v17.1.0) (2024-04-01)
+
+#### Features
+
+* add workflow to add items to the Dedalo project DS-831 ([#58](https://github.com/eduNEXT/tutor-contrib-edunext-distro/issues/58)) ([5a9ac2b](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/5a9ac2b88ab49d58216257a66ec0d7841a82805f))
+
 ## v17.0.0 - 2024-04-01
 
 ### [17.0.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v16.0.0...v17.0.0) (2024-04-01)
