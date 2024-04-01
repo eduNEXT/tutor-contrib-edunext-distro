@@ -10,6 +10,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## v17.0.0 - 2024-04-01
+
+### [17.0.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v16.0.0...v17.0.0) (2024-04-01)
+
+#### ⚠ BREAKING CHANGES
+
+* add support for quince
+  
+* feat: added private packages compatibility for quince
+  
+* fix: fixed unit tests errors
+  
+* feat: added init file necessary for imports
+  
+* chore: added docstrings for quality tests and renamed methods for better understanding
+  
+* chore: erased unnecessary printing lines
+  
+* fix: added new method to fix wrong path when installing distro with pip and git
+  
+* chore: removed unnecessary code referring the 'private.txt' file
+  
+* fix: updated minimun tutor version to fix private packages not installing properly
+  
+
+#### Performance Improvements
+
+* added quince compatibility ([#61](https://github.com/eduNEXT/tutor-contrib-edunext-distro/issues/61)) ([15ce2f9](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/15ce2f9a00d8d0fc36e958f24d52ece240308176))
+
+#### Documentation
+
+* consistency in commands and the need for themes root ([#56](https://github.com/eduNEXT/tutor-contrib-edunext-distro/issues/56)) ([561abf9](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/561abf9d1c7ab15fcafde8cce904cfc2bf26a6de))
+
 ## v16.0.0 - 2023-12-13
 
 ### [16.0.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v15.3.1...v16.0.0) (2023-12-13)
