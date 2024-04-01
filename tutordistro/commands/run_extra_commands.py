@@ -8,9 +8,7 @@ import click
 from tutor import config as tutor_config
 
 from tutordistro.distro.extra_commands.application.commands_runner import CommandsRunner
-from tutordistro.distro.extra_commands.infrastructure.tutor_commands import (
-    TutorCommandManager,
-)
+from tutordistro.distro.extra_commands.infrastructure.tutor_commands import TutorCommandManager
 
 
 @click.command(name="run-extra-commands", help="Run tutor commands")
