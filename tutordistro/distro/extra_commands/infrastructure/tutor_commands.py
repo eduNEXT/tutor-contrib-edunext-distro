@@ -82,21 +82,15 @@ class TutorCommandManager(CommandManager):
             command (str): Tutor command.
         """
         try:
-            with subprocess.Popen(
+            process = subprocess.run(
                 command,
                 shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
+                check=True,
+                capture_output=True,
                 executable="/bin/bash",
-            ) as process:
-                output, error = process.communicate()
-                # If a command failed
-                if process.returncode != 0:
-                    raise CommandError(
-                        f'Error running command "{command}".\n{error.decode()}'
-                    )
-                # This print is left on purpose to show the command output
-                print(output.decode())
+            )
+            # This print is left on purpose to show the command output
+            print(process.stdout.decode())
 
-        except subprocess.SubprocessError as error:
-            raise CommandError(f"Error running command {command}: {error}") from error
+        except subprocess.CalledProcessError as error:
+            raise CommandError(f"Error running command '{error.cmd}':\n{error.stderr.decode()}") from error
