@@ -2,12 +2,14 @@
 Distro tutor command functions.
 """
 
-import re
 import subprocess
+# Was necessary to use this for compatibility with Python 3.8
+from typing import List, Optional
 
 from tutordistro.distro.extra_commands.domain.command_manager import CommandManager
 from tutordistro.distro.share.domain.command_error import CommandError
-from tutordistro.utils.constants import COMMAND_CHAINING_OPERATORS, create_regex_from_array, find_tutor_misspelled
+from tutordistro.utils.common import find_tutor_misspelled, split_string
+from tutordistro.utils.constants import COMMAND_CHAINING_OPERATORS
 
 
 class TutorCommandManager(CommandManager):
@@ -19,20 +21,8 @@ class TutorCommandManager(CommandManager):
     Args:
         CommandManager (class): Base command manager class.
     """
-    def split_command(self, command: str):
-        """
-        Takes a command that is wanted to be split according to some
-        bash command chaining operators
 
-        Args:
-            command (str): Command with command chaining operator
-
-        Return:
-            The command split into an array
-        """
-        return re.split(create_regex_from_array(COMMAND_CHAINING_OPERATORS), command)
-
-    def validate_commands(self, commands: list[str] | None):
+    def validate_commands(self, commands: Optional[List[str]]):
         """
         Takes all the extra commands sent through config.yml and verifies that
         all the commands are correct before executing them
@@ -45,7 +35,9 @@ class TutorCommandManager(CommandManager):
                 "No commands found in the DISTRO_EXTRA_COMMANDS attribute of the config.yml file."
             )
 
-        splitted_commands = [self.split_command(command) for command in commands]
+        splitted_commands = [
+            split_string(command, COMMAND_CHAINING_OPERATORS) for command in commands
+        ]
         flat_commands_array = sum(splitted_commands, [])
 
         invalid_commands = []
@@ -93,4 +85,6 @@ class TutorCommandManager(CommandManager):
             print(process.stdout.decode())
 
         except subprocess.CalledProcessError as error:
-            raise CommandError(f"Error running command '{error.cmd}':\n{error.stderr.decode()}") from error
+            raise CommandError(
+                f"Error running command '{error.cmd}':\n{error.stderr.decode()}"
+            ) from error

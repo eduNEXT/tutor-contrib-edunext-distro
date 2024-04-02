@@ -1,6 +1,9 @@
 """
 Distro command runner.
 """
+# Was necessary to use this for compatibility with Python 3.8
+from typing import List
+
 from tutordistro.distro.extra_commands.domain.command_manager import CommandManager
 
 
@@ -15,7 +18,7 @@ class CommandsRunner:
         commands_manager (ThemeRepository): The command manager to use for executing the extra command.
     """
 
-    def __init__(self, commands_manager: CommandManager, commands: list[str]):
+    def __init__(self, commands_manager: CommandManager, commands: List[str]):
         self.commands_manager = commands_manager
         commands_manager.validate_commands(commands)
 

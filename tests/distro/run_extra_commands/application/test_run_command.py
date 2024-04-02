@@ -7,6 +7,8 @@ import pytest
 from tests.distro.run_extra_commands.infrastructure.test_tutor_commands import TestTutorCommandManager
 from tutordistro.distro.extra_commands.application.commands_runner import CommandsRunner
 from tutordistro.distro.share.domain.command_error import CommandError
+from tutordistro.utils.common import split_string
+from tutordistro.utils.constants import COMMAND_CHAINING_OPERATORS
 
 
 def test_valid_tutor_command():
@@ -23,7 +25,9 @@ def test_valid_tutor_command():
     ]
 
     tutor_commands_manager = TestTutorCommandManager()
-    run_tutor_command = CommandsRunner(commands_manager=tutor_commands_manager, commands=valid_tutor_commands)
+    run_tutor_command = CommandsRunner(
+        commands_manager=tutor_commands_manager, commands=valid_tutor_commands
+    )
 
     # When
     for command in valid_tutor_commands:
@@ -51,11 +55,16 @@ def test_invalid_or_misspelled_tutor_command():
 
     with pytest.raises(CommandError) as command_error:
         tutor_commands_manager = TestTutorCommandManager()
-        CommandsRunner(commands_manager=tutor_commands_manager, commands=invalid_tutor_command)
+        CommandsRunner(
+            commands_manager=tutor_commands_manager, commands=invalid_tutor_command
+        )
 
     assert command_error.type is CommandError
 
-    splitted_commands = [tutor_commands_manager.split_command(command) for command in invalid_tutor_command]
+    splitted_commands = [
+        split_string(command, COMMAND_CHAINING_OPERATORS)
+        for command in invalid_tutor_command
+    ]
     commands_word_by_word = " ".join(sum(splitted_commands, [])).split(" ")
 
     pip_commands_sent = commands_word_by_word.count("pip")
@@ -82,11 +91,16 @@ def test_misspelled_tutor_command():
 
     with pytest.raises(CommandError) as command_error:
         tutor_commands_manager = TestTutorCommandManager()
-        CommandsRunner(commands_manager=tutor_commands_manager, commands=misspelled_commands)
+        CommandsRunner(
+            commands_manager=tutor_commands_manager, commands=misspelled_commands
+        )
 
     assert command_error.type is CommandError
 
-    splitted_commands = [tutor_commands_manager.split_command(command) for command in misspelled_commands]
+    splitted_commands = [
+        split_string(command, COMMAND_CHAINING_OPERATORS)
+        for command in misspelled_commands
+    ]
     commands_word_by_word = " ".join(sum(splitted_commands, [])).split(" ")
 
     misspelled_commands_sent = commands_word_by_word.count("totur")
