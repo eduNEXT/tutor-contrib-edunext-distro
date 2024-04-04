@@ -4,7 +4,7 @@ Distro tutor command functions.
 
 import subprocess
 # Was necessary to use this for compatibility with Python 3.8
-from typing import List, Optional
+from typing import List
 
 from tutordistro.distro.extra_commands.domain.command_manager import CommandManager
 from tutordistro.distro.share.domain.command_error import CommandError
@@ -22,7 +22,7 @@ class TutorCommandManager(CommandManager):
         CommandManager (class): Base command manager class.
     """
 
-    def validate_commands(self, commands: Optional[List[str]]):
+    def validate_commands(self, commands: List[str]):
         """
         Takes all the extra commands sent through config.yml and verifies that
         all the commands are correct before executing them
@@ -30,11 +30,6 @@ class TutorCommandManager(CommandManager):
         Args:
             commands (list[str] | None): The commands sent through DISTRO_EXTRA_COMMANDS in config.yml
         """
-        if not commands:
-            raise CommandError(
-                "No commands found in the DISTRO_EXTRA_COMMANDS attribute of the config.yml file."
-            )
-
         splitted_commands = [
             split_string(command, COMMAND_CHAINING_OPERATORS) for command in commands
         ]
