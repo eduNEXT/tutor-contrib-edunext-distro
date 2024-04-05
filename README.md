@@ -24,6 +24,9 @@ tutor distro repository-validator
 # Enabler commands
 tutor distro enable-themes
 tutor distro enable-private-packages
+
+# Run extra commands
+tutor distro run-extra-commands
 ```
 
 ### Documentation
@@ -238,6 +241,21 @@ The command will check the configuration for:
 - Theme settings like DISTRO_THEMES_NAME, DISTRO_THEME_DIRS and DISTRO_THEMES_ROOT
 - INSTALL_EXTRA_FILE_REQUIREMENTS
 - OPENEDX_EXTRA_SETTINGS
+
+# Run tutor extra commands
+
+You can run tutor extra commands by adding them into the **config.yml** in an attribute `DISTRO_EXTRA_COMMANDS` like this:
+
+```yaml
+  DISTRO_EXTRA_COMMANDS:
+    - tutor plugins install mfe && tutor plugins enable mfe
+    - tutor plugins index add https://overhang.io/tutor/main
+```
+You can only insert commands enabled by the [Tutor CLI](https://docs.tutor.edly.io/reference/cli/index.html). Once you have added the commands you want to execute, you will need to run the following command:
+
+```bash
+tutor distro run-extra-commands
+```
 
 # Other Options
 
