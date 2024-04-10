@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## v16.1.0 - 2024-04-09
+
+### [16.1.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v16.0.0...v16.1.0) (2024-04-09)
+
+#### Features
+
+* add command to run extra tutor commands ([#59](https://github.com/eduNEXT/tutor-contrib-edunext-distro/issues/59)) ([98eb210](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/98eb21006e6bba493c9db7f8a2cb20b99efedc75))
+
 ## v16.0.0 - 2023-12-13
 
 ### [16.0.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v15.3.1...v16.0.0) (2023-12-13)
