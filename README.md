@@ -2,15 +2,19 @@
 
 ## What is distro
 
-Distro is an opinioned openedx distribution with some custom stuff to have an easy-to-use
-and a ready to deploy in local or in development openedx distribution.
-This can be watch like a tutor-plugin but is taken a little bit far away.
+Distro is a tool to facilitate the customization of an Openedx instance, adding commands and settings to have an easy-to-use
+and a ready-to-deploy in local or in development openedx distribution.
+
 
 ## Installation
+
+To install the latest release
 
 ```bash
 pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro
 ```
+
+You can install a specific version adding the tag at the end, e.g, `pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro#v.17.0.0`
 
 ## Usage
 
@@ -38,8 +42,8 @@ Distro plugin manages a set of settings that you can configure, to know how to d
 
 # Required tutor settings
 
-This plugin works with some docker images. These are defined by default
-if you have different images that aren't based on these, you can have some problems.
+Define the docker images to be used and build it before start the instance to avoid issues.
+Example:
 
 ```yaml
 DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:quince"
@@ -59,7 +63,7 @@ Also, you need an edx-platform version distro compatible.
 
 :warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file. See [How to add a new package](./docs/how_to_add_new_packages.rst)
 
-You can find distro releases on https://github.com/edunext/edunext-platform.
+You can find those releases on https://github.com/edunext/edunext-platform
 
 ```yaml
 EDX_PLATFORM_REPOSITORY: "https://github.com/eduNEXT/edunext-platform.git"
@@ -113,14 +117,11 @@ tutor distro enable-private-packages
 # Themes
 
 Declare the path of your themes using `tutor config save --set DISTRO_THEMES_ROOT="your_path"`,
-by default the themes path goes here **/openedx/themes**
+we recommend use **/openedx/themes**
 
 :warning: **NOTE**: From Olmo version Distro has not defaulted themes path. Now it is necessary to add the themes path in ``config.yml`` file or running command above.
 
 ## How to add a theme
-
-You can override the default themes on the config.yml but
-this will remove them if you don't define them again.
 
 Set the themes to clone:
 
@@ -178,7 +179,7 @@ tutor distro enable-themes
 
 # Build a new image
 
-**requirements:** you should have enabled the distro plugin, also you had have run the commands `tutor distro enable-themes` and `tutor distro enable-private-packages`.
+**Requirements:** you should have enabled the distro plugin, also you had have run the commands `tutor distro enable-themes` and `tutor distro enable-private-packages`.
 
 1. You should change 2 variables in your config.yml to define the new DOCKER_IMAGE_OPENEDX and DOCKER_IMAGE_OPENEDX_DEV to use.
 
@@ -186,7 +187,7 @@ tutor distro enable-themes
 
 ```bash
 export DOCKER_BUILDKIT=1
-tutor images build -a BUILDKIT_INLINE_CACHE=1 --docker-arg="--cache-from" --docker-arg="ednxops/distro-edunext-edxapp:mango" -a EDX_PLATFORM_REPOSITORY=https://github.com/eduNEXT/edunext-platform.git -a EDX_PLATFORM_VERSION=ednx-release/mango.master openedx
+tutor images build -a BUILDKIT_INLINE_CACHE=1 --docker-arg="--cache-from" --docker-arg="ednxops/distro-edunext-edxapp:quince" -a EDX_PLATFORM_REPOSITORY=https://github.com/eduNEXT/edunext-platform.git -a EDX_PLATFORM_VERSION=ednx-release/quince.master openedx
 ```
 
 If you are using another edx-platform you should change it in the commando.
