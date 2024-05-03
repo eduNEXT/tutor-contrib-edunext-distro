@@ -1,8 +1,7 @@
 # Distro plugin for [Tutor](https://docs.tutor.overhang.io)
 
-## What is distro
 
-Distro is a tool to facilitate the customization of an Openedx instance, adding commands and settings to have an easy-to-use
+This plugin is a tool to facilitate the customization of an Openedx instance, adding commands and settings to have an easy-to-use
 and a ready-to-deploy in local or in development openedx distribution.
 
 
