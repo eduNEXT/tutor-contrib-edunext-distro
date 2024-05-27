@@ -5,6 +5,8 @@ It interacts with a Git repository to validate a CloudPackage.
 """
 
 
+from __future__ import annotations
+
 import subprocess
 from typing import Optional
 
