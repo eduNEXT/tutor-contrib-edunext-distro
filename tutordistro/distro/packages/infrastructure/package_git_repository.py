@@ -52,6 +52,7 @@ class PackageGitRepository(PackageRepository):
             package (Package): The package to be cloned.
             path (str): The destination path for cloning the package.
         """
+        repo = None
         if "https" == package.extra["protocol"]:
             repo = (
                 f"https://{package.domain}/"

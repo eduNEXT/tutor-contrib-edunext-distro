@@ -32,6 +32,7 @@ class ThemeGitRepository(ThemeRepository):
         Args:
             theme_settings (ThemeSettings): Theme settings.
         """
+        repo = None
         if "https" == theme_settings.settings["protocol"]:
             repo = (
                 f"https://{theme_settings.settings['domain']}/"

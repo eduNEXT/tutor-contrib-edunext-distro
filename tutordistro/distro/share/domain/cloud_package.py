@@ -11,7 +11,6 @@ import re
 from urllib.parse import urlparse
 
 from tutordistro.distro.share.domain.package import Package
-from tutordistro.distro.share.domain.package_does_not_exist import PackageDoesNotExist
 
 
 class CloudPackage:
@@ -50,36 +49,29 @@ class CloudPackage:
 
     @staticmethod
     def __parse_url(url) -> CloudPackage:
-        version: str = ""
+        version: str = ''
 
         pattern = r"git\+(https?://\S+?)(?:#|$)"
-        result = re.search(pattern, url)
-        url = result.group(1).replace('@', '/tree/').replace('.git', '')
+        found_package_url = re.search(pattern, url).group(1)
+        github_url = found_package_url.replace('@', '/tree/').replace('.git', '')
 
-        parsed_url = urlparse(url)
+        parsed_url = urlparse(github_url)
+        split_path = parsed_url.path.split('/')
 
         protocol = parsed_url.scheme
         domain = parsed_url.netloc
-        path = parsed_url.path
-        partes_path = path.split('/')
-        name = partes_path[2]
+        org_path = split_path[1]
+        package_name = split_path[2]
 
-        if len(partes_path) > 5:
-            raise PackageDoesNotExist(f"The package {url} or branch doesn't exist or is private")
-
-        if '/tree/' in url:
-            version = partes_path[-1]
-        if len(partes_path) > 3 and '/tree/' not in url:
-            raise PackageDoesNotExist(f"The package {url} or branch doesn't exist or is private")
-
-        path = partes_path[1]
+        if '/tree/' in github_url:
+            version = github_url.split('/tree/')[-1]  # This is the branch name or tag
 
         return CloudPackage(
             domain=domain,
-            name=name,
+            name=package_name,
             version=version,
             protocol=protocol,
-            path=path
+            path=org_path
         )
 
     @staticmethod
