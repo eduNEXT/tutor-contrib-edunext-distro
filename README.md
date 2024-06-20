@@ -1,9 +1,7 @@
 # Distro plugin for [Tutor](https://docs.tutor.overhang.io)
 
-
-This plugin is a tool to facilitate the customization of an Openedx instance, adding commands and settings to have an easy-to-use
-and a ready-to-deploy in local or in development openedx distribution.
-
+This plugin is a tool to facilitate the customization of an Open edX instance, adding commands and settings to have an easy-to-use
+and a ready-to-deploy in local or development.
 
 ## Installation
 
@@ -17,59 +15,65 @@ You can install a specific version by adding the tag at the end, e.g, `pip insta
 
 ## Usage
 
+1. After installing the plugin run:
+
 ```bash
 tutor plugins enable distro
-
-# Validator commands for config file
-tutor distro syntax-validator
-tutor distro repository-validator
-
-# Enabler commands
-tutor distro enable-themes
-tutor distro enable-private-packages
-
-# Run extra commands
-tutor distro run-extra-commands
 ```
 
-### Documentation
-
-Distro plugin manages a set of settings that you can configure, to know how to do that check:
+2. Configure Distro. The plugin manages a set of settings that you can add, refer to the following documentation to know the Distro variables:
 
 - [How to customize distro](./docs/how_to_customize_distro.rst)
 - [How to add a new package](./docs/how_to_add_new_packages.rst)
 
-# Required tutor settings
+:warning: Remember that from version 15, Distro plugin has no default values.
 
-Define the docker images to be used and build it before starting the instance to avoid issues.
+3. Once you add the configuration, you can access the next commands (use it depending on your use case, more info below).
+
+```bash
+# Validate the Distro settings are properly set
+tutor distro syntax-validator
+# Validate the repositories for packages are valid
+tutor distro repository-validator
+
+# Enable the theme(s) defined
+tutor distro enable-themes
+# Enable the package(s) defined
+tutor distro enable-private-packages
+
+# Run Tutor commands
+tutor distro run-extra-commands
+```
+
+4. Build the custom docker image running `tutor images build openedx` or `tutor images build openedx-dev`.
+
+5. Launch your customized instance `tutor local launch` or `tutor dev launch`.
+
+**Notes:**
+
+- If you want to use a custom edx-platform, you will need to create a branch based on the release, you can see the compatibility table below for reference:
+
+| openedx | tutor |
+| ------- | ----- |
+| lilac   | v12   |
+| maple   | v13   |
+| nutmeg  | v14   |
+| olive   | v15   |
+| palm    | v16   |
+| quince  | v17   |
+
+- Define the docker images to be used and build it before starting the instance to avoid issues.
+
 Example:
 
 ```yaml
-DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:quince"
-DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:quince"
-```
-
-Also, you need an edx-platform version distro compatible.
-
-| openedx | distro   | tutor |
-| ------- | -------- | ----- |
-| lilac   | limonero | v12   |
-| maple   | mango    | v13   |
-| nutmeg  | nuez     | v14   |
-| olive   | olmo     | v15   |
-| palm    | palma    | v16   |
-| quince  | quince   | v17   |
-
-:warning: **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in the ``config.yml`` file. See [How to add a new package](./docs/how_to_add_new_packages.rst)
-
-You can find those releases on https://github.com/edunext/edunext-platform
-
-```yaml
-EDX_PLATFORM_REPOSITORY: "https://github.com/eduNEXT/edunext-platform.git"
-EDX_PLATFORM_VERSION: "ednx-release/quince.master"
+DOCKER_IMAGE_OPENEDX: 'docker.io/ednxops/distro-edunext-edxapp:quince'
+DOCKER_IMAGE_OPENEDX_DEV: 'docker.io/ednxops/distro-edunext-edxapp-dev:quince'
 ```
 
 # Packages
+
+If you use case does not include variable modifications or private packages you can use `OPENEDX_EXTRA_PIP_REQUIREMENTS`.
 
 ## How to add a new package
 
@@ -104,63 +108,61 @@ if you want to edit it you can
 ### Private package
 
 In your new package you can set the setting **private** to true, It's mean that this won't be cloned
-from a public repository, for it works you should run the command to clone private packages:
+from a public repository, to make it work you should run the command to clone private packages:
 
 ```bash
 tutor distro enable-private-packages
 ```
 
-- **local**: It will be necessary to build a new image and run the command tutor local do init && tutor local start again.
-- **dev**: you must run the command tutor dev do init && tutor dev start again.
+- **local**: It will be necessary to build a new image and run the command `tutor local do init && tutor local start` again.
+- **dev**: you must run the command `tutor dev do init && tutor dev start` again.
 
 # Themes
 
-Declare the path of your themes using `tutor config save --set DISTRO_THEMES_ROOT="your_path"`,
-we recommend use **/openedx/themes**
+We use [themes](https://edx.readthedocs.io/projects/edx-installing-configuring-and-running/en/latest/configuration/changing_appearance/theming/)
+for changing the appearance across the Open edX platform.
 
-:warning: **NOTE**: From Olmo version Distro has not defaulted themes path. Now it is necessary to add the theme's path in the ``config.yml`` file or run the command above.
+Declare the path where your themes will be located with `tutor config save --set DISTRO_THEMES_ROOT="your_path"`, we recommend use **/openedx/themes**
 
-## How to add a theme
-
-Set the themes to clone:
-
-```yaml
-DISTRO_THEMES:
-  - domain: github.com
-    name: ednx-saas-themes
-    path: eduNEXT
-    protocol: ssh
-    repo: ednx-saas-themes
-    version: edunext/mango.master
-```
-
-Set themes dir:
-
-```yaml
-DISTRO_THEME_DIRS:
-  - /openedx/themes/ednx-saas-themes/edx-platform
-  - /openedx/themes/ednx-saas-themes/edx-platform/bragi-children
-  - /openedx/themes/ednx-saas-themes/edx-platform/bragi-generator
-```
-
-Set themes name:
-
-```yaml
-DISTRO_THEMES_NAME:
-  - bragi
-```
-
-Set themes root (which is where the theme will be installed):
-
-When you set the ``DISTRO_THEMES_ROOT``, the theme will be in your ``<tutor_root>/env/build<distro_themes_root>``.
+When you set the `DISTRO_THEMES_ROOT`, the theme will be in your `<tutor_root>/env/build<distro_themes_root>`.
 
 ```yaml
 DISTRO_THEMES_ROOT: /openedx/themes
 ```
 
-In the previous example, the theme will be in ``env/build/openedx/themes`` when you execute the ``enable-themes`` command.
+In the previous example, the theme will be in `env/build/openedx/themes` when you execute the `enable-themes` command.
 
-Run the command to clone the themes:
+## How to add a theme
+
+Set the theme(s) to clone:
+
+```yaml
+DISTRO_THEMES:
+  - domain: github.com # where the theme is stored
+    name: my-theme #  folder for cloning the repo inside Tutor
+    path: my-account # used for the URL; for GitHub repositories correspond to the username
+    protocol: ssh # use ssh for private repos and https for public ones
+    repo: my-openedx-theme # name of the repository
+    version: release-compatible # branch to be cloned
+```
+
+Set theme(s) directory(ies):
+
+```yaml
+DISTRO_THEME_DIRS:
+  - /openedx/themes/my-openedx-theme
+```
+
+Set themes name(s):
+
+```yaml
+DISTRO_THEMES_NAME:
+  - my-theme
+```
+
+If you have more than 1 theme installed you can use `DISTRO_DEFAULT_SITE_THEME` to set the default one.
+
+Run the command to clone and enable the theme(s):
 
 ```bash
 tutor distro enable-themes
@@ -174,8 +176,6 @@ tutor distro enable-themes
   openedx-assets themes --theme-dirs THEME_DIRS --themes THEME_NAMES
   ```
 
-:warning: **NOTE**: From Olmo version Distro has not defaulted themes. Now it is necessary to add the themes in the ``config.yml`` file.
-
 # Build a new image
 
 **Requirements:** You should have enabled the distro plugin, also you should have run the commands `tutor distro enable-themes` and `tutor distro enable-private-packages`.
@@ -186,10 +186,8 @@ tutor distro enable-themes
 
 ```bash
 export DOCKER_BUILDKIT=1
-tutor images build -a BUILDKIT_INLINE_CACHE=1 --docker-arg="--cache-from" --docker-arg="ednxops/distro-edunext-edxapp:quince" -a EDX_PLATFORM_REPOSITORY=https://github.com/eduNEXT/edunext-platform.git -a EDX_PLATFORM_VERSION=ednx-release/quince.master openedx
+tutor images build -a BUILDKIT_INLINE_CACHE=1 --docker-arg="--cache-from" --docker-arg="<docker-user>/<docker-repository>:<image-tag>" -a EDX_PLATFORM_REPOSITORY=<your-edx-repo> -a EDX_PLATFORM_VERSION=<branch> openedx
 ```
-
-If you are using another edx-platform you should change it in the commando.
 
 3. That command will create a new image with the tag defined in your DOCKER_IMAGE_OPENEDX, now, you should run the next command:
 
@@ -211,7 +209,7 @@ The command will check the git URLs of the OPENEDX_EXTRA_PIP_REQUIREMENTS elemen
 
 It will also check all elements that end in DPKG and have the parameter private: false, for example:
 
-```bash
+```yml
 DISTRO_EOX_HOOKS_DPKG:
   index: git
   name: eox-hooks
@@ -236,7 +234,7 @@ tutor distro syntax-validator
 
 The command will check the configuration for:
 
-- Packages, ending with _DPKG
+- Packages, ending with \_DPKG
 - OPENEDX_EXTRA_PIP_REQUIREMENTS
 - DISTRO_THEMES
 - Theme settings like DISTRO_THEMES_NAME, DISTRO_THEME_DIRS and DISTRO_THEMES_ROOT
@@ -248,10 +246,11 @@ The command will check the configuration for:
 You can run tutor extra commands by adding them into the **config.yml** in an attribute `DISTRO_EXTRA_COMMANDS` like this:
 
 ```yaml
-  DISTRO_EXTRA_COMMANDS:
-    - tutor plugins install mfe && tutor plugins enable mfe
-    - tutor plugins index add https://overhang.io/tutor/main
+DISTRO_EXTRA_COMMANDS:
+  - tutor plugins install mfe && tutor plugins enable mfe
+  - tutor plugins index add https://overhang.io/tutor/main
 ```
+
 You can only insert commands enabled by the [Tutor CLI](https://docs.tutor.edly.io/reference/cli/index.html). Once you have added the commands you want to execute, you will need to run the following command:
 
 ```bash
@@ -260,7 +259,7 @@ tutor distro run-extra-commands
 
 # Other Options
 
-## How to add custom middlewares
+## How to add custom middleware
 
 You should set the variable **DISTRO_EXTRA_MIDDLEWARES** in your config.yml to add a new
 middleware to **settings.MIDDLEWARE**
@@ -271,46 +270,39 @@ DISTRO_EXTRA_MIDDLEWARES:
   - middleware.test.2
 ```
 
-## How to add extra files requirements
+## How to add extra file requirements
 
-You should set the variable **INSTALL_EXTRA_FILE_REQUIREMENTS** in your config.yml file if you need to install extra files with. The structure should be like:
+You should set the variable **INSTALL_EXTRA_FILE_REQUIREMENTS** in your config.yml file if you need to install extra files. The structure should be like:
 
 ```yaml
 INSTALL_EXTRA_FILE_REQUIREMENTS:
   path: ./requirements/extra_file/
-  files: [
-    /edunext/base.txt,
-    /test/test.txt
-  ]
+  files: [/edunext/base.txt, /test/test.txt]
 ```
 
-It's important that ``.txt`` files are added in the requirements directory, similar to EXTRA PIP REQUIREMENTS from [Tutor](https://docs.tutor.overhang.io/configuration.html#installing-extra-xblocks-and-requirements).
+It's important that `.txt` files are added in the requirements directory, similar to EXTRA PIP REQUIREMENTS from [Tutor](https://docs.tutor.overhang.io/configuration.html#installing-extra-xblocks-and-requirements).
 
 ## How to enable openedx extra settings
 
-You should set the variable **OPENEDX_EXTRA_SETTINGS** in your config.yml file if you need to enable ``cms_env``, ``lms_env`` or ``pre_init_lms_task`` settings to plugins works as expected. For now, the principal settings should be like this:
+You should set the variable **OPENEDX_EXTRA_SETTINGS** in your config.yml file if you need to enable `cms_env`, `lms_env` or `pre_init_lms_task` settings to plugins work as expected. For now, the principal settings should be like this:
 
 ```yaml
 OPENEDX_EXTRA_SETTINGS:
-  cms_env: [
-    USE_EOX_TENANT: true
-  ]
-  lms_env: [
-    USE_EOX_TENANT: true,
-    ENABLE_EOX_THEMING_DERIVE_WORKAROUND: true
-  ]
-  pre_init_lms_tasks: [
-    ./manage.py lms migrate contenttypes,
-    ./manage.py lms migrate eox_core,
-    ./manage.py lms migrate eox_tenant,
-    ./manage.py lms migrate eox_tagging,
-    ./manage.py lms migrate eox_audit_model
-  ]
+  cms_env: [USE_EOX_TENANT: true]
+  lms_env: [USE_EOX_TENANT: true, ENABLE_EOX_THEMING_DERIVE_WORKAROUND: true]
+  pre_init_lms_tasks:
+    [
+      ./manage.py lms migrate contenttypes,
+      ./manage.py lms migrate eox_core,
+      ./manage.py lms migrate eox_tenant,
+      ./manage.py lms migrate eox_tagging,
+      ./manage.py lms migrate eox_audit_model,
+    ]
 ```
 
 The list could grow according to the needs that arise at the time of configuring the plugins.
 
-:warning: **Note**: Other Options such as ``INSTALL_EXTRA_FILE_REQUIREMENTS`` and ``OPENEDX_EXTRA_SETTINGS`` are included in the Olmo version, you can use them from this release.
+:warning: **Note**: Other Options such as `INSTALL_EXTRA_FILE_REQUIREMENTS` and `OPENEDX_EXTRA_SETTINGS` are included in the v15 version, you can use them from this release.
 
 # License
 

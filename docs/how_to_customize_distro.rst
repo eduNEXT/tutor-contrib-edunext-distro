@@ -8,7 +8,7 @@ General Settings
 ----------------
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
-| Setting                                                                                                                                                | Optional Values                                                                                                      |
+| Setting                                                                                                                                                | Example Values                                                                                                       |
 +========================================================================================================================================================+======================================================================================================================+
 | **DOCKER_IMAGE_OPENEDX**                                                                                                                               |.. code-block:: yml                                                                                                   |
 |                                                                                                                                                        |                                                                                                                      |
@@ -17,8 +17,6 @@ General Settings
 | **DOCKER_IMAGE_OPENEDX_DEV**                                                                                                                           |.. code-block:: yml                                                                                                   |
 |                                                                                                                                                        |                                                                                                                      |
 | Base docker image, that contain all distro basic configuration for development and replace tutor default openedx image                                 |    docker.io/ednxops/distro-edunext-edxapp-dev:<distro-version>                                                      |
-+--------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
-| *Note: if you have different images that aren't based on these, you can have some problems.*                                                                                                                                                                                  |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
 | **EDX_PLATFORM_REPOSITORY**                                                                                                                            |.. code-block:: yml                                                                                                   |
 |                                                                                                                                                        |                                                                                                                      |
@@ -32,8 +30,7 @@ General Settings
 |                                                                                                                                                        |                                                                                                                      |
 |Establish repository(ies) of your openedx theme(s)                                                                                                      |   - name: ednx-saas-themes                                                                                           |
 |                                                                                                                                                        |     repo: ednx-saas-theme                                                                                            |
-|You can add other repositories using the same estructure definition describe in default value in the config.yml file                                    |     version: edunext/<distro-version>                                                                                |
-|                                                                                                                                                        |     domain: github.com                                                                                               |
+|You can add other repositories using the same estructure.                                                                                               |     domain: github.com                                                                                               |
 |                                                                                                                                                        |     protocol: ssh                                                                                                    |
 |                                                                                                                                                        |     path: eduNEXT                                                                                                    |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
@@ -50,9 +47,13 @@ General Settings
 |                                                                                                                                                        |                                                                                                                      |
 | Name(s) for enable theme(s)                                                                                                                            |     - bragi                                                                                                          |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| **DISTRO_DEFAULT_SITE_THEME**                                                                                                                          | .. code-block:: yml                                                                                                  |
+|                                                                                                                                                        |                                                                                                                      |
+| Optional value to set the default theme. Useful when you want to install more than 1 theme.                                                            |     bragi                                                                                                          |
++--------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
 | **DISTRO_EXTRA_COMMANDS**                                                                                                                              |.. code-block:: yml                                                                                                   |
 |                                                                                                                                                        |                                                                                                                      |
-| Add any tutor command which need to be executed                                                                                                        |     - tutor plugins install mfe && tutor plugins enable                                                              |
+| Add any tutor command which need to be executed                                                                                                        |     - tutor plugins install mfe && tutor plugins enable mfe                                                          |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
 | **DISTRO_EXTRA_MIDDLEWARES**                                                                                                                           |.. code-block:: yml                                                                                                   |
 |                                                                                                                                                        |                                                                                                                      |
@@ -83,15 +84,15 @@ General Settings
 +--------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
 
 
-To override these settings define it on config.yml file (``$(tutor config printroot)/config.yaml``) or use the command ``tutor config save --set GENERAL_SETTING=Value``.
+To set these settings, define it on config.yml file (``$(tutor config printroot)/config.yaml``) or use the command ``tutor config save --set GENERAL_SETTING=Value``.
 
-        **Note**: Other Options as ``INSTALL_EXTRA_FILE_REQUIREMENTS`` and ``OPENEDX_EXTRA_SETTINGS`` are included from Olmo version, you can use it from this release.
+        **Note**: ``INSTALL_EXTRA_FILE_REQUIREMENTS`` and ``OPENEDX_EXTRA_SETTINGS`` are included from version 15, you can use it from this release.
 
 
 Plugins or packages
 -------------------
 
-Here we have the next plugins, in a version compatible with the distro release:
+We use the Edunext Open Extensionss (aka EOX), all of them are public you can use if them if you find it useful for your instance:
 
 
 +------------------------------+-----------------------------------------------------------------------------------------------+---------------------------------------------+
@@ -111,6 +112,4 @@ Here we have the next plugins, in a version compatible with the distro release:
 +------------------------------+-----------------------------------------------------------------------------------------------+---------------------------------------------+
 
 
-        **NOTE**: From Olmo version Distro has not defaulted packages. Now it is necessary to add the packages you want in ``config.yml`` file.
-
-If you want to add a new one go to the corresponding section: `How to add a new package. <./how_to_add_new_packages.rst>`_
+You can visit the corresponding section for the inclusion of new packages: `How to add a new package. <./how_to_add_new_packages.rst>`_
