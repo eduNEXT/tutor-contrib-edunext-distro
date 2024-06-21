@@ -1,7 +1,6 @@
 # Distro plugin for [Tutor](https://docs.tutor.overhang.io)
 
-This plugin is a tool to facilitate the customization of an Open edX instance, adding commands and settings to have an easy-to-use
-and a ready-to-deploy in local or development.
+This plugin facilitates customizing Open edX by adding commands and settings to make your instance easy to use and deploy locally or in development environments.
 
 ## Installation
 
@@ -11,47 +10,51 @@ To install the latest release
 pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro
 ```
 
-You can install a specific version by adding the tag at the end, e.g, `pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro#v.17.0.0`
+You can install a specific version by adding the tag at the end, e.g.:
+
+```bash
+pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro#v.17.0.0
+```
 
 ## Usage
 
-1. After installing the plugin run:
+1. **Enable the plugin**: after installing the plugin, enable it by running:
 
 ```bash
 tutor plugins enable distro
 ```
 
-2. Configure Distro. The plugin manages a set of settings that you can add, refer to the following documentation to know the Distro variables:
+2. **Configure the Distro plugin**: this plugin adds a new set of settings use to further customize your Open edX installation. Refer to the following documentation to know the Distro variables:
 
 - [How to customize distro](./docs/how_to_customize_distro.rst)
 - [How to add a new package](./docs/how_to_add_new_packages.rst)
 
-:warning: Remember that from version 15, Distro plugin has no default values.
+:warning: From version 15, this plugin has no default values.
 
-3. Once you add the configuration, you can access the next commands (use it depending on your use case, more info below).
+3. After enabling the plugin, you'll have the following commands available to use:
 
 ```bash
 # Validate the Distro settings are properly set
 tutor distro syntax-validator
+
 # Validate the repositories for packages are valid
 tutor distro repository-validator
 
-# Enable the theme(s) defined
+# Enable the themes
 tutor distro enable-themes
-# Enable the package(s) defined
+
+# Enable the package
 tutor distro enable-private-packages
 
 # Run Tutor commands
 tutor distro run-extra-commands
 ```
 
-4. Build the custom docker image running `tutor images build openedx` or `tutor images build openedx-dev`.
+4. Launch your customized instance `tutor local launch` or `tutor dev launch`.
 
-5. Launch your customized instance `tutor local launch` or `tutor dev launch`.
+### Using a custom edx-platform branch
 
-**Notes:**
-
-- If you want to use a custom edx-platform, you will need to create a branch based on the release, you can see the compatibility table below for reference:
+If you want to use a custom edx-platform branch alongside the plugin, your branch must be compatible with the plugin's release. Please see the following table for details on compatibility.
 
 | openedx | tutor |
 | ------- | ----- |
@@ -62,7 +65,7 @@ tutor distro run-extra-commands
 | palm    | v16   |
 | quince  | v17   |
 
-- Define the docker images to be used and build it before starting the instance to avoid issues.
+Then, specify the docker image variables to identify the images with the new branch. Then, launch your instance or build the new images.
 
 Example:
 
@@ -73,11 +76,11 @@ DOCKER_IMAGE_OPENEDX_DEV: 'docker.io/ednxops/distro-edunext-edxapp-dev:quince'
 
 # Packages
 
-If you use case does not include variable modifications or private packages you can use `OPENEDX_EXTRA_PIP_REQUIREMENTS`.
+If you're not adding configuration variables to your packages or installing private packages, you can use `OPENEDX_EXTRA_PIP_REQUIREMENTS` instead.
 
 ## How to add a new package
 
-In your config.yml you can set any package following this structure:
+In your ``config.yml`` you can include a package by following this structure:
 
 ```yaml
 DISTRO_MY_PACKAGE_NAME_DPKG:
@@ -99,30 +102,48 @@ DISTRO_MY_PACKAGE_NAME_DPKG:
 # won't be installed as editable.
 ```
 
-The package's variables will be used on cms and lms settings.
+The package's variables will be loaded as LMS and CMS settings.
 
-In the dev environment, your package will be cloned on **/openedx/extra_deps/MY-PLUGIN-NAME**
-if you want to edit it you can
-[mount a volume](https://docs.tutor.overhang.io/dev.html?highlight=bind#manual-bind-mount-to-any-directory) to that path.
+Your package will be cloned in a **dev** environment on **/openedx/extra_deps/MY-PLUGIN-NAME**. In case you want to make your package
+editable, then you can [mount it as a volume](https://docs.tutor.overhang.io/dev.html?highlight=bind#manual-bind-mount-to-any-directory) using that path.
 
-### Private package
+### Private packages
 
-In your new package you can set the setting **private** to true, It's mean that this won't be cloned
-from a public repository, to make it work you should run the command to clone private packages:
+Setting the value **private** to ``true`` in your package configuration allows you to install a package from
+a private repository. For it to work, enable it by running this command:
 
 ```bash
 tutor distro enable-private-packages
 ```
 
-- **local**: It will be necessary to build a new image and run the command `tutor local do init && tutor local start` again.
-- **dev**: you must run the command `tutor dev do init && tutor dev start` again.
+ℹ️ After enabling in a **local** environment, you should run:
+```bash
+tutor images build openedx
+tutor local do init
+tutor local start
+```
+or
+```bash
+tutor local launch
+```
+
+ℹ️ After enabling in a **dev** environment, you should run:
+```bash
+tutor images build openedx
+tutor dev do init
+tutor dev start
+```
+or
+```bash
+tutor dev launch
+```
 
 # Themes
 
 We use [themes](https://edx.readthedocs.io/projects/edx-installing-configuring-and-running/en/latest/configuration/changing_appearance/theming/)
 for changing the appearance across the Open edX platform.
 
-Declare the path where your themes will be located with `tutor config save --set DISTRO_THEMES_ROOT="your_path"`, we recommend use **/openedx/themes**
+Declare the path where your themes will be located with `tutor config save --set DISTRO_THEMES_ROOT="your_path"`, we recommend using **/openedx/themes**
 
 When you set the `DISTRO_THEMES_ROOT`, the theme will be in your `<tutor_root>/env/build<distro_themes_root>`.
 
@@ -134,7 +155,7 @@ In the previous example, the theme will be in `env/build/openedx/themes` when yo
 
 ## How to add a theme
 
-Set the theme(s) to clone:
+1. Set the themes to clone by adding this configuration to your ``config.yml`` file:
 
 ```yaml
 DISTRO_THEMES:
@@ -146,27 +167,32 @@ DISTRO_THEMES:
     version: release-compatible # branch to be cloned
 ```
 
-Set theme(s) directory(ies):
+Where:
+... explain each value instead of in the snippet, so people can copy paste the configuration.
+
+2. Set the theme directory:
 
 ```yaml
 DISTRO_THEME_DIRS:
   - /openedx/themes/my-openedx-theme
 ```
 
-Set themes name(s):
+3. Set themes name:
 
 ```yaml
 DISTRO_THEMES_NAME:
   - my-theme
 ```
 
-If you have more than 1 theme installed you can use `DISTRO_DEFAULT_SITE_THEME` to set the default one.
+If you have more than 1 theme installed, you can use `DISTRO_DEFAULT_SITE_THEME` to set the default one.
 
 Run the command to clone and enable the theme(s):
 
 ```bash
 tutor distro enable-themes
 ```
+
+SAME SUGGESTION HERE WITH THE INFO ICON:
 
 - **local**: you must build a new image to add the new themes and
   compile statics and run the command `tutor local do init && tutor local start` again.
