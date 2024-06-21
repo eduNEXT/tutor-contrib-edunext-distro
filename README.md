@@ -4,7 +4,7 @@ This plugin facilitates customizing Open edX by adding commands and settings to 
 
 ## Installation
 
-To install the latest release
+To install the latest release, run:
 
 ```bash
 pip install git+https://github.com/eduNEXT/tutor-contrib-edunext-distro
@@ -49,6 +49,8 @@ tutor distro enable-private-packages
 # Run Tutor commands
 tutor distro run-extra-commands
 ```
+### SUGGESTION: add reference to the documentation for each command ###
+
 
 4. Launch your customized instance `tutor local launch` or `tutor dev launch`.
 
@@ -75,6 +77,8 @@ DOCKER_IMAGE_OPENEDX_DEV: 'docker.io/ednxops/distro-edunext-edxapp-dev:quince'
 ```
 
 # Packages
+
+### SUGGESTION: add description to each section ###
 
 If you're not adding configuration variables to your packages or installing private packages, you can use `OPENEDX_EXTRA_PIP_REQUIREMENTS` instead.
 
@@ -192,7 +196,7 @@ Run the command to clone and enable the theme(s):
 tutor distro enable-themes
 ```
 
-SAME SUGGESTION HERE WITH THE INFO ICON:
+### SUGGESTION: same suggestion here about using the information icons ###
 
 - **local**: you must build a new image to add the new themes and
   compile statics and run the command `tutor local do init && tutor local start` again.
@@ -203,6 +207,8 @@ SAME SUGGESTION HERE WITH THE INFO ICON:
   ```
 
 # Build a new image
+
+### SUGGESTION: why is a section for building a new image needed? Shouldn't tutor images build be enough?  ###
 
 **Requirements:** You should have enabled the distro plugin, also you should have run the commands `tutor distro enable-themes` and `tutor distro enable-private-packages`.
 
@@ -215,15 +221,19 @@ export DOCKER_BUILDKIT=1
 tutor images build -a BUILDKIT_INLINE_CACHE=1 --docker-arg="--cache-from" --docker-arg="<docker-user>/<docker-repository>:<image-tag>" -a EDX_PLATFORM_REPOSITORY=<your-edx-repo> -a EDX_PLATFORM_VERSION=<branch> openedx
 ```
 
+### SUGGESTION: why is this needed? instead of using tutor images build ###
+
 3. That command will create a new image with the tag defined in your DOCKER_IMAGE_OPENEDX, now, you should run the next command:
 
 ```bash
 tutor images push openedx
 ```
 
-# Validator Commands
+# Extra commands
 
-## Check the git repository URL
+## Validators
+
+### Check the git repository URL
 
 If you want to make sure that the git repository urls in the config.yml file are valid, run the following command:
 
@@ -250,7 +260,7 @@ DISTRO_EOX_HOOKS_DPKG:
   version: master
 ```
 
-## Check syntax in the configuration file
+### Check syntax in the configuration file
 
 If you want to validate the syntax of the config.yml file, run the following command:
 
@@ -267,7 +277,9 @@ The command will check the configuration for:
 - INSTALL_EXTRA_FILE_REQUIREMENTS
 - OPENEDX_EXTRA_SETTINGS
 
-# Run tutor extra commands
+## Run tutor extra commands
+
+### SUGGESTION: can we include why would I need this? Something like: this is useful when... ###
 
 You can run tutor extra commands by adding them into the **config.yml** in an attribute `DISTRO_EXTRA_COMMANDS` like this:
 
@@ -283,7 +295,10 @@ You can only insert commands enabled by the [Tutor CLI](https://docs.tutor.edly.
 tutor distro run-extra-commands
 ```
 
-# Other Options
+
+### SUGGESTION: can we include why would I need these other configurations? Something like: this is useful when... ###
+
+# Other configurations available
 
 ## How to add custom middleware
 
