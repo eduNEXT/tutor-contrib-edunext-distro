@@ -64,12 +64,13 @@ Please see the following table for details on compatibility.
 | olive   | v15   |
 | palm    | v16   |
 | quince  | v17   |
+| redwood | v18   |
 
 Then, specify the docker image variables to identify your custom images, like the example:
 
 ```yaml
-DOCKER_IMAGE_OPENEDX: 'docker.io/ednxops/distro-edunext-edxapp:quince'
-DOCKER_IMAGE_OPENEDX_DEV: 'docker.io/ednxops/distro-edunext-edxapp-dev:quince'
+DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:redwood"
+DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:redwood"
 ```
 
 Finally, launch your instance or build a new image to reflect the changes.
