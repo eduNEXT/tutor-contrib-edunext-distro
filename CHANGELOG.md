@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## v18.0.0 - 2024-06-27
+
+### [18.0.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v17.2.0...v18.0.0) (2024-06-27)
+
+#### ⚠ BREAKING CHANGES
+
+* Add support to Redwood ([885e0b9](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/885e0b955722e4d86f89547764537ee74f707cf9)); the main change 
+
+* Fix when 'tutor distro enable-themes' was executed before, a new execution hung when it tried to overwrite the existing theme folder. The process requires confirmation ('yes') to proceed with the overwrite, but it did not receive this input automatically, leading to a freeze ([1924007](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/1924007d121b46c9dc5949810f1e7f89fdf0fad2))
+
 ## v17.2.0 - 2024-04-05
 
 ### [17.2.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v17.1.0...v17.2.0) (2024-04-05)
