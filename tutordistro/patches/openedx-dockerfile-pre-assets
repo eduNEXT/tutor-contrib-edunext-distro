@@ -1,16 +1,15 @@
 ENV NO_PYTHON_UNINSTALL 1
 ENV NO_PREREQ_INSTALL 1
-RUN openedx-assets xmodule \
-    && openedx-assets npm \
-    && openedx-assets webpack --env=prod \
-    && openedx-assets common
+RUN npm run postinstall \
+    && npm run webpack \
+    && npm run compile-sass -- --skip-themes
 {% if DISTRO_THEMES_ROOT is defined %}
 COPY --chown=app:app ./themes/ {{ DISTRO_THEMES_ROOT }}
 {% endif %}
 {% if DISTRO_THEME_DIRS is defined and DISTRO_THEMES_NAME is defined %}
-RUN openedx-assets themes \
-    --theme-dirs {{ DISTRO_THEME_DIRS | join(' ') }} \
-    --themes {{ DISTRO_THEMES_NAME | join(' ') }} \
-    && openedx-assets collect --settings=tutor.assets \
+RUN npm run compile-sass -- \
+    --theme-dir {{ DISTRO_THEME_DIRS | join(' --theme-dir ') }} \
+    --theme {{ DISTRO_THEMES_NAME | join(' --theme ') }} \
+    && ./manage.py lms collectstatic --noinput --settings=tutor.assets \
     && rdfind -makesymlinks true -followsymlinks true /openedx/staticfiles/
 {% endif %}
