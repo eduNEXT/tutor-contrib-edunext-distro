@@ -16,9 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### ⚠ BREAKING CHANGES
 
-* Add support to Redwood ([885e0b9](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/885e0b955722e4d86f89547764537ee74f707cf9)); the main change 
+* [Feature] Add support to Redwood ([885e0b9](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/885e0b955722e4d86f89547764537ee74f707cf9))
 
-* Fix when 'tutor distro enable-themes' was executed before, a new execution hung when it tried to overwrite the existing theme folder. The process requires confirmation ('yes') to proceed with the overwrite, but it did not receive this input automatically, leading to a freeze ([1924007](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/1924007d121b46c9dc5949810f1e7f89fdf0fad2))
+* [Bugfix] Adapt the inline Tutor plugin `openedx-dockerfile-pre-assets` to stop using the deprecated command [openedx-assets](https://github.com/overhangio/tutor/blob/master/CHANGELOG.md#v1800-2024-06-19:~:text=%F0%9F%92%A5%5BFeature%5D%20The%20openedx,or%20cms%20container%3A) for setting the pre-assets of the custom themes added with Distro ([885e0b9](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/885e0b955722e4d86f89547764537ee74f707cf9#diff-d32c8a1ee8b6076c6fb3375498a9d455d41cad3104464e9b1e3900fd4265160a))
+
+* [Bugfix] 'tutor distro enable-themes' command would hang when trying to overwrite an existing theme folder due to not being able to read the confirmation input ('yes') to perform the overwrite ([1924007](https://github.com/eduNEXT/tutor-contrib-edunext-distro/commit/1924007d121b46c9dc5949810f1e7f89fdf0fad2)).
 
 ## v17.2.0 - 2024-04-05
 

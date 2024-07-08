@@ -237,14 +237,16 @@ tutor distro enable-themes
 > tutor images build openedx-dev
 > tutor dev do init
 > tutor dev start
-> tutor dev run lms openedx-assets themes --theme-dirs [THEME_DIRS] --themes [THEME_NAMES]
+> tutor dev exec lms bash
+> npm run compile-sass -- --theme-dir X --theme-dir Y --theme A --theme B
 > ```
 >
 > or
 >
 > ```bash
 > tutor dev launch
-> tutor dev run lms openedx-assets themes --theme-dirs [THEME_DIRS] --themes [THEME_NAMES]
+> tutor dev exec lms bash
+> npm run compile-sass -- --theme-dir X --theme-dir Y --theme A --theme B
 > ```
 
 # Commands
