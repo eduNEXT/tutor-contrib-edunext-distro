@@ -69,17 +69,26 @@ class TutorCommandManager(CommandManager):
             command (str): Tutor command.
         """
         try:
-            process = subprocess.run(
+            with subprocess.Popen(
                 command,
                 shell=True,
-                check=True,
-                capture_output=True,
                 executable="/bin/bash",
-            )
-            # This print is left on purpose to show the command output
-            print(process.stdout.decode())
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            ) as process:
+
+                # It is sent a 'y' to say 'yes' on overriding the existing folders
+                stdout, stderr = process.communicate(input="y")
+
+                if process.returncode != 0 or "error" in stderr.lower():
+                    raise subprocess.CalledProcessError(
+                        process.returncode, command, output=stdout, stderr=stderr
+                    )
+
+                # This print is left on purpose to show the command output
+                print(stdout)
 
         except subprocess.CalledProcessError as error:
-            raise CommandError(
-                f"Error running command '{error.cmd}':\n{error.stderr.decode()}"
-            ) from error
+            raise CommandError(f"\n{error.stderr}") from error

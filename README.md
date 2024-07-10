@@ -64,12 +64,13 @@ Please see the following table for details on compatibility.
 | olive   | v15   |
 | palm    | v16   |
 | quince  | v17   |
+| redwood | v18   |
 
 Then, specify the docker image variables to identify your custom images, like the example:
 
 ```yaml
-DOCKER_IMAGE_OPENEDX: 'docker.io/ednxops/distro-edunext-edxapp:quince'
-DOCKER_IMAGE_OPENEDX_DEV: 'docker.io/ednxops/distro-edunext-edxapp-dev:quince'
+DOCKER_IMAGE_OPENEDX: "docker.io/ednxops/distro-edunext-edxapp:redwood"
+DOCKER_IMAGE_OPENEDX_DEV: "docker.io/ednxops/distro-edunext-edxapp-dev:redwood"
 ```
 
 Finally, launch your instance or build a new image to reflect the changes.
@@ -236,14 +237,16 @@ tutor distro enable-themes
 > tutor images build openedx-dev
 > tutor dev do init
 > tutor dev start
-> tutor dev run lms openedx-assets themes --theme-dirs [THEME_DIRS] --themes [THEME_NAMES]
+> tutor dev exec lms bash
+> npm run compile-sass -- --theme-dir X --theme-dir Y --theme A --theme B
 > ```
 >
 > or
 >
 > ```bash
 > tutor dev launch
-> tutor dev run lms openedx-assets themes --theme-dirs [THEME_DIRS] --themes [THEME_NAMES]
+> tutor dev exec lms bash
+> npm run compile-sass -- --theme-dir X --theme-dir Y --theme A --theme B
 > ```
 
 # Commands

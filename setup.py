@@ -39,7 +39,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     python_requires=">=3.8",
-    install_requires=["tutor>=17.0.3, <18", "click", "schema"],
+    install_requires=["tutor>=18.0.0, <19", "click", "schema"],
     extras_require={
             "test": ["behave", "pytest", "pylint", "pytest-mock", "pycodestyle", "isort", "schema"]
         },
