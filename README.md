@@ -3,6 +3,9 @@
 This plugin is a tool to facilitate the customization of an Open edX instance, adding commands and settings to have an easy-to-use
 and a ready-to-deploy in a local or development environment.
 
+> [!WARNING]  
+> This plugin is in the process of being deprecated. It will be replaced by [tutor-contrib-picasso](https://github.com/eduNEXT/tutor-contrib-picasso).
+
 ## Installation
 
 To install the latest release, run:
