@@ -5,7 +5,7 @@ Tutor distrto defaults settings.
 import os
 from glob import glob
 
-import pkg_resources
+import importlib.resources
 from tutor import hooks
 
 from tutordistro.commands.cli import distro
@@ -25,7 +25,7 @@ config = {
 
 # Plugin templates
 hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
-    pkg_resources.resource_filename("tutordistro", "templates")
+    importlib.resources.files("tutordistro") / "templates"
 )
 hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     [
@@ -36,7 +36,7 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
 # Load all patches from the "patches" folder
 for path in glob(
     os.path.join(
-        pkg_resources.resource_filename("tutordistro", "patches"),
+        importlib.resources.files("tutordistro") / "patches",
         "*",
     )
 ):
