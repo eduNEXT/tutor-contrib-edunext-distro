@@ -10,6 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+### v19.0.0 - 2025-02-05
+
+## [v19.0.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v18.0.0...v19.0.0)  - (2025-02-05)
+
+### Changed
+
+* Remove python 3.8
+* pkg_resources is deprecated, and its recommended replacement, importlib.resources, is only fully available in Python 3.9+.
+
 ## v18.0.0 - 2024-06-27
 
 ### [18.0.0](https://github.com/eduNEXT/tutor-contrib-edunext-distro/compare/v17.2.0...v18.0.0) (2024-06-27)
